@@ -5,36 +5,34 @@
 {% endblock styles %}
 
 {% block content %}
-<section>
-    <div class="cards-container">
-        <div class="card">
-            <img src="/assets/burger.png" alt="Imagem de um Hamburguer">
-            <h4>Triplo bacon burger<h4>
-                    <p>por Jorge Relato</p>
-                </div>
-                <div class="card">
-                    <img src="/assets/pizza.png" alt="Imagem de uma Pizza">
-                    <h4>Pizza 4 estações<h4>
-                            <p>por Fabiola Melo</p>
+    <section>
+        <div class="cards-container">
+            <div class="card">
+                <img src="/assets/burger.png" alt="Imagem de um Hamburguer">
+                <h4>Triplo bacon burger<h4>
+                        <p>por Jorge Relato</p>
+                    </div>
+                    <div class="card">
+                        <img src="/assets/pizza.png" alt="Imagem de uma Pizza">
+                        <h4>Pizza 4 estações<h4>
+                                <p>por Fabiola Melo</p>
+                            </div>
+                            <div class="card">
+                                <img src="/assets/asinhas.png" alt="Imagem de uma Asinha de frango">
+                                <h4>Asinhas de frango ao barbecue</h4>
+                                <p>por Vania Steroski</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <img src="/assets/asinhas.png" alt="Imagem de uma Asinha de frango">
-                            <h4>Asinhas de frango ao barbecue</h4>
-                            <p>por Vania Steroski</p>
+
+                        <div class="modal hide">
+                            <div class="close">
+                                <div class="close-container">
+                                    <div class="one"></div>
+                                    <div class="two"></div>
+                                </div>
+                            </div>
+                            <div class="modal-content"></div>
                         </div>
-    </div>
 
-    <div class="modal hide">
-        <div class="close">
-                <div class="close-container">
-                <div class="one"></div>
-            <div class="two"></div>
-            </div>
-        </div>
-        <div class="modal-content">
-            
-        </div>
-     </div>
-
-     <script src="/scripts/recipe-modal.js"></script>
-{% endblock content %}
+                        <script src="/scripts/recipe-modal.js"></script>
+                    {% endblock content %}
