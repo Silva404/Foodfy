@@ -43,6 +43,24 @@
     background: var(--white-color);
     align-self: center;
     justify-self: center;
+
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 40px;
+}
+
+.one,
+.two {
+    height: 3px;
+    margin-bottom: 1em;
+    width: 100%;
+    background: black;
 }
 
 .hide {
