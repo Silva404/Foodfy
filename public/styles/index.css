@@ -1,0 +1,70 @@
+#hero-container {
+    width: 100%;
+    height: 366px;
+
+    background: var(--secondary-color);
+    border-radius: 2em;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#hero-container .hero-text {
+    align-self: center;
+    padding-left: 4em;
+}
+
+#hero-container .hero-img {
+    justify-self: center;
+    align-self: end;
+}
+
+.hero-img img {
+    height: 350px;
+}
+
+#hero-container .hero-text h1,
+#access h3 {
+    font-family: Bree serif;
+    font-weight: normal;
+}
+
+#hero-container .hero-text h1 {
+    font-size: 3.2rem;
+}
+
+#hero-container .hero-text p {
+    margin-top: 1em;
+    font-size: 1.8rem;
+    opacity: 0.8;
+}
+
+#access {
+    margin: 2em 0;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+#access h3 {
+    font-size: 2.2rem;
+}
+
+.card h4 {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 1em;
+    margin: 1em 0;
+}
+
+.card p {
+    font-size: 1.4rem;
+    color: var(--desc-color);
+}

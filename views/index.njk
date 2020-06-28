@@ -1,0 +1,40 @@
+{% extends 'layout.njk' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="styles/index.css">
+{% endblock styles %}
+
+{% block content %}
+    <main>
+        <section id="hero-container">
+            <div class="hero-text">
+                <h1>As melhores receita</h1>
+                <p>Aprenda a construir os melhores pratos com receitas criadas por profissionais no mundo inteiro.</p>
+            </div>
+            <div class="hero-img">
+                <img src="/assets/chef.png" alt="">
+            </div>
+        </section>
+        <section id="access">
+            <h3>Mais acessadas</h3>
+            <div class="cards-container">
+                <div class="card">
+                    <img src="/assets/burger.png" alt="Imagem de um Hamburguer">
+                    <h4>Triplo bacon burger<h4>
+                    <p>por Jorge Relato</p>
+                </div>
+                <div class="card">
+                    <img src="/assets/pizza.png" alt="Imagem de uma Pizza">
+                    <h4>Pizza 4 estações<h4>
+                    <p>por Fabiola Melo</p>
+                </div>
+                <div class="card">
+                    <img src="/assets/asinhas.png" alt="Imagem de uma Asinha de frango">
+                    <h4>Asinhas de frango ao barbecue</h4>
+                    <p>por Vania Steroski</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+{% endblock content %}

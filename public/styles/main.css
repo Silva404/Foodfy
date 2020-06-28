@@ -1,0 +1,60 @@
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet';
+@import 'https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet';
+@import 'https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet';
+
+:root {
+    --primary-color: #6558C3;
+    --secondary-color: #FBDFDB;
+    --white-color: #eeeeee;
+    --desc-color: #87898A
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    text-decoration: none;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;  
+    font-family: Raleway;
+    color: #111111;
+
+    height: 100vh;
+    position: relative;
+    font-size: 1.6rem;
+    line-height: 1.8em;
+
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5em 0 1em;
+}
+
+header .links a {
+    margin-right: 2em;
+    color: #111111;
+}
+
+.content {
+    width: 90%;
+    max-width: 940px;
+    margin: 0 auto;
+}
+
+footer {
+    margin: auto auto 0;
+    padding: 1em 0;
+}
