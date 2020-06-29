@@ -10,7 +10,7 @@
     font-size: 2.2rem;
 }
 
-.card h4 {
+.card h4{
     font-size: 1.6rem;
     font-weight: 500;
 }
@@ -39,19 +39,46 @@
 
 .modal-content {
     width: 50%;
-    height: 70%;
     background: var(--white-color);
     align-self: center;
     justify-self: center;
 
     position: relative;
+
+    padding: 3em;
+    text-align: center;
+} 
+
+.modal-content img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 1em;
+    margin: 1em 0;
 }
 
-.close {
+.modal-content h4 {
+    font-size: 2.4rem;
+    margin-bottom: 0.5em;
+    font-weight: 500;
+}
+
+.modal-content p {
+    font-size: 1.8rem;
+    color: var(--desc-color);
+    font-weight: normal;
+}
+
+.close-section {
     position: absolute;
     top: 0;
     right: 0;
-    width: 40px;
+    z-index: 1;
+}
+
+.close-toggle {
+    width: 30px;
+    margin: 1em 1em 0 0;
 }
 
 .one,
@@ -60,6 +87,14 @@
     margin-bottom: 1em;
     width: 100%;
     background: black;
+}
+
+.one {
+    transform: rotate(45deg) translate(15px, 8px);
+}
+
+.two {
+    transform: rotate(-45deg) translate(5px, 1px);
 }
 
 .hide {

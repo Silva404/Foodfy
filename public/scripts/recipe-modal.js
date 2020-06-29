@@ -6,7 +6,7 @@ const close = document.querySelector('.close')
 for (let card of cards) {
     card.addEventListener('click', e => {
         modal.classList.remove('hide')
-        modalContent.innerHTML = card.innerHTML        
+        modalContent.innerHTML += card.innerHTML        
     })
 }
 
