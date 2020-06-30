@@ -5,37 +5,40 @@
 {% endblock styles %}
 
 {% block content %}
-    <section>
-        <div class="cards-container">
-            {% for recipe in recipes %}
-                <div class="card">
-                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-                    <h4>{{ recipe.title }}<h4>
-                    <p>{{ recipe.author }}</p>
-                </div>
-            {% endfor %}
+    <div class="cards-container">
+        {% for recipe in recipes %}
+            <div class="card">
+                <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                <h4>{{ recipe.title }}
+                    <h4>
+                        <p>{{ recipe.author }}</p>
+                    </div>
+                {% endfor %}
 
-             <div class="card">
+                <div class="recipe-container">
                     <img src="{{ recipes.image }}" alt="{{ recipe.title }}">
-                    <h4>{{ recipes.title }}<h4>
-                    <p>{{ recipes.author }}</p>
-                </div>
+                    <h1>{{ recipes.title }}
+                        <h1>
+                            <p>{{ recipes.author }}</p>
 
-        <div class="modal hide">
-                        <div class="modal-content">
-                            <div class="close-section">
-                                <div class="close-toggle">
-                                    <div class="one"></div>
-                                    <div class="two"></div>
+                            <h3>Ingredientes <span>esconder</span></h3>
+                        </div>
+
+                        <div class="modal hide">
+                            <div class="modal-content">
+                                <div class="close-section">
+                                    <div class="close-toggle">
+                                        <div class="one"></div>
+                                        <div class="two"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-        </div>
 
+                    </div>
 
+                {% endblock content %}
 
-{% endblock content %}
-
-{% block scripts %}
- <script src="/scripts/recipe-modal.js"></script>
-{% endblock scripts %}
+                {% block scripts %}
+                    <script src="/scripts/recipe-modal.js"></script>
+                {% endblock scripts %}

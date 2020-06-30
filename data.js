@@ -1,6 +1,5 @@
 module.exports = [
     {
-      id: 1,
       image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/burger.png',
       title: 'Triplo bacon burger',
       author: 'Jorge Relato',
