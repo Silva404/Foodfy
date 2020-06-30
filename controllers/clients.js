@@ -5,11 +5,11 @@ exports.index = (requisition, response) => {
 }
 
 exports.home = (requisition, response) => {
-    return response.render("index", { recipes: data })
+    return response.render("clients/index", { recipes: data })
 }
 
 exports.recipes = (requisition, response) => {
-    return response.render("recipes", { recipes: data })
+    return response.render("clients/recipes", { recipes: data })
 }
 
 exports.recipe = (requisition, response) => {
@@ -17,5 +17,5 @@ exports.recipe = (requisition, response) => {
     const recipe = data.find(recipe => recipe.id == id)
     if (!recipe) return response.send("Recipe not found!")
 
-    return response.render("recipe", { recipes: recipe })
+    return response.render("clients/recipe", { recipes: recipe })
 }

@@ -52,8 +52,8 @@ header a {
     position: relative;
 }
 
-.page::after{
-    width: 120%;
+.page{
+    width: 140%;
     height: 10px;
     background: var(--secondary-color);
 
