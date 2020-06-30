@@ -11,19 +11,35 @@ exports.create = (req, res) => {
 
 exports.post = (req, res) => {
     const keys = Object.keys(req.body)
-    console.log(keys)
-    console.log(req.body)
 
-    for (let key of keys) {
-        if (res.body[key] == "") {
-            return res.send('Please, fill all the fields.')
-        }
+    for (key of keys) {
+        if (req.body[key] == '') return res.send('Please, fill and the fields.')
     }
 
-    data.recipes.push(req.body)
+    let id = 1 
+    const lastRecipe = data.recipes[data.recipes.length - 1]
+    if (lastRecipe) {
+        id = lastRecipe.id + 1
+    }
 
-    fs.writeFile('data.json', JSON.stringify(data, null, 2), err => {
-        if (err) return res.send('Error ocurred while writing file.')
-        return res.redirect('admin/recipes')
+    data.recipes.push({
+        id,
+        ...req.body
     })
+
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), err => {
+        if (err) return res.send('Error while writing file.')
+
+        return res.redirect('/admin/recipes')
+    })
+}
+
+exports.show = (req, res) => {
+    const { id } = req.params
+    const foundRecipe = data.recipes.find( recipe => recipe.id == id)
+    if (!foundRecipe) {
+        res.send('Recipe not found.')
+    }
+
+    return res.render('/admin/recipes/recipe')
 }

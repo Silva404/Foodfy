@@ -13,5 +13,6 @@ routes.get("/recipes/:index", clients.recipe)
 routes.get("/admin/recipes", recipes.index)
 routes.post("/admin/recipes", recipes.post)
 routes.get("/admin/recipes/create", recipes.create)
+routes.get("/admin/recipes/:id", recipes.show)
 
 module.exports = routes

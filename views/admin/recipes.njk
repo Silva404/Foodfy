@@ -1,1 +1,16 @@
 {% extends 'layout.njk' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="styles/recipes.css">
+{% endblock styles %}
+
+{% block content %}
+
+    <div class="card">
+        {% for recipe in recipes %}
+            <img src="{{ recipe.image}}" alt="">
+            <h1>{{ recipe.name}}</h1>
+            <h1>{{ recipe.author}}</h1>
+        {% endfor %}
+    </div>
+{% endblock content %}
