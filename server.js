@@ -27,10 +27,11 @@ server.get("/recipes", (requisition, response) => {
 })
 
 server.get("/recipes/:index", (requisition, response) => {
-    const { id } = requisition.params.id
+    const id = requisition.params.index
     const recipe = data.find(recipe => recipe.id == id)
+    if (!recipe) return response.send("Recipe not found!")
 
-    return response.render("recipes", { recipes: recipe })
+    return response.render("recipe", { recipes: recipe })
 })
 
 server.listen(3000, () => {

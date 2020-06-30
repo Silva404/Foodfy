@@ -1,0 +1,44 @@
+.card {
+    text-align: center;
+}
+
+.card img {
+    margin: 2em 0;
+    border-radius: 2em;
+    width: 100%;
+    object-fit: cover;    
+}
+
+.card h1 {
+    font-size: 3.2rem;
+    margin-bottom: 0.5em;
+}
+
+.card p {
+    font-size: 2.2rem;
+    color: var(--desc-color);
+    margin-bottom: 2em;
+}
+
+h3 {
+    font-size: 2.6rem;
+    margin: 2em 0 1em;
+}
+
+span {
+    text-transform: uppercase;
+    color: var(--desc-color);
+    font-size: 1.2rem;
+    margin-left: 1.5em;
+}
+
+li, p {
+    font-size: 1.8rem;
+}
+
+.ingredients ul {
+    margin-left: 1em;
+}
+.info ul {
+    list-style: none;
+}

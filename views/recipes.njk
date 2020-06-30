@@ -7,7 +7,7 @@
 {% block content %}
     <div class="cards-container">
         {% for recipe in recipes %}
-            <div class="card">
+            <div class="card" id="{{ recipe.id}}">
                 <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
                 <h4>{{ recipe.title }}
                     <h4>
@@ -15,52 +15,21 @@
                     </div>
                 {% endfor %}
 
-                <div class="recipe-container">
-                    <img src="{{ recipes.image }}" alt="{{ recipe.title }}">
-                    <h1>{{ recipes.title }}
-                        <h1>
-                            <p>{{ recipes.author }}</p>
-
-                            <div class="ingredients-container">
-                                <h3>Ingredientes
-                                    <span>esconder</span></h3>
-                                <ul>
-                                    {% for ingredient in recipes.ingredients %}
-                                        <li>
-                                            {{ ingredient }}</li>
-                                    {% endfor %}
-                                </ul>
-                                <h3>Modo de preparo
-                                    <span>esconder</span></h3>
-                                <ul>
-                                    {% for preparo in recipes.preparation %}
-                                        <li>
-                                            {{ preparo }}</li>
-                                    {% endfor %}
-                                </ul>
-                                <h3>Informações adicionais
-                                    <span>esconder</span></h3>
-                                <p>
-                                    {{ recipes.information}}
-                                </p>
+                <div class="modal hide">
+                    <div class="modal-content">
+                        <div class="close-section">
+                            <div class="close-toggle">
+                                <div class="one"></div>
+                                <div class="two"></div>
                             </div>
                         </div>
-
-                        <div class="modal hide">
-                            <div class="modal-content">
-                                <div class="close-section">
-                                    <div class="close-toggle">
-                                        <div class="one"></div>
-                                        <div class="two"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
+                </div>
 
-                {% endblock content %}
+            </div>
 
-                {% block scripts %}
-                    <script src="/scripts/recipe-modal.js"></script>
-                {% endblock scripts %}
+        {% endblock content %}
+
+        {% block scripts %}
+            <script src="/scripts/recipe-modal.js"></script>
+        {% endblock scripts %}
