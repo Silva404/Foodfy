@@ -16,7 +16,7 @@ for (let i = 0; i < description.length; i++) {
   const content = description[i].querySelector('.description')
 
   span.addEventListener('click', e => {
-    if (span.innerHTML == 'esconder'){
+    if (span.innerHTML == 'esconder') {
       span.innerHTML = 'mostrar'
       content.classList.add('hide')
     } else {
@@ -26,10 +26,11 @@ for (let i = 0; i < description.length; i++) {
   })
 }
 
-const currentPage = location.pathname
-const menuItems = document.querySelector('header .links a')
+// const currentPage = location.pathname
+// const menuItems = document.querySelectorAll('header .links a')
 
-for (let item of menuItems) {
-  if (currentPage.includes(items.getAttribute('href')))
-  item.classList.add()
-}
+// for (let item of menuItems) {
+//   if (currentPage.includes(item.getAttribute('href'))) {
+//     item.innerHTML = item.innerHTML.classList.add('')
+//   }
+// }

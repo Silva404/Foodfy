@@ -48,6 +48,21 @@ header .links a {
     color: #111111;
 }
 
+header a {
+    position: relative;
+}
+
+.page::after{
+    width: 120%;
+    height: 10px;
+    background: var(--secondary-color);
+
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    z-index: -1;
+}
+
 .content {
     width: 90%;
     max-width: 940px;

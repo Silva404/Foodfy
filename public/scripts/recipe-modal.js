@@ -1,16 +1,16 @@
-const modal = document.querySelector('.modal')
-const modalContent = document.querySelector('.modal-content')
-const cards = document.querySelectorAll('.card')
-const close = document.querySelector('.close-toggle')
+// const modal = document.querySelector('.modal')
+// const modalContent = document.querySelector('.modal-content')
+// const modalCards = document.querySelectorAll('.card')
+// const close = document.querySelector('.close-toggle')
 
-for (let card of cards) {
-    card.addEventListener('click', e => {
-        modal.classList.toggle('hide')
-        modalContent.innerHTML += card.innerHTML     
-    })
-}
+// for (let modalCard of modalCards) {
+//     modalCard.addEventListener('click', e => {
+//         modal.classList.toggle('hide')
+//         modalContent.innerHTML += modalCard.innerHTML     
+//     })
+// }
 
-close.addEventListener('click', e => {
-    modal.classList.add('hide')
-})
+// close.addEventListener('click', e => {
+//     modal.classList.add('hide')
+// })
 
