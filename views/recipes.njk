@@ -21,7 +21,29 @@
                         <h1>
                             <p>{{ recipes.author }}</p>
 
-                            <h3>Ingredientes <span>esconder</span></h3>
+                            <div class="ingredients-container">
+                                <h3>Ingredientes
+                                    <span>esconder</span></h3>
+                                <ul>
+                                    {% for ingredient in recipes.ingredients %}
+                                        <li>
+                                            {{ ingredient }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <h3>Modo de preparo
+                                    <span>esconder</span></h3>
+                                <ul>
+                                    {% for preparo in recipes.preparation %}
+                                        <li>
+                                            {{ preparo }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <h3>Informações adicionais
+                                    <span>esconder</span></h3>
+                                <p>
+                                    {{ recipes.information}}
+                                </p>
+                            </div>
                         </div>
 
                         <div class="modal hide">

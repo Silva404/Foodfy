@@ -1,9 +1,9 @@
-const cards = document.querySelectorAll('.card')
+const cards = document.querySelectorAll(".card");
 
 for (let card of cards) {
-    card.addEventListener('click', e => {
-        const index = card
+  card.addEventListener("click", (e) => {
+    const index = card;
 
-        window.location.href = `/recipes/${index}`
-    })
+    window.location.href = `/recipes/${index}`;
+  });
 }
