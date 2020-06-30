@@ -6,16 +6,16 @@
 
 {% block content %}
     <section class="recipe">
-        <div class="card">
+        <div class="hero">
             <img src="{{ recipes.image}}" alt="{{ recipes.title }}">
             <h1>{{ recipes.title }}</h1>
             <p>por
                 {{ recipes.author }}</p>
         </div>
 
-        <div class="ingredients">
+        <div class="recipe-description">
             <h3>Ingredientes
-                <span class="hide">esconder</span></h3>
+                <span class="span">esconder</span></h3>
             <div class="description">
                 <ul>
                     {% for ingrediente in recipes.ingredients %}
@@ -26,9 +26,9 @@
                 </ul>
             </div>
         </div>
-        <div class="info">
+        <div class="recipe-description">
             <h3>Modo de preparo
-                <span class="hide">esconder</span></h3>
+                <span class="span">esconder</span></h3>
             <div class="description">
                 <ul>
                     {% for preparo in recipes.preparation %}
@@ -37,10 +37,9 @@
                 </ul>
             </div>
         </div>
-
-        <div class="info">
+        <div class="recipe-description">
             <h3>Informações adicionais
-                <span class="hide">esconder</span></h3>
+                <span class="span">esconder</span></h3>
             <div class="description">
                 <p>{{ recipes.information }}</p>
             </div>
