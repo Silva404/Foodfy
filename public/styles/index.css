@@ -7,6 +7,7 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr;
+    overflow: hidden;
 }
 
 #hero-container .hero-text {
@@ -75,4 +76,24 @@
 .card p {
     font-size: 1.4rem;
     color: var(--desc-color);
+}
+
+.card p span {
+    color: var(--primary-color);
+}
+
+header a {
+    position: relative;
+}
+
+.page::after .active{
+    content: '';
+    width: 140%;
+    height: 10px;
+    background: var(--secondary-color);
+
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    z-index: -1;
 }

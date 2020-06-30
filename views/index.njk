@@ -23,7 +23,7 @@
                 <div class="card" id="{{ recipe.id}}">
                     <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
                     <h4>{{ recipe.title }}<h4>
-                            <p>{{ recipe.author }}</p>
+                            <p>por <span>{{ recipe.author }}</span></p>
                         </div>
                 {% endfor %}
             </div>
@@ -31,7 +31,3 @@
 
     </main>
 {% endblock content %}
-
-{% block scripts %}
-<script src="scripts/index.js"></script>
-{% endblock scripts %}
