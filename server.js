@@ -27,9 +27,9 @@ server.get('/recipes', (requisition, response) => {
 })
 
 server.get('/recipes/:index', (requisition, response) => {
-    const recipeIndex = requisition.params.index
+    const index = requisition.params.index
 
-    const recipe = data.find( recipe => recipeIndex == recipe.id)
+    const recipe = data.find( recipe => recipe.id == index)
     if (!recipe) return response.send('Your recipe was not found.')
 
     return response.render('recipes', { recipes: recipe})
