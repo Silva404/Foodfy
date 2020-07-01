@@ -1,11 +1,14 @@
 {
   "recipes": [
     {
-      "id": 2,
+      "id": "2",
       "image": "https://images.unsplash.com/photo-1584270354955-9b76e73fb9d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
       "name": "Barra de chocolate",
       "author": "Breno",
-      "ingredients": "barra de chocolate, morago, leite condensado",
+      "ingredients": [
+        "barra de chocolate, morago, leite condensado",
+        "Leite"
+      ],
       "preparation": "Ferver",
       "additional_info": "É isso"
     },
@@ -15,8 +18,8 @@
       "name": "Bolo de cenoura",
       "author": "Breno",
       "ingredients": [
-        "Massa,Pão,Ovo,Leite,Manteiga",
-        "Óleo"
+        "Massa,Pão,Ovo,Leite,Manteiga,Óleo,Limão,Manteiga,Manteiga,Ovos,Massa,Leite em pó",
+        "Leite"
       ],
       "preparation": "Botar numa panela e ferver, junta tudo e depois comer.",
       "additional_info": "E cabo"
