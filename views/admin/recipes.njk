@@ -1,17 +1,17 @@
-{% extends 'admin/layout-admin.njk' %}
+{% extends 'layout.njk' %}
 
 {% block styles %}
     <link rel="stylesheet" href="/styles/recipes.css">
 {% endblock styles %}
 
 {% block content %}
-
-    <div class="cards-container">
+ <a href="/admin/recipes/create" class="button">Nova receita</a>
+    <div class="cards-container">       
         {% for recipe in recipes %}
             <div class="card" id="{{recipe.id}}">
                 <img src="{{ recipe.image}}" alt="{{ recipe.name}}">
                 <h4>{{ recipe.name}}</h4>
-                <p>{{ recipe.author}}</p>
+                <p>por {{ recipe.author}}</p>
             </div>
         {% endfor %}
     </div>

@@ -1,4 +1,5 @@
 .cards-container {
+    margin-top: 1em;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
@@ -107,5 +108,15 @@
 
 .hide {
     display: none;
+}
+
+.button {
+    font-size: 1.8rem;
+    color: var(--white-color);
+    padding: 0.5em 1.5em;
+    background: var(--primary-color);
+    border-radius: 0.5em;
+    text-align: right;
+    display: inline-block;
 }
 

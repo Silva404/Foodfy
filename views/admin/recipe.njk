@@ -1,4 +1,4 @@
-{% extends 'admin/layout-admin.njk' %}
+{% extends 'layout.njk' %}
 
 {% block styles %}
     <link rel="stylesheet" href="/styles/recipe.css">
@@ -24,9 +24,9 @@
                 <span class="span">esconder</span></h3>
             <div class="description">
                 <ul>
-                    {% for ingrediente in recipes.ingredients %}
+                    {% for ingredient in recipes.ingredients %}
                         <li>
-                            {{ ingrediente }}
+                            {{ ingredient }}
                         </li>
                     {% endfor %}
                 </ul>
