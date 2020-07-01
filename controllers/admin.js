@@ -55,7 +55,7 @@ exports.edit = (req, res) => {
 }
 
 exports.put = (req, res) => {
-    const { id } = req.params
+    const { id } = req.body
     let index = 0
 
     const foundRecipe = data.recipes.find((recipe, foundIndex) => {
@@ -69,16 +69,30 @@ exports.put = (req, res) => {
     }
 
     const recipe = {
+        id: Number(req.body.id),
         ...foundRecipe,
         ...req.body
     }
 
-    data.recipe[index] = recipe
+    data.recipes[index] = recipe
 
     fs.writeFile("data.json", JSON.stringify(data, null, 2), err => {
         if (err) return res.send('Error while writing file.')
 
-        return res.render('admin/edit', { recipes: foundRecipe })
+        return res.redirect('/admin/recipes')
     })
+}
 
+exports.delete = (req, res) => {
+    const { id } = req.body
+
+    const filteredRecipe = data.recipes.filter(recipe => recipe.id != id)
+
+    data.recipes = filteredRecipe
+
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), err => {
+        if (err) return res.send('Error while deleting recipe')
+
+        return res.redirect('/admin/recipes')
+    })
 }
