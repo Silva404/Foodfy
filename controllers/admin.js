@@ -43,8 +43,6 @@ exports.show = (req, res) => {
 
     const recipe = {
         ...foundRecipe,
-        // ingredients: foundRecipe.ingredients.split(','),
-        preparation: foundRecipe.preparation.split(',')
     }
 
     return res.render('admin/recipe', { recipes: recipe })
@@ -59,8 +57,6 @@ exports.edit = (req, res) => {
 
     const recipe = {
         ...foundRecipe,
-        // ingredients: foundRecipe.ingredients.split(','),
-        preparation: foundRecipe.preparation.split(',')
     }
 
     return res.render('admin/edit', { recipes: recipe })
