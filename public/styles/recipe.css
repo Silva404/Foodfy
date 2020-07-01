@@ -3,7 +3,7 @@
 }
 
 .hero img {
-    margin: 2em 0;
+    margin: 1em 0 2em;
     border-radius: 2em;
     width: 100%;
     object-fit: cover;    
@@ -44,4 +44,19 @@ li, p {
 }
 .hide {
     display: none;
+}
+
+.title {
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button {
+    font-size: 1.8rem;
+    color: var(--white-color);
+    padding: 0.5em 1.5em;
+    background: var(--primary-color);
+    border-radius: 0.5em;
 }

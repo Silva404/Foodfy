@@ -6,9 +6,15 @@
 
 {% block content %}
     <section class="recipe">
+        <div class="title">
+            <h1>Receita:
+                {{ recipes.name }}</h1>
+            <button type="submit" class="button">Editar receita</button>
+        </div>
+
         <div class="hero">
             <img src="{{ recipes.image}}" alt="{{ recipes.title }}">
-            <h1>{{ recipes.title }}</h1>
+            <h1>{{ recipes.name }}</h1>
             <p>por
                 {{ recipes.author }}</p>
         </div>
