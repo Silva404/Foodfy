@@ -1,4 +1,4 @@
-const data = require('../data')
+const data = require('../public/scripts/data')
 
 exports.index = (requisition, response) => {
     return response.redirect("/home")
