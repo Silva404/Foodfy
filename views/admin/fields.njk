@@ -12,7 +12,7 @@
 </div>
 <div class="item">
     <div>Ingredientes</div>
-    <div><input type="text" name="ingredients" value="">
+    <div><input type="text" name="ingredients" value="{{ recipes.ingredients}}">
     </div>
     <div>
         <a href="#">Adicionar novo ingrediente</a>
@@ -20,12 +20,12 @@
 </div>
 <div class="item">
     <div>Modo de preparo</div>
-    <div><input type="text" name="preparation"></div>
+    <div><input type="text" name="preparation" value="{{ recipes.preparation }}"></div>
     <div>
         <a href="#">Adicionar novo passo</a>
     </div>
 </div>
 <div class="item">
     <div>Informações adicionais</div>
-    <div><input type="text" name="additional_info" value=""></div>
+    <div><input type="text" name="additional_info" value="{{ recipes.additional_info}}"></div>
 </div>

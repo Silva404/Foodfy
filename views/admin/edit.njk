@@ -1,0 +1,21 @@
+{% extends 'layout.njk' %}
+
+{% block styles %}
+<link rel="stylesheet" href="/styles/form-fields.css">
+{% endblock styles %}
+
+{% block content %}
+    <form action="/admin/recipes" method="POST">
+        <section class="container">
+            <div class="title">
+                <h3>Criando receita</h3>
+                <div class="buttons">
+                    <button type="submit" class="button delete">Deletar</button>
+                    <button type="submit" class="button">Salvar receita</button>
+                </div>
+            </div>
+            {% include 'admin/fields.njk' %}
+        </section>
+    </form>
+
+{% endblock content %}

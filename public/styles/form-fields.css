@@ -21,6 +21,10 @@
     border-radius: 0.5em;
 }
 
+.delete {
+    background: var(--desc-color);
+}
+
 input {
     width: 100%;
     outline: none;

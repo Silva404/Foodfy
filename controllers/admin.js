@@ -16,7 +16,7 @@ exports.post = (req, res) => {
         if (req.body[key] == '') return res.send('Please, fill and the fields.')
     }
 
-    let id = 1 
+    let id = 1
     const lastRecipe = data.recipes[data.recipes.length - 1]
     if (lastRecipe) {
         id = lastRecipe.id + 1
@@ -36,10 +36,49 @@ exports.post = (req, res) => {
 
 exports.show = (req, res) => {
     const { id } = req.params
-    const foundRecipe = data.recipes.find( recipe => recipe.id == id)
+    const foundRecipe = data.recipes.find(recipe => recipe.id == id)
     if (!foundRecipe) {
         res.send('Recipe not found.')
     }
 
     return res.render('admin/recipe', { recipes: foundRecipe })
+}
+
+exports.edit = (req, res) => {
+    const { id } = req.params
+    const foundRecipe = data.recipes.find(recipe => recipe.id == id)
+    if (!foundRecipe) {
+        res.send('Recipe not found.')
+    }
+
+    return res.render('admin/edit', { recipes: foundRecipe })
+}
+
+exports.put = (req, res) => {
+    const { id } = req.params
+    let index = 0
+
+    const foundRecipe = data.recipes.find((recipe, foundIndex) => {
+        if (recipe.id == id) {
+            index = foundIndex
+            return true
+        }
+    })
+    if (!foundRecipe) {
+        res.send('Recipe not found.')
+    }
+
+    const recipe = {
+        ...foundRecipe,
+        ...req.body
+    }
+
+    data.recipe[index] = recipe
+
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), err => {
+        if (err) return res.send('Error while writing file.')
+
+        return res.render('admin/edit', { recipes: foundRecipe })
+    })
+
 }
