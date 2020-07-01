@@ -7,24 +7,38 @@
     position: relative;
 }
 
+.card-admin {
+    display: grid;
+    grid-template-columns:  1fr 0.8fr;
+}
+
+.card-admin .title {
+    /* justify-self: center; */
+    align-self: center;
+    margin-left: 1em;
+}
+
 #access h3 {
     font-size: 2.2rem;
 }
 
-.card h4{
+.card h4,
+.card-admin {
     font-size: 1.6rem;
     font-weight: 500;
 }
 
+.card-admin img,
 .card img {
     width: 100%;
-    max-height: 250px;
+    max-height: 100px;
     object-fit: cover;
     border-radius: 1em;
     margin: 1em 0;
 }
 
-.card p {
+.card p,
+.card-admin p {
     font-size: 1.4rem;
     color: var(--desc-color);
 }
