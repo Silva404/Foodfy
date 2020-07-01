@@ -15,6 +15,7 @@
                 <img src="/assets/chef.png" alt="">
             </div>
         </section>
+        
         <section id="access">
             <h3>Mais acessadas</h3>
             <div class="cards-container">
@@ -22,7 +23,7 @@
 
                 <div class="card" id="{{ recipe.id}}">
                     <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-                    <h4>{{ recipe.title }}<h4>
+                    <h4>{{ recipe.name }}<h4>
                             <p>por <span>{{ recipe.author }}</span></p>
                         </div>
                 {% endfor %}

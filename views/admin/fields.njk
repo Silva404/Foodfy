@@ -10,13 +10,14 @@
     <div>Autor da receita</div>
     <div><input type="text" name="author" value="{{ recipes.author}}"></div>
 </div>
-<div class="item">
+<div id="ingredients" class="item">
     <div>Ingredientes</div>
-    <div><input type="text" name="ingredients" value="{{ recipes.ingredients}}">
+    <div class="ingredient">
+        <input type="text" name="ingredients[]" value="{{ recipes.ingredients}}" placeholder="Ingredient">
     </div>
-    <div>
-        <a href="#">Adicionar novo ingrediente</a>
-    </div>
+</div>
+<div class="newButton">
+    <button type="button" class="add-ingredient">Add new Ingredient</button>
 </div>
 <div class="item">
     <div>Modo de preparo</div>
@@ -29,3 +30,5 @@
     <div>Informações adicionais</div>
     <div><input type="text" name="additional_info" value="{{ recipes.additional_info}}"></div>
 </div>
+
+<script src="/scripts/fields.js"></script>

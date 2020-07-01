@@ -36,10 +36,13 @@ input {
     margin: 0.5em 0;
 }
 
-.item a {
-    margin-bottom: 1em;
+.newButton button {
+    margin: 0.5em 0 1em;
+    font-size: 1.4rem;
+    font-weight: 700;
     display: block;
     color: var(--primary-color);
+    background: none;
 }
 
 .item:last-child input {

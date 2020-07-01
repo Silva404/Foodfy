@@ -10,11 +10,14 @@
       "additional_info": "É isso"
     },
     {
-      "id": 3,
+      "id": "3",
       "image": "https://images.unsplash.com/photo-1540660290370-8aa90e451e8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
       "name": "Bolo de cenoura",
       "author": "Breno",
-      "ingredients": "Massa, pão, ovo, manteiga",
+      "ingredients": [
+        "Massa,Pão,Ovo,Leite,Manteiga",
+        "Óleo"
+      ],
       "preparation": "Botar numa panela e ferver, junta tudo e depois comer.",
       "additional_info": "E cabo"
     }
