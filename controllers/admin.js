@@ -16,14 +16,20 @@ exports.post = (req, res) => {
         if (req.body[key] == '') return res.send('Please, fill and the fields.')
     }
 
-    let id = 1
-    const lastRecipe = data.recipes[data.recipes.length - 1]
-    if (lastRecipe) {
-        id = lastRecipe.id + 1
-    }
+    // let id = 1
+    // const lastRecipe = data.recipes[data.recipes.length - 1]
+    // if (lastRecipe) {
+    //     id = lastRecipe.id + 1
+    // }
+
+    let id = data.recipes.length + 1
+
+    // for (let i = 0; i < (data.recipes.length - 1); i++) {
+    //     data.recipes[i]
+    // }
 
     data.recipes.push({
-        id,
+        id: Number(id),
         ...req.body
     })
 
