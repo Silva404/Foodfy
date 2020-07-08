@@ -1,22 +1,24 @@
-// const data = require('../public/scripts/data')
-const data = require('../data.json')
+const Site = require('../models/Site')
 
-exports.index = (requisition, response) => {
-    return response.redirect("/home")
-}
-
-exports.home = (requisition, response) => {
-    return response.render("clients/index", { recipes: data.recipes })
-}
-
-exports.recipes = (requisition, response) => {
-    return response.render("clients/recipes", { recipes: data.recipes })
-}
-
-exports.recipe = (requisition, response) => {
-    const id = requisition.params.index
-    const recipe = data.recipes.find(recipe => recipe.id == id)
-    if (!recipe) return response.send("Recipe not found!")
-
-    return response.render("clients/recipe", { recipes: recipe })
+module.exports = {
+    index(req, res) {
+        return res.redirect("/home")
+    },
+    home(req, res)  {
+        Site.all(recipes => {
+            return res.render("site/index", { recipes })
+        })
+    },
+    recipes(req, res)  {
+        Site.all(recipes => {
+            return res.render("site/recipes", { recipes })
+        })
+    },
+    recipe(req, res) {
+       Site.find(req.params.id, recipe => {        
+        if (!recipe) return res.send("Recipe not found!")
+    
+        return res.render("site/recipe", { recipes: recipe })
+       })
+    }
 }

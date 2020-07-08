@@ -11,7 +11,7 @@ server.use(express.static("public"))
 server.use(methodOverride('_method'))
 server.use(routes)
 
-nunjucks.configure("views", {
+nunjucks.configure("src/app/views", {
     express: server,
     noCache: true,
     autoescape: false,
