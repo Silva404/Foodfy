@@ -1,4 +1,5 @@
 const db = require('../../config/db')
+const { date } = require('../../lib/utils')
 
 module.exports = {
     all(callback) {
@@ -15,16 +16,27 @@ module.exports = {
             title,
             ingredients,
             preparation,
-            informationL,
+            information,
             created_at  
         ) VALUES ($1, $2, $3, $4, $5, $6)
         RETURNING id`
 
         const values = [ 
-            
+            data.image,
+            data.title,
+            data.ingredients,
+            data.preparation,
+            data.information,
+            date(data.created_at).created
         ]
+
+        db.query(query, values, (err, results) => {
+            if (err) throw `Database error: ${err}`
+
+            callback(results.rows[0])
+        })
     },
-    // show,
+    // find,
     // edit,
     // put,
     // delete

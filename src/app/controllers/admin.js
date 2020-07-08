@@ -2,7 +2,7 @@ const Admin = require('../models/Admin')
 
 module.exports = {
     index(req, res) {
-        Admin(recipes => {
+        Admin.all(recipes => {
             return res.render('admin/recipes', { recipes })
         })
     },
@@ -15,16 +15,14 @@ module.exports = {
         for (key of keys) {
             if (req.body[key] == '') return res.send('Please, fill and the fields.')
         }
+
+        Admin.create(req.body, recipe => {
+            res.redirect(`admin/recipe/${recipe.id}`)
+        })
     },
     show(req, res) {
-        const { id } = req.params
-        const foundRecipe = data.recipes.find(recipe => recipe.id == id)
         if (!foundRecipe) {
             res.send('Recipe not found.')
-        }
-
-        const recipe = {
-            ...foundRecipe,
         }
 
         return res.render('admin/recipe', { recipes: recipe })
