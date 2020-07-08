@@ -12,7 +12,7 @@ for (let item of menuItems) {
 
 
 const cards = document.querySelectorAll(".card")
-const view = document.querySelector('#view')
+const view = document.querySelectorAll('.card-admin')
 
 if (currentPage.includes('/admin')) {
   for (let card of view) {
@@ -31,4 +31,3 @@ if (currentPage.includes('/admin')) {
     });
   }
 }
-
