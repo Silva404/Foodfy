@@ -7,6 +7,7 @@
     --secondary-color: #FBDFDB;
     --white-color: #eeeeee;
     --desc-color: #87898A;
+    --font-color: #2c2c2c;
   }
 
 * {
@@ -25,7 +26,7 @@ body {
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;  
     font-family: Raleway;
-    color: #111111;
+    color: var(--font-color );
 
     height: 100vh;
     position: relative;
