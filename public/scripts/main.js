@@ -1,3 +1,4 @@
+// nav style
 const currentPage = location.pathname
 const menuItems = document.querySelectorAll('header .links a')
 const div = document.createElement('div')
@@ -10,7 +11,7 @@ for (let item of menuItems) {
   }
 }
 
-// nav style
+// redirect
 const cards = document.querySelectorAll(".card")
 const view = document.querySelectorAll('.card-admin')
 
@@ -34,11 +35,11 @@ if (currentPage.includes('/admin')) {
 
 // form delete confirmation
 const formDelete = document.querySelector('#form-delete')
-    
-formDelete.addEventListener('submit', e => {
-    const confirmation = confirm('Are you sure you want to delete')
 
-    if (!confirmation) {
-        event.preventDefault()
-    }
+formDelete.addEventListener('submit', e => {
+  const confirmation = confirm('Are you sure you want to delete')
+
+  if (!confirmation) {
+    event.preventDefault()
+  }
 })

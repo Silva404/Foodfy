@@ -5,15 +5,14 @@
 {% endblock styles %}
 
 {% block content %}
-    <a href="/admin/recipes/create" class="button">Nova receita</a>
+    <h3>Gerenciar chefs</h3>
+    <a href="/chefs/create" class="button">Novo chef</a>
     <div class="cards-container">
-        {% for recipe in recipes %}
-            <div class="card-admin" id="{{recipe.id}}">
-                <img src="{{ recipe.image}}" alt="{{ recipe.name}}">
+        {% for chef in chefs %}
+            <div class="card-admin" id="{{chef.id}}">
+                <img src="{{ chef.image}}" alt="{{ chef.name}}">
                 <div class="title">
-                    <h4>{{ recipe.title}}</h4>
-                    <p>por
-                        {{ recipe.ingredients}}</p>
+                    <h4>{{ chef.name}}</h4>
                     <a href="#" id="view">Visualizar</a>
                 </div>
             </div>

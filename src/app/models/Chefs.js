@@ -3,7 +3,7 @@ const { date } = require('../../lib/utils')
 
 module.exports = {
     all(callback) {
-        db.query(`SELECT * FROM recipes`, (err, results) => {
+        db.query(`SELECT * FROM chefs`, (err, results) => {
             if (err) throw `Data error: ${err}`
 
             callback(results.rows)
@@ -11,7 +11,7 @@ module.exports = {
     },
     create(data, callback) {
         const query = `
-        INSERT INTO recipes (
+        INSERT INTO chefs (
             image,
             title,
             ingredients,
@@ -37,7 +37,7 @@ module.exports = {
         })
     },
     find(id, callback) {
-        db.query(`SELECT * FROM recipes WHERE id = $1`, [id], (err, results) => {
+        db.query(`SELECT * FROM chefs WHERE id = $1`, [id], (err, results) => {
             if (err) throw `Database error: ${err}`
 
             callback(results.rows[0])
@@ -45,7 +45,7 @@ module.exports = {
     },
     update(data, callback) {
         const query = `
-        UPDATE recipes SET 
+        UPDATE chefs SET 
         image=$1,
         title=$2,
         ingredients=$3,
@@ -70,7 +70,7 @@ module.exports = {
         })
     },
     delete(id, callback) {
-        db.query(`DELETE FROM recipes WHERE id = $1`, [id], (err, results) => {
+        db.query(`DELETE FROM chefs WHERE id = $1`, [id], (err, results) => {
             if (err)`Database error: ${err}`
 
             callback()

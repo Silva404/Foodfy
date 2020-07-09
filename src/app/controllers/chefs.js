@@ -2,12 +2,12 @@ const Chefs = require('../models/Chefs')
 
 module.exports = {
     index(req, res) {
-        Admin.all(recipes => {
-            return res.render('admin/recipes', { recipes })
+        Chefs.all(chefs => {
+            return res.render('chefs/chefs', { chefs })
         })
     },
     create(req, res) {
-        return res.render('./admin/create')
+        return res.render('./chefs/create')
     },
     post(req, res) {
         const keys = Object.keys(req.body)
@@ -16,27 +16,27 @@ module.exports = {
             if (req.body[key] == '') return res.send('Please, fill and the fields.')
         }
 
-        Admin.create(req.body, recipe => {
-            res.redirect(`admin/recipe/${recipe.id}`)
+        Chefs.create(req.body, chef => {
+            res.redirect(`chefs/chef/${chef.id}`)
         })
     },
     show(req, res) {
-        Admin.find(req.params.id, recipe => {
-            if (!recipe) {
+        Chefs.find(req.params.id, chef => {
+            if (!chef) {
                 res.send('Recipe not found.')
             }
     
-            return res.render('admin/recipe', { recipes: recipe })
+            return res.render('chefs/chef', { chefs: chef })
         })
     },
     edit(req, res) {
-        Admin.find(req.params.id, recipe => {
-            if (!recipe) {
+        Chefs.find(req.params.id, chef => {
+            if (!chef) {
                 res.send('Recipe not found.')
             }
 
     
-            return res.render('admin/edit', { recipes: recipe })
+            return res.render('chefs/edit', { chefs: chef })
         })        
     },
     put(req, res) {
@@ -46,13 +46,13 @@ module.exports = {
             if (req.body[key] == '') return res.send('Please, fill and the fields.')
         }
 
-        Admin.update(req.body, () => {
-            return res.redirect(`/admin/recipes/${req.body.id}`)
+        Chefs.update(req.body, () => {
+            return res.redirect(`/chefs/chefs/${req.body.id}`)
         })
     },
     delete(req, res) {
-        Admin.delete(req.body.id, () => {
-           return res.redirect('/admin/recipes')
+        Chefs.delete(req.body.id, () => {
+           return res.redirect('/chefs/chefs')
         })
     }
 }
