@@ -4,6 +4,13 @@
     <link rel="stylesheet" href="styles/index.css">
 {% endblock styles %}
 
+{% block header %}
+    <form action="/recipes" method="get">
+        <input type="text" name="filter" value="{{ filter }}" placeholder="Buscar uma receita">
+        <button type="submit" class="button">Buscar</button>
+    </form>
+{% endblock header %}
+
 {% block content %}
     <main>
         <section id="hero-container">
@@ -17,22 +24,23 @@
             </div>
             <div class="background"></div>
         </section>
-        
+
         <section id="access">
             <h3>Mais acessadas</h3>
             <div class="cards-container">
                 {% for recipe in recipes %}
 
-                <div class="card" id="{{ recipe.id}}">
-                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-                    <h4>{{ recipe.name }}<h4>
-                            <p>por <span>{{ recipe.author }}</span></p>
-                        </div>
-                {% endfor %}
-            </div>
-        </section>
+                    <div class="card" id="{{ recipe.id}}">
+                        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                        <h4>{{ recipe.name }}
+                            <h4>
+                                <p>por
+                                    <span>{{ recipe.author }}</span></p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
 
-    </main>
-{% endblock content %}
-{% block scripts %}
-{% endblock scripts %}
+            </main>
+        {% endblock content %}
+        {% block scripts %}{% endblock scripts %}

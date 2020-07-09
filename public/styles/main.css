@@ -53,6 +53,23 @@ header a {
     position: relative;
 }
 
+header input {
+    padding: 0.5em 1em;
+    font-size: 1.4rem;
+    border: 1px solid #aaa9a9;
+    border-radius: 0.5em;
+}
+
+.button {
+    font-size: 1.4rem;
+    color: var(--white-color);
+    padding: 0.5em 1.5em;
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 0.5em;
+    display: inline-block;
+}
+
 .page{
     width: 140%;
     height: 10px;

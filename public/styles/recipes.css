@@ -1,8 +1,8 @@
 .cards-container {
     margin-top: 1em;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-    grid-template-rows: minmax(1fr ,150px);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 350px));
+    /* grid-template-rows: minmax(1fr ,150px); */
     gap: 20px;
 
     position: relative;

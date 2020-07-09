@@ -32,9 +32,9 @@ module.exports = {
             callback(results.rows[0])
         })
     },
-    find(id, callback) {
+    findChef(id, callback) {
         db.query(`SELECT chefs.*, 
-        count(recipes) AS total_recipes, 
+        count(recipes) AS total_recipes
         FROM chefs 
         LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
         WHERE chefs.id = $1
@@ -42,6 +42,16 @@ module.exports = {
             if (err) throw `Database error: ${err}`
 
             callback(results.rows[0])
+        })
+    },
+    findRecipe(id) {
+        db.query(`SELECT *, 
+        FROM recipes 
+        LEFT JOIN chefs ON (recipes.chef_id = chef.id)
+        WHERE id = $1`, [id], (err, results) => {
+            if (err) throw `Database error: ${err}`
+
+            return results.rows[0]
         })
     },
     update() {

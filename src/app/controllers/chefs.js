@@ -23,10 +23,11 @@ module.exports = {
         })
     },
     show(req, res) {
-        Chefs.find(req.params.id, chef => {
+        const recipe = Chefs.findRecipe(req.params.id)
+        Chefs.findChef(req.params.id, chef => {
             if (!chef) return res.send('Chef not found!')
 
-            return res.render('chefs/chef', { chef })
+            return res.render('chefs/chef', { chef, recipe })
         })
     }
 }

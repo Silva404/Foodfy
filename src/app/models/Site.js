@@ -9,10 +9,19 @@ module.exports = {
         })
     },
     find(id, callback) {
-        db.query(`SELECT * FROM recipes WHERE id = $1`, (err, results) => {
+        db.query(`SELECT * FROM recipes WHERE id = $1`, [id], (err, results) => {
             if (err) throw `Database error: ${err}`
 
             callback(results.rows[0])
+        })
+    },
+    filter(filter, callback) {
+        db.query(`SELECT * 
+        FROM recipes 
+        WHERE recipes.title ILIKE '%${filter}%'`, (err, results) => {
+            if (err) throw `Database error: ${err}`
+
+            callback(results.rows)
         })
     }
 }
