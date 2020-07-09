@@ -6,11 +6,11 @@
 
 {% block content %}
     <h3>Gerenciar chefs</h3>
-    <a href="/chefs/create" class="button">Novo chef</a>
+    <a href="/admin/chefs/create" class="button">Novo chef</a>
     <div class="cards-container">
         {% for chef in chefs %}
             <div class="card-admin" id="{{chef.id}}">
-                <img src="{{ chef.image}}" alt="{{ chef.name}}">
+                <img src="{{ chef.avatar_url}}" alt="{{ chef.name}}">
                 <div class="title">
                     <h4>{{ chef.name}}</h4>
                     <a href="#" id="view">Visualizar</a>
