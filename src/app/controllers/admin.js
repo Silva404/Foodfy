@@ -26,7 +26,7 @@ module.exports = {
                 res.send('Recipe not found.')
             }
     
-            return res.render('admin/recipe', { recipes: recipe })
+            return res.render('admin/recipe', { recipe })
         })
     },
     edit(req, res) {

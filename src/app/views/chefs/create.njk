@@ -5,14 +5,14 @@
 {% endblock styles %}
 
 {% block content %}
-    <form action="/admin/recipes" method="POST">
+    <form action="/admin/chefs" method="POST">
         <section class="container">
             <div class="title">
-                <h3>Criando receita</h3>
+                <h3>Criando chef</h3>
             </div>
-            {% include 'admin/fields.njk' %}
+            {% include 'chefs/fields.njk' %}
             <div class="send">
-                <button type="submit" class="button">Salvar</button>
+                <button type="submit" class="button">Salvar chef</button>
                 {# <button type="submit" class="button btn-clean">Apagar campos</button> #}
             </div>
         </section>

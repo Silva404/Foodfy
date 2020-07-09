@@ -8,15 +8,15 @@
     <section class="recipe">
         <div class="title">
             <h1>Receita:
-                {{ recipes.name }}</h1>
-            <a href="/admin/recipes/{{ recipes.id }}/edit" class="button">Editar receita</a>
+                {{ recipe.name }}</h1>
+            <a href="/admin/recipe/{{ recipe.id }}/edit" class="button">Editar receita</a>
         </div>
 
         <div class="hero">
-            <img src="{{ recipes.image}}" alt="{{ recipes.title }}">
-            <h1>{{ recipes.name }}</h1>
+            <img src="{{ recipe.image}}" alt="{{ recipe.title }}">
+            <h1>{{ recipe.name }}</h1>
             <p>por
-                {{ recipes.author }}</p>
+                {{ recipe.author }}</p>
         </div>
 
         <div class="recipe-description">
@@ -24,7 +24,7 @@
                 <span class="span">esconder</span></h3>
             <div class="description">
                 <ul>
-                    {% for ingredient in recipes.ingredients %}
+                    {% for ingredient in recipe.ingredients %}
                         <li>
                             {{ ingredient }}
                         </li>
@@ -37,7 +37,7 @@
                 <span class="span">esconder</span></h3>
             <div class="description">
                 <ul>
-                    {% for preparo in recipes.preparation %}
+                    {% for preparo in recipe.preparation %}
                         <li>{{ preparo }}</li>
                     {% endfor %}
                 </ul>
@@ -47,7 +47,7 @@
             <h3>Informações adicionais
                 <span class="span">esconder</span></h3>
             <div class="description">
-                <p>{{ recipes.additional_info }}</p>
+                <p>{{ recipe.additional_info }}</p>
             </div>
         </div>
     </section>
