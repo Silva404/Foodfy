@@ -22,15 +22,10 @@ module.exports = {
             callback(results.rows)
         })
     },
-
-
-
-
-
     find(id, callback) {
         db.query(`SELECT * FROM recipes
         INNER JOIN chefs 
-        ON (recipes.chef_id = chefs.id
+        ON (recipes.chef_id = chefs.id)
         WHERE recipes.id = $1`, 
         [id], (err, results) => {
             if (err) throw `Database error: ${err}`
