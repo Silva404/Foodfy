@@ -103,7 +103,7 @@
 
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 0.3fr));
     gap: 20px;
 }
 
