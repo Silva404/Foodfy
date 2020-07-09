@@ -1,12 +1,14 @@
 {% extends 'admin-layout.njk' %}
 
 {% block styles %}
-    <link rel="stylesheet" href="/styles/recipes.css">
+    <link rel="stylesheet" href="/styles/chefs/chefs.css">
 {% endblock styles %}
 
 {% block content %}
-    <h3>Gerenciar chefs</h3>
-    <a href="/admin/chefs/create" class="button">Novo chef</a>
+    <div class="chef-title">
+        <h3>Gerenciar chefs</h3>
+        <a href="/admin/chefs/create" class="button">Novo chef</a>
+    </div>
     <div class="cards-container">
         {% for chef in chefs %}
             <div class="card-admin" id="{{chef.id}}">
