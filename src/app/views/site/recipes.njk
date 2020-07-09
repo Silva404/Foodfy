@@ -12,6 +12,7 @@
 {% endblock header %}
 
 {% block content %}
+    <h2>Buscando por "{{ filter }}"</h2>
     <div class="cards-container">
         {% for recipe in recipes %}
             <div class="card" id="{{ recipe.id}}">
