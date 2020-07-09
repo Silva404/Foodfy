@@ -10,7 +10,7 @@ for (let item of menuItems) {
   }
 }
 
-
+// nav style
 const cards = document.querySelectorAll(".card")
 const view = document.querySelectorAll('.card-admin')
 
@@ -31,3 +31,14 @@ if (currentPage.includes('/admin')) {
     });
   }
 }
+
+// form delete confirmation
+const formDelete = document.querySelector('#form-delete')
+    
+formDelete.addEventListener('submit', e => {
+    const confirmation = confirm('Are you sure you want to delete')
+
+    if (!confirmation) {
+        event.preventDefault()
+    }
+})
