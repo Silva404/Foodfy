@@ -7,19 +7,17 @@
 {% block content %}
     <a href="/admin/recipes/create" class="button">Nova receita</a>
     <div class="cards-container">
-        {# id="{{recipe.id}}" #}
-
         {% for recipe in recipes %}
             <div class="card-admin" id="{{recipe.id}}">
                 <img src="{{ recipe.image}}" alt="{{ recipe.name}}">
                 <div class="title">
                     <h4>{{ recipe.title}}</h4>
-                    <p>por {{ recipe.ingredients}}</p>
-                    <a href="#" id=view>Visualizar</a>
+                    <p>por
+                        {{ recipe.ingredients}}</p>
+                    <a href="#" id="view">Visualizar</a>
                 </div>
             </div>
         {% endfor %}
-
     </div>
 {% endblock content %}
 

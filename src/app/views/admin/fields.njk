@@ -4,7 +4,7 @@
 </div>
 <div class="item">
     <div>Nome da receita</div>
-    <div><input type="text" name="title" value="{{ recipes.name}}"></div>
+    <div><input type="text" name="title" value="{{ recipes.title}}"></div>
 </div>
 {# <div class="item">
     <div>Autor da receita</div>
@@ -13,9 +13,9 @@
 
 <div id="ingredients" class="item">
     <div>Ingredientes</div>
-    {% if not ingredient %}
+    {% if not recipes.ingredients %}
         <div class="ingredient">
-            <input type="text" name="ingredients[]" value="{{ ingredient }}" placeholder="Novo ingrediente">
+            <input type="text" name="ingredients[]" value="" placeholder="Novo ingrediente">
         </div>
     {% endif %}
     {% for ingredient in recipes.ingredients %}
@@ -31,9 +31,9 @@
 
 <div id="preparation" class="item">
     <div>Modo de preparo</div>
-    {% if not prepare %}
+    {% if not recipes.preparation %}
         <div class="preparation">
-            <input type="text" name="preparation[]" value="{{ prepare }}" placeholder="Adicione um modo de preparo">
+            <input type="text" name="preparation[]" value="" placeholder="Adicione um modo de preparo">
         </div>
     {% endif %}
     {% for prepare in recipes.preparation %}
@@ -49,7 +49,7 @@
 
 <div class="item">
     <div>Informações adicionais</div>
-    <div><input type="text" name="information" value="{{ recipes.additional_info}}"></div>
+    <div><input type="text" name="information" value="{{ recipes.information}}"></div>
 </div>
 
 <script src="/scripts/fields.js"></script>
