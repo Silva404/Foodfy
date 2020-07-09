@@ -15,7 +15,7 @@ for (let item of menuItems) {
 const cards = document.querySelectorAll(".card")
 const view = document.querySelectorAll('.card-admin')
 
-if (currentPage.includes('/admin')) {
+if (currentPage.includes('/admin/recipes')) {
   for (let card of view) {
     card.addEventListener("click", (e) => {
       const cardId = card.getAttribute('id')
@@ -23,7 +23,16 @@ if (currentPage.includes('/admin')) {
       window.location.href = `/admin/recipes/${cardId}`
     });
   }
-} else {
+} else if (currentPage.includes('/admin/chefs')) {
+  for (let card of view) {
+    card.addEventListener("click", (e) => {
+      const cardId = card.getAttribute('id')
+
+      window.location.href = `/admin/chefs/${cardId}`
+    });
+  }
+}
+else {
   for (let card of cards) {
     card.addEventListener("click", (e) => {
       const cardId = card.getAttribute('id')

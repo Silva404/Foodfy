@@ -4,6 +4,13 @@
     <link rel="stylesheet" href="styles/recipes.css">
 {% endblock styles %}
 
+{% block header %}
+    <form action="/recipes" method="get">
+        <input type="text" name="filter" value="{{ filter }}" placeholder="Buscar uma receita">
+        <button type="submit" class="button">Buscar</button>
+    </form>
+{% endblock header %}
+
 {% block content %}
     <div class="cards-container">
         {% for recipe in recipes %}

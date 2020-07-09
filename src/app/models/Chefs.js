@@ -33,25 +33,14 @@ module.exports = {
         })
     },
     findChef(id, callback) {
-        db.query(`SELECT chefs.*, 
-        count(recipes) AS total_recipes
-        FROM chefs 
-        LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
+        db.query(`SELECT * FROM chefs 
+        INNER JOIN recipes 
+        ON (chefs.id = recipes.chef_id)
         WHERE chefs.id = $1
-        GROUP BY chefs.id`, [id], (err, results) => {
+        `, [id], (err, results) => {
             if (err) throw `Database error: ${err}`
 
-            callback(results.rows[0])
-        })
-    },
-    findRecipe(id) {
-        db.query(`SELECT *, 
-        FROM recipes 
-        LEFT JOIN chefs ON (recipes.chef_id = chef.id)
-        WHERE id = $1`, [id], (err, results) => {
-            if (err) throw `Database error: ${err}`
-
-            return results.rows[0]
+            callback(results.rows[0], results.rows, results.rowCount)
         })
     },
     update() {
