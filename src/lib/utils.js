@@ -10,7 +10,7 @@ module.exports = {
             day,
             month,
             year,
-            created: `${day}/${month}/${year}`
-        }
+            created: `${year}/${month}/${day}`
+        } 
     }
 }

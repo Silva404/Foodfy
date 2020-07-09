@@ -4,12 +4,12 @@
 </div>
 <div class="item">
     <div>Nome da receita</div>
-    <div><input type="text" name="name" value="{{ recipes.name}}"></div>
+    <div><input type="text" name="title" value="{{ recipes.name}}"></div>
 </div>
-<div class="item">
+{# <div class="item">
     <div>Autor da receita</div>
     <div><input type="text" name="author" value="{{ recipes.author}}"></div>
-</div>
+</div> #}
 
 <div id="ingredients" class="item">
     <div>Ingredientes</div>
@@ -49,7 +49,7 @@
 
 <div class="item">
     <div>Informações adicionais</div>
-    <div><input type="text" name="additional_info" value="{{ recipes.additional_info}}"></div>
+    <div><input type="text" name="information" value="{{ recipes.additional_info}}"></div>
 </div>
 
 <script src="/scripts/fields.js"></script>

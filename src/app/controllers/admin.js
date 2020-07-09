@@ -21,11 +21,13 @@ module.exports = {
         })
     },
     show(req, res) {
-        if (!foundRecipe) {
-            res.send('Recipe not found.')
-        }
-
-        return res.render('admin/recipe', { recipes: recipe })
+        Admin.find(req.params.id, recipe => {
+            if (!foundRecipe) {
+                res.send('Recipe not found.')
+            }
+    
+            return res.render('admin/recipe', { recipes: recipe })
+        })
     },
     edit(req, res) {
         const { id } = req.params
