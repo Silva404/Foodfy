@@ -6,12 +6,12 @@
     margin: 1em 0 2em;
     border-radius: 2em;
     width: 100%;
-    max-height: 500px;
+    max-height: 280px;
     object-fit: cover;    
 }
 
 .hero h1 {
-    font-size: 3.2rem;
+    font-size: 3.6rem;
     margin-bottom: 0.5em;
 }
 
