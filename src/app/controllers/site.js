@@ -5,7 +5,8 @@ module.exports = {
         return res.redirect("/home")
     },
     home(req, res) {
-        Site.all(recipes => {
+        Site.all((recipes) => {
+
             return res.render("site/index", { recipes })
         })
     },

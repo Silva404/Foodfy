@@ -12,31 +12,20 @@
 {% endblock header %}
 
 {% block content %}
+    {% if filter %}
     <h2>Buscando por "{{ filter }}"</h2>
+    {% endif %}
     <div class="cards-container">
+
         {% for recipe in recipes %}
             <div class="card" id="{{ recipe.id}}">
                 <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
                 <h4>{{ recipe.title }}
                     <h4>
-                        <p>{{ recipe.author }}</p>
+                        <p>Por {{ recipe.name }}</p>
                     </div>
                 {% endfor %}
-
-                {# <div class="modal hide">
-                    <div class="modal-content">
-                        <div class="close-section">
-                            <div class="close-toggle">
-                                <div class="one"></div>
-                                <div class="two"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> #}
 
             </div>
 
         {% endblock content %}
-
-        {% block scripts %}
-        {% endblock scripts %}
