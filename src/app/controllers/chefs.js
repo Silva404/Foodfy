@@ -28,5 +28,30 @@ module.exports = {
 
             return res.render('chefs/chef', { chef, recipes, totalRecipes })
         })
+    },
+    edit(req, res) {
+        Chefs.findChef(req.params.id, (chef) => {
+            if (!chef) return res.send('Chef not found!')
+
+            return res.render('chefs/edit', { chef })
+        })
+    },
+    put (req, res) {
+        const keys = Object.keys(req.body)
+
+        for (let key of keys) {
+            if (req.body[key] == '') {
+                return res.send('Please fill all the fields') 
+            }
+        }
+
+        Chefs.update(req.body, () => {
+            return res.redirect(`/admin/chefs`)
+        })
+    },
+    delete (req, res) {
+        Chefs.delete(req.params.id, () => {
+            return res.redirect(`/admin/chefs`)
+        })
     }
 }

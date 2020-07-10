@@ -1,0 +1,71 @@
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.title img {
+    width: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 2em;
+}
+
+.title h3 {
+    font-size: 2.6rem;
+    margin-bottom: 1em;
+}
+
+.item {
+    font-weight: 700;
+}
+
+.send {
+    margin: 2em auto;
+    max-width: 300px;
+}
+
+.button {
+    font-size: 1.8rem;  
+    color: var(--white-color);
+    padding: 0.5em 1.5em;
+    background: var(--primary-color);
+    border-radius: 0.5em;
+    border: 1px solid var(--primary-color);
+}
+
+.send .btn-clean {
+    background: var(--white-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.delete {
+    background: var(--desc-color);
+}
+
+input {
+    width: 100%;
+    outline: none;
+    border: 1px solid var(--desc-color);
+    padding: 1em;
+    font-size: 1.8rem;
+    border-radius: 0.5em;
+    opacity: 0.7;
+    margin: 0.5em 0;
+}
+
+.newButton button {
+    margin: 0.5em 0 1em;
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: block;
+    color: var(--primary-color);
+    background: none;
+}
+
+.item:last-child input {
+    height: 250px;
+}

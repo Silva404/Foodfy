@@ -1,28 +1,21 @@
 {% extends 'admin-layout.njk' %}
 
 {% block styles %}
-<link rel="stylesheet" href="/styles/form-fields.css">
+    <link rel="stylesheet" href="/styles/chefs/edit.css">
 {% endblock styles %}
 
 {% block content %}
-    <form id="form-edit" method="POST" action="/admin/recipes?_method=PUT">
+    <form id="form-save" method="POST" action="/admin/chefs?_method=PUT" >
         <section class="container">
             <div class="title">
-                <h3>Criando receita</h3>
-                <div class="buttons">
-                    <button form="form-delete" type="submit" class="button delete">Deletar</button>
-                    <button form="form-edit" type="submit" class="button">Salvar receita</button>
-                </div>
+                <h3>Editando chef</h3>
+                <img src="{{ chef.avatar_url}}" alt="{{ chef.name}}">
             </div>
-            {% include 'admin/fields.njk' %}
-
-            <input type="hidden" name="id" value="{{ recipes.id }}">
+            {% include 'chefs/fields.njk' %}
+            <div class="send">
+                <button type="submit" form="form-save" class="button">Salvar chef</button>
+                <button type="submit" form="form-delete" class="button btn-clean">Apagar campos</button>
+            </div>
         </section>
     </form>
-    <form id="form-delete" method="POST" action="/admin/recipes?_method=DELETE">
-        <input type="hidden" name="id" value="{{ recipes.id }}">
-       
-       {% include 'confirm.njk' %}
-    </form>
-
 {% endblock content %}
