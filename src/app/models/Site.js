@@ -3,7 +3,7 @@ const db = require('../../config/db')
 module.exports = {
     all(callback) {
         db.query(`
-        SELECT * 
+        SELECT *, recipes.id AS recipe_id
         FROM recipes
         INNER JOIN chefs 
         ON (recipes.chef_id = chefs.id)
