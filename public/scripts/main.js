@@ -43,12 +43,16 @@ else {
 }
 
 // form delete confirmation
-const formDelete = document.querySelector('#form-delete')
 
-formDelete.addEventListener('submit', e => {
-  const confirmation = confirm('Are you sure you want to delete')
+if (currentPage.includes('/edit')) {
+  const formDelete = document.querySelector('#form-delete')
 
-  if (!confirmation) {
-    event.preventDefault()
-  }
-})
+  formDelete.addEventListener('submit', e => {
+    const confirmation = confirm('Are you sure you want to delete')
+
+    if (!confirmation) {
+      event.preventDefault()
+    }
+  })
+
+}
