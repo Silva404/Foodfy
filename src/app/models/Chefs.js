@@ -32,6 +32,15 @@ module.exports = {
             callback(results.rows[0])
         })
     },
+    find(id, callback) {
+        db.query(`SELECT * FROM chefs 
+        WHERE chefs.id = $1
+        `, [id], (err, results) => {
+            if (err) throw `Database error: ${err}`
+
+            callback(results.rows[0])
+        })
+    },
     findChef(id, callback) {
         db.query(`SELECT * FROM chefs 
         INNER JOIN recipes 
