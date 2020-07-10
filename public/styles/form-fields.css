@@ -38,7 +38,8 @@
     background: var(--desc-color);
 }
 
-input {
+input,
+select {
     width: 100%;
     outline: none;
     border: 1px solid var(--desc-color);
@@ -60,4 +61,8 @@ input {
 
 .item:last-child input {
     height: 250px;
+}
+
+.item select {
+    background: none;
 }

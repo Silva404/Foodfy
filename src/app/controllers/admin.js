@@ -7,7 +7,9 @@ module.exports = {
         })
     },
     create(req, res) {
-        return res.render('./admin/recipes/create')
+        Admin.allChefs( chefs => {
+        return res.render('./admin/recipes/create', { chefs })            
+        })
     },
     post(req, res) {
         const keys = Object.keys(req.body)
@@ -21,21 +23,21 @@ module.exports = {
         })
     },
     show(req, res) {
-        Admin.find(req.params.id, recipe => {
+        Admin.find(req.params.id, (recipe, chef) => {
             if (!recipe) {
                 res.send('Recipe not found.')
             }
     
-            return res.render('admin/recipes/recipe', { recipe })
+            return res.render('admin/recipes/recipe', { recipe, chef })
         })
     },
     edit(req, res) {
-        Admin.find(req.params.id, recipe => {
-            if (!recipe) {
+        Admin.find(req.params.id, (recipes, chefs) => {
+            if (!recipes) {
                 res.send('Recipe not found.')
             }
 
-            return res.render('admin/recipes/edit', { recipes: recipe })
+            return res.render('admin/recipes/edit', {  recipes, chefs }) 
         })        
     },
     put(req, res) {
@@ -46,7 +48,7 @@ module.exports = {
         }
 
         Admin.update(req.body, () => {
-            return res.redirect(`/admin/recipes/${req.body.id}`)
+            return res.redirect(`/admin/recipes/${req.body.id}`) 
         })
     },
     delete(req, res) {

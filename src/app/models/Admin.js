@@ -9,6 +9,13 @@ module.exports = {
             callback(results.rows)
         })
     },
+    allChefs(callback) {
+        db.query(`SELECT * FROM chefs`, (err, results) => {
+            if (err) throw `Data error: ${err}`
+
+            callback(results.rows)
+        })
+    },
     create(data, callback) {
         const query = `
         INSERT INTO recipes (
@@ -37,10 +44,18 @@ module.exports = {
         })
     },
     find(id, callback) {
-        db.query(`SELECT * FROM recipes WHERE id = $1`, [id], (err, results) => {
+        db.query(`SELECT *, recipes.id AS recipe_id
+        FROM recipes 
+        INNER JOIN chefs 
+        ON (chefs.id = recipes.chef_id)
+        WHERE recipes.id = $1
+        `, [id], (err, results) => {
             if (err) throw `Database error: ${err}`
+            
+            // console.log(results.rows[0])
+            // console.log(results.rows)
 
-            callback(results.rows[0])
+            callback(results.rows[0], results.rows)
         })
     },
     update(data, callback) {
@@ -65,7 +80,7 @@ module.exports = {
 
         db.query(query, values, (err, results) => {
             if (err)`Database error: ${err}`
-
+            
             callback()
         })
     },

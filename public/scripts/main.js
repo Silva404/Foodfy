@@ -3,7 +3,6 @@ const currentPage = location.pathname
 const menuItems = document.querySelectorAll('header .links a')
 const div = document.createElement('div')
 div.className = 'page'
-console.log(currentPage)
 
 for (let item of menuItems) {
   if (currentPage.includes(item.getAttribute('href'))) {
@@ -11,7 +10,7 @@ for (let item of menuItems) {
   }
 }
 
-// redirect
+// clickable cards based on routes
 const cards = document.querySelectorAll(".card")
 const view = document.querySelectorAll('.card-admin')
 
@@ -42,8 +41,8 @@ else {
   }
 }
 
-// form delete confirmation
 
+// form delete confirmation box
 if (currentPage.includes('/edit')) {
   const formDelete = document.querySelector('#form-delete')
 
