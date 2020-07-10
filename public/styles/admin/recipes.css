@@ -1,14 +1,25 @@
+.recipe-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.recipe-title h3 {
+    font-size: 2.2rem;
+}
+
 .cards-container {
     margin-top: 1em;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 0.4fr));
-    /* grid-template-rows: minmax(1fr ,150px); */
     gap: 20px;
 
     position: relative;
 }
 
 .card-admin {
+    margin-top: 1em;
     display: grid;
     grid-template-columns:  1fr 1fr;
 }

@@ -2,9 +2,7 @@ const db = require('../../config/db')
 
 module.exports = {
     all(callback) {
-        db.query(`SELECT * FROM recipes
-         INNER JOIN chefs 
-         ON (recipes.chef_id = chefs.id)`, 
+        db.query(`SELECT * FROM recipes`, 
          (err, results) => {
             if (err) throw `Data error: ${err}`          
 

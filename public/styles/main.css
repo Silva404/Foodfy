@@ -68,6 +68,7 @@ header input {
     border: 1px solid var(--primary-color);
     border-radius: 0.5em;
     display: inline-block;
+    cursor: pointer;
 }
 
 .page{

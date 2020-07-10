@@ -3,11 +3,11 @@ const Admin = require('../models/Admin')
 module.exports = {
     index(req, res) {
         Admin.all(recipes => {
-            return res.render('admin/recipes', { recipes })
+            return res.render('admin/recipes/recipes', { recipes })
         })
     },
     create(req, res) {
-        return res.render('./admin/create')
+        return res.render('./admin/recipes/create')
     },
     post(req, res) {
         const keys = Object.keys(req.body)
@@ -17,7 +17,7 @@ module.exports = {
         }
 
         Admin.create(req.body, recipe => {
-            res.redirect(`admin/recipe/${recipe.id}`)
+            res.redirect(`admin/recipes/recipe/${recipe.id}`)
         })
     },
     show(req, res) {
@@ -26,7 +26,7 @@ module.exports = {
                 res.send('Recipe not found.')
             }
     
-            return res.render('admin/recipe', { recipe })
+            return res.render('admin/recipes/recipe', { recipe })
         })
     },
     edit(req, res) {

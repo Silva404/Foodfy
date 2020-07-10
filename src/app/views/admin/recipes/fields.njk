@@ -3,6 +3,17 @@
     <div><input type="url" name="image" value="{{ recipes.image}}"></div>
 </div>
 <div class="item">
+    <div>Chef</div>
+    <div>
+        {# <input type="text" name="title" value="{{ recipes.title}}" placeholder="Selecione um chef"> #}
+        <select name="chef" id="">
+            {% for chef in chefs %}
+                <option value="{{ chef.name }}"></option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+<div class="item">
     <div>Nome da receita</div>
     <div><input type="text" name="title" value="{{ recipes.title}}"></div>
 </div>
