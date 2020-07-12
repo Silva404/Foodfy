@@ -12,7 +12,7 @@ module.exports = {
             if (err) throw `Data error: ${err}`          
 
             callback(results.rows)
-            console.log(results.rows)
+            // console.log(results.rows)
         })
     }, 
     filter(filter, callback) {

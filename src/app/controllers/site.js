@@ -17,7 +17,8 @@ module.exports = {
             Site.filter(filter, recipes => {
                 return res.render('site/recipes', { recipes, filter })
             })
-        } else {
+        }
+         else {
             Site.all(recipes => {
                 return res.render("site/recipes", { recipes })
             })
