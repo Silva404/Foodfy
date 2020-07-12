@@ -47,7 +47,7 @@ header {
 
 header .links a {
     margin-right: 2em;
-    color: #111111;
+    color: #555454;
 }
 
 header a {
@@ -63,9 +63,9 @@ header input {
 
 .button {
     font-size: 1.4rem;
-    color: var(--white-color);
+    color: var(--primary-color);
     padding: 0.5em 1.5em;
-    background: var(--primary-color);
+    background: #fff;
     border: 1px solid var(--primary-color);
     border-radius: 0.5em;
     display: inline-block;
