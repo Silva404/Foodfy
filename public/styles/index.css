@@ -8,7 +8,7 @@
     position: relative;
 
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 500px; 
     overflow: hidden;    
 }
 
@@ -46,7 +46,7 @@
     border: 1px solid var(--white-color);
     color: var(--white-color);
     border-radius: 2em;
-    animation: moving-text 1000ms ease 0.2s forwards;
+    animation: moving-text 800ms ease 0.2s forwards;
     opacity: 0;
 }
 
@@ -63,21 +63,49 @@
 #hero-container .hero-img {
     justify-self: center;
     align-self: end;
-    animation: moving-img 800ms cubic-bezier(0, 0.96, 0.41, 0.99);
+    /* animation: moving-img 800ms cubic-bezier(0, 0.96, 0.41, 0.99); */
 }
 
-@keyframes moving-img {
+@keyframes moving-img1 {
     0% {
         opacity: 0;
-        transform: translate(650px, 0) skew(-50deg);
+        transform: scale(1.5, 0.6) translate(290px, 250px) translate(0, 250px) ;
     } 
     100% {
     }
 }
-
-.hero-img img {
-    height: 350px;
+@keyframes moving-img2 {
+    0% {
+        opacity: 0;
+        transform: translate(290px, 500px) skew(50deg) ;
+    }
+    100% {
+    }
 }
+
+.hero-img {
+    position: relative;
+}
+
+.hero-img img:nth-child(1) {
+    height: 180px;
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+    animation: moving-img1 1000ms cubic-bezier(0, 0.96, 0.41, 0.99);
+}
+
+.hero-img img:nth-child(2) {
+    height: 350px;
+    transform: translate(180px, 15px); 
+    animation: moving-img2 1000ms cubic-bezier(0, 0.96, 0.41, 0.99);
+}
+
+.hero-img img:nth-child(3) {
+    transform: scaleY(0.8) translateY(-10px);
+    animation: moving-img2 1000ms cubic-bezier(0, 0.96, 0.41, 0.99);
+}
+
 
 #hero-container .hero-text h1,
 #access h3 {
