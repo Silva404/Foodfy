@@ -32,7 +32,7 @@ module.exports = {
         })
     },
     edit(req, res) {
-        Admin.find(req.params.id, (recipes, chefs) => {
+        Admin.find(req.params.id, (recipes, chefs) => { 
             if (!recipes) {
                 res.send('Recipe not found.')
             }

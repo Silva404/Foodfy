@@ -22,21 +22,16 @@ module.exports = {
             return res.redirect(`/admin/chefs/${chef.id}`)
         })
     },
-
-
-
-
     show(req, res) {
         Chefs.findChef(req.params.id, (chef, recipes, totalRecipes) => {
             if (!chef) return res.send('Chef not found!')
+            // console.log(chef)
+            // console.log(recipes)
+            console.log(totalRecipes)
 
             return res.render('admin/chefs/chef', { chef, recipes, totalRecipes })
         })
     },
-
-
-
-
     edit(req, res) {
         Chefs.findChef(req.params.id, (chef) => {
             if (!chef) return res.send('Chef not found!')

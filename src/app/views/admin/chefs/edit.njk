@@ -1,7 +1,7 @@
 {% extends 'admin-layout.njk' %}
 
 {% block styles %}
-    <link rel="stylesheet" href="/styles/chefs/edit.css">
+    <link rel="stylesheet" href="/styles/admin/chefs/edit.css">
 {% endblock styles %}
 
 {% block content %}
@@ -11,7 +11,7 @@
                 <h3>Editando chef</h3>
                 <img src="{{ chef.avatar_url}}" alt="{{ chef.name}}">
             </div>
-            {% include 'chefs/fields.njk' %}
+            {% include 'admin/chefs/fields.njk' %}
             <div class="send">
                 <button type="submit" form="form-save" class="button">Salvar chef</button>
                 <button type="submit" form="form-delete" class="button btn-clean">Apagar campos</button>

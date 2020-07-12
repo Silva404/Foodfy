@@ -9,14 +9,19 @@
         <div class="chef-title">
             <h2>Chef:
                 {{chef.name}}</h2>
-            <a href="/admin/chefs/{{ chef.id }}/edit" class="button">Editar chef</a>
+            <a href="/admin/chefs/{{ chef.chef_id }}/edit" class="button">Editar chef</a>
         </div>
         <div class="chef-avatar">
             <img src="{{ chef.avatar_url}}" alt="{{ chef.name }}">
             <h1>{{chef.name}}</h1>
-            <p>{{ chef.total_recipes}}
-                receitas</p>
-        </div> 
+            <p>{{ totalRecipes }}
+                {% if  totalRecipes > 1 %}
+                    Receitas
+                {% else %}
+                    Receita
+                {% endif %}
+            </p>
+        </div>
     </section>
 
     <div class="chef-recipes">
@@ -27,9 +32,10 @@
                 <div class="card-admin" id="{{chef.id}}">
                     <img src="{{ chef.image}}" alt="{{ chef.name}}">
                     <div class="title">
-                        <h4>{{ recipe.name}}</h4>
-                        <p>{{ chef.name}}</p>
-                        <a href="#" id="view">Visualizar</a>
+                        <h4>{{ chef.title}}</h4>
+                        <p>Por
+                            {{ chef.name}}</p>
+                        <a href="/recipes/{{ chef.id}}" id="view">Visualizar</a>
                     </div>
                 </div>
             {% endfor %}

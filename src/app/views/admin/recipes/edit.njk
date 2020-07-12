@@ -16,13 +16,13 @@
             </div>
             {% include 'admin/recipes/fields.njk' %}
 
-            <input type="hidden" name="id" value="{{ recipes.id }}">
+            <input type="hidden" name="id" value="{{ recipes.recipe_id }}">
         </section>
     </form>
     <form id="form-delete" method="POST" action="/admin/recipes?_method=DELETE">
-        <input type="hidden" name="id" value="{{ recipes.id }}">
+        <input type="hidden" name="id" value="{{ recipes.recipe_id }}">
        
        {% include 'confirm.njk' %}
     </form>
 
-{% endblock content %}
+{% endblock content %} 

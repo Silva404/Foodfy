@@ -10,37 +10,45 @@ for (let item of menuItems) {
   }
 }
 
+
 // clickable cards based on routes
 const cards = document.querySelectorAll(".card")
 const view = document.querySelectorAll('.card-admin')
 
-if (currentPage.includes('/admin/recipes')) {
+if (currentPage.includes('/recipes')) {
   for (let card of view) {
     card.addEventListener("click", (e) => {
       const cardId = card.getAttribute('id')
 
-      window.location.href = `/admin/recipes/${cardId}`
+      window.location.href = `${currentPage}/${cardId}`
     });
   }
-} else if (currentPage.includes('/admin/chefs')) {
+}
+else if (currentPage.includes('/admin/chefs')) {
   for (let card of view) {
     card.addEventListener("click", (e) => {
       const cardId = card.getAttribute('id')
 
-      window.location.href = `/admin/chefs/${cardId}`
+      if (currentPage == `/admin/chefs`) {
+        window.location.href = `${currentPage}/${cardId}`
+      }
+      else if (currentPage == `/admin/chefs/${cardId}`) {
+        window.location.href = `/recipes/${cardId}`
+      }
+
     });
   }
 }
-else {
-  for (let card of cards) {
+else if (currentPage.includes('/home')) {
+  for (let card of view) {
     card.addEventListener("click", (e) => {
       const cardId = card.getAttribute('id')
 
-      window.location.href = `/recipes/${cardId}`
+      window.location.href = `recipes/${cardId}`
     });
   }
 }
-
+// console.log(currentPage)
 
 // form delete confirmation box
 if (currentPage.includes('/edit')) {
@@ -53,5 +61,4 @@ if (currentPage.includes('/edit')) {
       event.preventDefault()
     }
   })
-
 }

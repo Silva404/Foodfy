@@ -42,7 +42,8 @@ module.exports = {
         })
     },
     findChef(id, callback) {
-        db.query(`SELECT * FROM chefs 
+        db.query(`SELECT * 
+        FROM chefs 
         INNER JOIN recipes 
         ON (chefs.id = recipes.chef_id)
         WHERE chefs.id = $1

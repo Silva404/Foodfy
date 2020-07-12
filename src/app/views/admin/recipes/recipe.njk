@@ -8,15 +8,15 @@
     <section class="recipe">
         <div class="title">
             <h1>Receita:
-                {{ recipe.name }}</h1>
+                {{ recipe.title }}</h1>
             <a href="/admin/recipes/{{ recipe.recipe_id }}/edit" class="button">Editar receita</a>
         </div>
 
         <div class="hero">
             <img src="{{ recipe.image}}" alt="{{ recipe.title }}">
-            <h1>{{ recipe.name }}</h1>
+            <h1>{{  recipe.title }}</h1>
             <p>por
-                {{ recipe.author }}</p>
+                {{  recipe.name }}</p>
         </div>
 
         <div class="recipe-description">
