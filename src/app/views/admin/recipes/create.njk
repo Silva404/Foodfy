@@ -1,7 +1,7 @@
 {% extends 'admin-layout.njk' %}
 
 {% block styles %}
-    <link rel="stylesheet" href="/styles/form-fields.css">
+    <link rel="stylesheet" href="/styles/admin/recipes/form.css">
 {% endblock styles %}
 
 {% block content %}
@@ -12,7 +12,7 @@
             </div>
             {% include 'admin/recipes/fields.njk' %}
             <div class="send">
-                <button type="submit" class="button">Salvar</button>
+                <button type="submit" class="button">Enviar receita</button>
                 {# <button type="submit" class="button btn-clean">Apagar campos</button> #}
             </div>
         </section>

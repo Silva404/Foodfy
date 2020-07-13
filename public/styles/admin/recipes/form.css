@@ -14,9 +14,15 @@
     font-weight: 700;
 }
 
+
+
 .send {
-    margin: 2em auto;
-    max-width: 300px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.send button {
+    margin: 2em auto 0;
 }
 
 .button {
@@ -60,9 +66,37 @@ select {
 }
 
 .item:last-child input {
-    /* height: 250px; */
+    height: 250px;
 }
 
 .item select {
     background: none;
+}
+
+.aside { 
+    display: flex;
+}   
+
+.aside .item {
+    width: 100%;
+}
+
+.aside .item input {
+    height: 100%;
+}
+
+.sub-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.sub-item .newButton {
+    margin: 2em 1em 0;
+    transform: scale(0.6);
+    opacity: 0.6;
+}
+
+.aside .item + .item{
+    margin-left: 1em;
 }

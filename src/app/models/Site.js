@@ -12,11 +12,11 @@ module.exports = {
             if (err) throw `Data error: ${err}`          
 
             callback(results.rows)
-            // console.log(results.rows)
         })
     }, 
     filter(filter, callback) {
-        db.query(`SELECT * FROM recipes
+        db.query(`SELECT *, recipes.id AS recipe_id
+        FROM recipes
         INNER JOIN chefs 
         ON (recipes.chef_id = chefs.id)
         WHERE recipes.title ILIKE '%${filter}%'`, 
