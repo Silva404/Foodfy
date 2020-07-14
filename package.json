@@ -1,5 +1,5 @@
 {
-  "name": "classroom-manager",
+  "name": "Foodfy",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Silva404/classroom-manager.git"
+    "url": "git+https://github.com/Silva404/Foodfy.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Silva404/classroom-manager/issues"
+    "url": "https://github.com/Silva404/Foodfy/issues"
   },
-  "homepage": "https://github.com/Silva404/classroom-manager#readme",
+  "homepage": "https://github.com/Silva404/Foodfy#readme",
   "dependencies": {
     "express": "^4.17.1",
     "intl": "^1.2.5",
