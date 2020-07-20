@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="/styles/main.css">
         {% block styles %}{% endblock styles %}
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         {% block title %}
             <title>Teste</title>
         {% endblock title %}
@@ -21,6 +21,9 @@
                     <a href="/admin/recipes">Receitas</a>
                     <a href="/admin/chefs">Chefs</a>
                 </nav>
+
+                {% block header %}
+                {% endblock header %}
             </header>
 
             {% block content %}{% endblock content %}

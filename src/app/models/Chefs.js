@@ -9,6 +9,19 @@ module.exports = {
             callback(results.rows)
         })
     },
+    filter(filter, callback) {
+        db.query(`SELECT *, 
+        recipes.id AS recipes_id 
+        FROM chefs  
+        INNER JOIN recipes 
+        ON (chefs.id == recipes.chef_id)
+        WHERE chefs.name ILIKE '%${filter}% `, 
+        (err, results) => {
+            if (err) `Database error: ${err}`
+             
+            callback(results.rows) 
+        })
+    },
     create(data, callback) {
         const query = `
         INSERT INTO chefs (

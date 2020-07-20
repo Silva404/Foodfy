@@ -50,3 +50,12 @@
 #access h3 {
     font-size: 2.2rem;
 }
+    
+#search {
+    display: flex;
+    align-items: center;
+}    
+
+#search .button[type=submit]  {
+    padding: 0.2em 0.5em;
+}

@@ -9,6 +9,10 @@
     --white-color: #eeeeee;
     --desc-color: #87898A;
     --font-color: #2c2c2c;
+
+    --primary-txt-color: #323335;
+    --secondary-txt-color: #59636b;
+    --input-txt-color: #555C60;
   }
 
 * {

@@ -15,9 +15,7 @@ module.exports = {
 
         if (filter) {
             Site.filter(filter, recipes => {
-                console.log(recipes)
-                return res.render('site/recipes', { recipes, filter })
-                
+                return res.render('site/recipes', { recipes, filter })                
             })
         }
          else {

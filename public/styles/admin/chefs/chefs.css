@@ -47,3 +47,12 @@
     font-weight: 700;
     color: var(--primary-color);
 }
+
+#search {
+    display: flex;
+    align-items: center;
+}    
+
+#search .button[type=submit]  {
+    padding: 0.2em 0.5em;
+}

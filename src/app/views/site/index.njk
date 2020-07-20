@@ -5,9 +5,13 @@
 {% endblock styles %}
 
 {% block header %}
-    <form action="/recipes" method="get">
+    <form action="/recipes" method="get" id="search">
         <input type="text" name="filter" value="{{ filter }}" placeholder="Buscar uma receita">
-        <button type="submit" class="button">Buscar</button>
+        <button type="submit" class="button">
+            <span class="material-icons">
+                search
+            </span>
+        </button>
     </form>
 {% endblock header %}
 
@@ -22,7 +26,7 @@
             <div class="hero-img">
                 <img src="/assets/cat.png" alt="">
                 <img src="/assets/chef01.png" alt="">
-                <img src="/assets/table.png" alt="">                
+                <img src="/assets/table.png" alt="">
             </div>
             <div class="background"></div>
         </section>

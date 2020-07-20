@@ -4,6 +4,17 @@
     <link rel="stylesheet" href="/styles/admin/chefs/chefs.css">
 {% endblock styles %}
 
+{% block header %}
+    <form action="/admin/chefs" method="get" id="search">
+        <input type="text" name="filter" value="{{ filter }}" placeholder="Buscar uma receita">
+        <button type="submit" class="button">
+            <span class="material-icons">
+                search
+            </span>
+        </button>
+    </form>
+{% endblock header %}
+
 {% block content %}
     <div class="chef-title">
         <h3>Gerenciar chefs</h3>
