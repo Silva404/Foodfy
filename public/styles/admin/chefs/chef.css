@@ -6,7 +6,7 @@ header a:last-child {
 }
 
 .chef-title {
-    margin: 0 0 4em;
+    margin: 0 0 3em;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -19,17 +19,19 @@ header a:last-child {
 }
 
 .chef-avatar h1 {
-    margin: 1.2em 0 0.5em;
+    margin: 1.2em 0 1em;
     font-size: 3.6rem;
 }
 
 .chef-avatar p {    
-    font-size: 2.0rem;
+    font-size: 1.8rem;    
 }
 
 .chef-avatar img {
     border-radius: 50%;
     width: 200px;
+    height: 200px;
+    object-fit: cover;
     box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -74,6 +76,11 @@ header a:last-child {
 
 .title h4 {
     font-size: 1.8rem;
+}
+
+
+.chef-title a.button {
+    font-size: 1.4rem;
 }
 
 .title a,

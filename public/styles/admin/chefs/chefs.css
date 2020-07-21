@@ -25,7 +25,7 @@
 }
 
 .card-admin:hover {
-    transform: translateY(-6px) scale(1.01);
+    transform: translateX(5px) scale(1.01);
     opacity: 1;
 }
 
@@ -33,6 +33,7 @@
     height: 80px;
     width: 80px;
     border-radius: 50%;
+    object-fit: cover;
     box-shadow: 0 20px 30px 0 rgba(0, 0, 0, .1);
     margin-right: 1em;
 }

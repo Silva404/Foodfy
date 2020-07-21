@@ -15,31 +15,35 @@
             <img src="{{ chef.avatar_url}}" alt="{{ chef.name }}">
             <h1>{{chef.name}}</h1>
             <p>{{ totalRecipes }}
-                {% if  totalRecipes > 1 %}
+                {% if totalRecipes == 1 %}
+                    Receita
+                {% elseif totalRecipes > 1 %}
                     Receitas
                 {% else %}
-                    Receita
+                    Nenhuma Receita encontrada
                 {% endif %}
             </p>
         </div>
     </section>
 
     <div class="chef-recipes">
-        <h2>Receitas</h2>
-        <div class="cards-container">
+        {% if recipes %}
+            <h2>Receitas</h2>
+            <div class="cards-container">
 
-            {% for chef in recipes %}
-                <div class="card-admin" id="{{chef.id}}">
-                    <img src="{{ chef.image}}" alt="{{ chef.name}}">
-                    <div class="title">
-                        <h4>{{ chef.title}}</h4>
-                        <p>Por
-                            {{ chef.name}}</p>
-                        <a href="/recipes/{{ chef.id}}" id="view">Visualizar</a>
+                {% for chef in recipes %}
+                    <div class="card-admin" id="{{chef.id}}">
+                        <img src="{{ chef.image}}" alt="{{ chef.name}}">
+                        <div class="title">
+                            <h4>{{ chef.title}}</h4>
+                            <p>Por
+                                {{ chef.name}}</p>
+                            <a href="/recipes/{{ chef.id}}" id="view">Visualizar</a>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 {% endblock content %}
 

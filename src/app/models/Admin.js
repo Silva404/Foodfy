@@ -24,9 +24,10 @@ module.exports = {
             ingredients,
             preparation,
             information,
-            created_at  
-        ) VALUES ($1, $2, $3, $4, $5, $6)
-        RETURNING id`
+            created_at,
+            chef_id 
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+        RETURNING id` 
 
         const values = [
             data.image,
@@ -34,7 +35,8 @@ module.exports = {
             data.ingredients,
             data.preparation,
             data.information,
-            date(Date.now()).created
+            date(Date.now()).created,
+            data.chef_id
         ]
 
         db.query(query, values, (err, results) => {

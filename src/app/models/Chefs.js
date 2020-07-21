@@ -3,22 +3,18 @@ const { date } = require('../../lib/utils')
 
 module.exports = {
     all(callback) {
-        db.query(`SELECT * FROM chefs`, (err, results) => {
+        db.query(`SELECT * FROM chefs`, 
+        (err, results) => {
             if (err)`Database error: ${err}`
 
             callback(results.rows)
         })
     },
     filter(filter, callback) {
-        db.query(`SELECT *, 
-        recipes.id AS recipes_id 
-        FROM chefs  
-        INNER JOIN recipes 
-        ON (chefs.id == recipes.chef_id)
-        WHERE chefs.name ILIKE '%${filter}% `, 
+        db.query(`SELECT * FROM chefs WHERE chefs.name ILIKE '%${filter}%'`, 
         (err, results) => {
-            if (err) `Database error: ${err}`
-             
+            if (err) throw `${err}`
+
             callback(results.rows) 
         })
     },
@@ -51,7 +47,7 @@ module.exports = {
         `, [id], (err, results) => {
             if (err) throw `Database error: ${err}`
 
-            callback(results.rows[0])
+            callback(results.rows[0]) 
         })
     },
     findChef(id, callback) {
