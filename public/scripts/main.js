@@ -10,7 +10,6 @@ for (let item of menuItems) {
   }
 }
 
-
 // clickable cards based on routes
 const cards = document.querySelectorAll(".card")
 const view = document.querySelectorAll('.card-admin')
@@ -48,7 +47,6 @@ else if (currentPage.includes('/home')) {
     });
   }
 }
-// console.log(currentPage)
 
 // form delete confirmation box
 if (currentPage.includes('/edit')) {
@@ -73,3 +71,22 @@ if (currentPage.includes('/edit')) {
     }    
   })
 }
+
+let pages = [],
+    selectedPage = 15,
+    totalPages = 20,
+    oldPage
+
+    // selectedPage >= oldPage - 2
+    // 1 ... 13, 14, 15, 16, 17 ... 20
+  
+for (let actualPage = 1; actualPage <= totalPages; actualPage++) {
+  const firstAndLastPage = actualPage == 1 || actualPage == totalPages
+  const pagesBeforeLastPage = oldPage  >= selectedPage + 2
+
+  if (firstAndLastPage || pagesBeforeLastPage) {
+    pages.push(actualPage)
+    oldPage = actualPage
+  }
+}
+console.log(pages)

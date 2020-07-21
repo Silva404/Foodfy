@@ -67,8 +67,7 @@ module.exports = {
         })
     },
     delete (req, res) {        
-        Chefs.delete(req.params.id, (chef) => {
-            console.log(chef)
+        Chefs.delete(req.params.id, () => { 
         if (chef.recipes_name) {
         } else {
             return res.redirect(`/admin/chefs`)
