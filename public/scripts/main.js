@@ -1,3 +1,6 @@
+const { render } = require("nunjucks")
+const { create } = require("../../src/app/models/Chefs")
+
 // nav style
 const currentPage = location.pathname
 const menuItems = document.querySelectorAll('header .links a')
@@ -55,7 +58,7 @@ if (currentPage.includes('/edit')) {
   const popup = modal.querySelector('input[name=popup')
 
   formDelete.addEventListener('submit', e => {
-    if (popup.value !== null) {   
+    if (popup.value !== null) {
       const close = modal.querySelector('#ok')
 
       modal.style.display = 'grid'
@@ -68,40 +71,55 @@ if (currentPage.includes('/edit')) {
       if (!confirmation) {
         event.preventDefault()
       }
-    }    
+    }
   })
 }
 
-let pages = [],
-    selectedPage = 15,
-    totalPages = 20,
+function paginate(selectedPage, totalPages) {
+  let pages = [],
     oldPage
 
-    // selectedPage >= oldPage - 2
-    // 1 ... 13, 14, 15, 16, 17 ... 20
-  
-for (let actualPage = 1; actualPage <= totalPages; actualPage++) {
-  const firstAndLastPage = actualPage == 1 || actualPage == totalPages
-  const pagesBeforeLastPage = actualPage >= selectedPage - 2
-  const pagesAfterLastPage = actualPage <= selectedPage + 2
+  for (let actualPage = 1; actualPage <= totalPages; actualPage++) {
+    const firstAndLastPage = actualPage == 1 || actualPage == totalPages
+    const pagesBeforeLastPage = actualPage >= selectedPage - 2
+    const pagesAfterLastPage = actualPage <= selectedPage + 2
 
-  if (firstAndLastPage || pagesBeforeLastPage && pagesAfterLastPage) {
-    if (oldPage && oldPage < selectedPage - 2 ) {
-      pages.push('...')
-    }
-    if (oldPage && oldPage == selectedPage + 2 ) {
-      pages.push('...')
-    }
+    if (firstAndLastPage || pagesBeforeLastPage && pagesAfterLastPage) {
+      if (oldPage && actualPage - oldPage > 2) {
+        pages.push('...')
+      }
+      if (oldPage && actualPage - oldPage == 2) {
+        pages.push(oldPage + 1)
+      }
 
-    pages.push(actualPage)
-    oldPage = actualPage
+      pages.push(actualPage)
+      oldPage = actualPage
+    }
   }
+
+  return pages
+}
+
+function createPagination(pagination) {
+  const page = +pagination.dataset.page
+  const total = +pagination.dataset.total
+
+  const pages = paginate(page, total)
+  console.log(pages)
+
+
+  let elements = ''
+
+  for (let page in pages) {
+    elements += `<span>${page}</span>`
+  }
+
+  pagination.innerHTML = elements
 }
 
 const pagination = document.querySelector('.pagination')
 
-let elements = ''
+if (pagination) {
+  createPagination(pagination)
+}
 
-
-
-console.log(pages)
