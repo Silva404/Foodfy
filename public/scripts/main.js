@@ -66,7 +66,7 @@ if (currentPage.includes('/edit')) {
       const confirmation = confirm('Are you sure you want to delete')
 
       if (!confirmation) {
-        event.preventDefault()
+        event.preventDefault()  
       }
     }
   })
