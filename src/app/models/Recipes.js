@@ -104,26 +104,28 @@ module.exports = {
             filterQuery = '',
             totalQuery = `(
                 SELECT count(*)
-                FROM chefs 
+                FROM recipes 
             ) AS total`
 
         if (filter) {
             filterQuery = `
-                WHERE chefs.name ILIKE '%${filter}%'
+                WHERE recipes.name ILIKE '%${filter}%'
             `
 
             totalQuery = `(
                 SELECT count(*)
-                FROM chefs 
+                FROM recipes 
                 ${filterQuery}
             ) AS total`
         }
 
         query = `
-        SELECT chefs.*,
+        SELECT recipes.*,
+        chefs.name AS chef_name,
         ${totalQuery}
-        FROM chefs 
+        FROM recipes
         ${filterQuery}
+        LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
         LIMIT $1 OFFSET $2
         `
 

@@ -13,13 +13,13 @@ module.exports = {
             page,
             limit,
             offset,
-            callback(chefs) {
+            callback(recipes) {
                 const pagination = {
-                    total: Math.ceil(chefs[0].total / limit),
+                    total: Math.ceil(recipes[0].total / limit),
                     page
                 }
                 
-                return res.render('admin/chefs/chefs', { chefs, filter, pagination })
+                return res.render('admin/recipes/recipes', { recipes, filter, pagination })
             }
         }
 

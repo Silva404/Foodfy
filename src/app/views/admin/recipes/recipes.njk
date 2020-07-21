@@ -5,6 +5,7 @@
 {% endblock styles %}
 
 {% block content %}
+<section class="grid">
     <div class="recipe-title">
         <h3>Gerenciar receitas</h3>
         <a href="/admin/recipes/create" class="button">Nova receita</a>
@@ -22,6 +23,10 @@
             </div>
         {% endfor %}
     </div>
+
+     <div class="pagination" data-page={{pagination.page}} data-total={{pagination.total}} data-filter={{filter}}></div>
+     </section>
+     
 {% endblock content %}
 
 {% block scripts %}

@@ -30,7 +30,7 @@
 
 .card-admin {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     margin-top: 1em;
     transition: 200ms ease;
     opacity: 0.95;
@@ -58,4 +58,32 @@
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--primary-color);
+}
+
+
+section.grid {
+    display: grid;
+    grid-template: auto 230px 150px / 1fr;
+}
+
+section.grid .pagination {
+    align-self: end;
+    justify-self: center;
+    margin-bottom: 3em;
+}
+
+.pagination span,
+.pagination a {
+    padding: 0.5em .8em;
+    margin-right: 0.25em;
+    color: var(--paginate-primary);
+    background: var(--paginate-secondary);
+    border-radius: 0.5em;
+}
+
+.pagination .middle-page {
+    font-weight: 700;
+
+    color: var(--paginate-secondary);
+    background: var(--paginate-primary);
 }
