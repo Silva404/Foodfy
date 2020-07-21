@@ -19,7 +19,9 @@ module.exports = {
         FROM recipes
         INNER JOIN chefs 
         ON (recipes.chef_id = chefs.id)
-        WHERE recipes.title ILIKE '%${filter}%'`, 
+        WHERE recipes.title ILIKE '%${filter}%'
+        OR chefs.name ILIKE '%${filter}%'
+        `, 
         (err, results) => {
             if (err) throw `Database error: ${err}`
 

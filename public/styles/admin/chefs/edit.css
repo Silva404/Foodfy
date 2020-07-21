@@ -3,7 +3,7 @@
     flex-direction: column;
     /* justify-content: space-between; */
     align-items: center;
-    margin-bottom: 2em;
+    margin: 2em 0;
     /* align-self: center; */
 }
 
@@ -42,17 +42,18 @@
 
 .button {
     font-size: 1.8rem;  
-    color: var(--white-color);
     margin-right: 0.5em;
     padding: 0.5em 1.5em;
-    background: var(--primary-color);
     border-radius: 0.5em;
+
+    background: var(--white-color);
+    color: var(--primary-color);
     border: 1px solid var(--primary-color);
 }
 
-.send .btn-clean {
-    background: var(--white-color);
-    color: var(--primary-color);
+.send .btn-clean {    
+    background: var(--primary-color);
+    color: var(--white-color);
     border: 1px solid var(--primary-color);
 }
 
@@ -78,10 +79,6 @@ input {
     display: block;
     color: var(--primary-color);
     background: none;
-}
-
-.item:last-child input {
-    /* height: 250px; */
 }
 
 .aside {
