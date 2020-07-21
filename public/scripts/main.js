@@ -58,7 +58,7 @@ if (currentPage.includes('/edit')) {
 
   formDelete.addEventListener('submit', e => {
     if (popup.value !== null) {   
-      const close = modal.querySelector('.box a')
+      const close = modal.querySelector('#ok')
 
       modal.style.display = 'grid'
       close.addEventListener('click', e => {

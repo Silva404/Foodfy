@@ -80,7 +80,7 @@ module.exports = {
         db.query(`DELETE FROM chefs WHERE id = $1`, [id], (err, results) => {
             if (err) throw `Database error: ${err}`
 
-            callback()
+            callback(results.rows)
         })
     }
 }

@@ -49,9 +49,7 @@ module.exports = {
  
         Chefs.find(req.params.id, (chef, recipes) => {
             if (!chef) return res.send('Chef not found!')
-            console.log(chef.recipes_name)
 
-            console.log(id)
             return res.render('admin/chefs/edit', { chef, recipes }) 
         })
     },
@@ -69,7 +67,8 @@ module.exports = {
         })
     },
     delete (req, res) {        
-        Chefs.delete(req.params.id, () => {
+        Chefs.delete(req.params.id, (chef) => {
+            console.log(chef)
         if (chef.recipes_name) {
         } else {
             return res.redirect(`/admin/chefs`)
