@@ -82,11 +82,26 @@ let pages = [],
   
 for (let actualPage = 1; actualPage <= totalPages; actualPage++) {
   const firstAndLastPage = actualPage == 1 || actualPage == totalPages
-  const pagesBeforeLastPage = oldPage  >= selectedPage + 2
+  const pagesBeforeLastPage = actualPage >= selectedPage - 2
+  const pagesAfterLastPage = actualPage <= selectedPage + 2
 
-  if (firstAndLastPage || pagesBeforeLastPage) {
+  if (firstAndLastPage || pagesBeforeLastPage && pagesAfterLastPage) {
+    if (oldPage && oldPage < selectedPage - 2 ) {
+      pages.push('...')
+    }
+    if (oldPage && oldPage == selectedPage + 2 ) {
+      pages.push('...')
+    }
+
     pages.push(actualPage)
     oldPage = actualPage
   }
 }
+
+const pagination = document.querySelector('.pagination')
+
+let elements = ''
+
+
+
 console.log(pages)

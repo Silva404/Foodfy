@@ -1,10 +1,8 @@
 .title {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     align-items: center;
     margin: 2em 0;
-    /* align-self: center; */
 }
 
 .title img {
