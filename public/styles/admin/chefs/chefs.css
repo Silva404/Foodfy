@@ -57,3 +57,28 @@
 #search .button[type=submit]  {
     padding: 0.2em 0.5em;
 }
+
+section.grid {
+    display: grid;
+    grid-template: auto auto 150px / 1fr;
+}
+
+section.grid .pagination {
+    align-self: end;
+    justify-self: center;
+    margin-bottom: 3em;
+}
+
+.pagination span,
+.pagination a {
+    padding: 0.5em .8em;
+    margin-right: 0.25em;
+    color: var(--paginate-primary);
+    background: var(--paginate-secondary);
+    /* border: 1px solid var(--paginate-terciary); */
+    border-radius: 0.5em;
+}
+
+.pagination .middle-page {
+    font-weight: 700;
+}

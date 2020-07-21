@@ -16,21 +16,25 @@
 {% endblock header %}
 
 {% block content %}
-    <div class="chef-title">
-        <h3>Gerenciar chefs</h3>
-        <a href="/admin/chefs/create" class="button">Novo chef</a>
-    </div>
-    <div class="cards-container">
-        {% for chef in chefs %}
-            <div class="card-admin" id="{{chef.id}}">
-                <img src="{{ chef.avatar_url}}" alt="{{ chef.name}}">
-                <div class="title">
-                    <h4>{{ chef.name}}</h4>
-                    <a href="#" id="view">Visualizar</a>
+    <section class="grid">
+        <div class="chef-title">
+            <h3>Gerenciar chefs</h3>
+            <a href="/admin/chefs/create" class="button">Novo chef</a>
+        </div>
+        <div class="cards-container">
+            {% for chef in chefs %}
+                <div class="card-admin" id="{{chef.id}}">
+                    <img src="{{ chef.avatar_url}}" alt="{{ chef.name}}">
+                    <div class="title">
+                        <h4>{{ chef.name}}</h4>
+                        <a href="#" id="view">Visualizar</a>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination" data-page="5" data-total="20"></div>
+    </section>
 {% endblock content %}
 
 {% block scripts %}

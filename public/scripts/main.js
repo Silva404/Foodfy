@@ -1,6 +1,3 @@
-const { render } = require("nunjucks")
-const { create } = require("../../src/app/models/Chefs")
-
 // nav style
 const currentPage = location.pathname
 const menuItems = document.querySelectorAll('header .links a')
@@ -103,15 +100,19 @@ function paginate(selectedPage, totalPages) {
 function createPagination(pagination) {
   const page = +pagination.dataset.page
   const total = +pagination.dataset.total
-
   const pages = paginate(page, total)
-  console.log(pages)
-
 
   let elements = ''
 
-  for (let page in pages) {
-    elements += `<span>${page}</span>`
+  for (let page of pages) {
+    const half = Math.floor(pages.length / 2)
+    const middlePage = pages[half]
+
+    if (page == middlePage) {
+      elements += `<a class="middle-page">${page}</a>`
+    } else {
+      elements += `<a href="?page=${page}">${page}</a>`
+    }
   }
 
   pagination.innerHTML = elements
