@@ -5,13 +5,17 @@
 {% endblock styles %}
 
 {% block content %}
-    <form id="form-save" method="POST" action="/admin/chefs?_method=PUT" >
+    <form id="form-save" method="POST" action="/admin/chefs?_method=PUT">
         <section class="container">
-            <div class="title">
-                <h3>Editando chef</h3>
-                <img src="{{ chef.avatar_url}}" alt="{{ chef.name}}">
+            <div class="aside">
+                <div class="title">
+                    <h3>Editando chef</h3>
+                    <img src="{{ chef.avatar_url}}" alt="{{ chef.name}}">
+                </div>
+                <div class="fields">
+                    {% include 'admin/chefs/fields.njk' %}
+                </div>
             </div>
-            {% include 'admin/chefs/fields.njk' %}
             <div class="send">
                 <button type="submit" form="form-save" class="button">Salvar chef</button>
                 <button type="submit" form="form-delete" class="button btn-clean">Apagar campos</button>

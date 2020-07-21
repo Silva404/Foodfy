@@ -5,10 +5,10 @@ module.exports = {
         let { filter } = req.query 
 
         if (filter) {
-            Chefs.filter((fil, chefs) => {
+            Chefs.filter(filter, chefs => {
                 console.log(chefs)
                 console.log(filter)
-                return res.render ('admin/chefs/chefs', { chefs, filter: fil})
+                return res.render ('admin/chefs/chefs', { chefs, filter})
             })
         } else {
             Chefs.all(chefs => {
@@ -35,15 +35,11 @@ module.exports = {
         })
     },
     show(req, res) {
-        //ALTERAR ENTRE ELES CASO HAJA RECIPES
-        // Chefs.find(req.params.id, (chef) => {
-        //     if (!chef) return res.send('Chef not fouund!')
-        //     console.log(chef)
-
-        //     return res.render('admin/chefs/chef', { chef })
-        // })
-        Chefs.findChef(req.params.id, (chef, recipes, totalRecipes) => {
+        Chefs.find(req.params.id, (chef, recipes, totalRecipes) => {
             if (!chef) return res.send('Chef not fouund!')
+            console.log(chef)
+            console.log(recipes)
+            console.log(totalRecipes)
 
             return res.render('admin/chefs/chef', { chef, recipes, totalRecipes })
         })

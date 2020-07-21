@@ -3,20 +3,20 @@ const { date } = require('../../lib/utils')
 
 module.exports = {
     all(callback) {
-        db.query(`SELECT * FROM chefs`, 
-        (err, results) => {
-            if (err)`Database error: ${err}`
+        db.query(`SELECT * FROM chefs`,
+            (err, results) => {
+                if (err)`Database error: ${err}`
 
-            callback(results.rows)
-        })
+                callback(results.rows)
+            })
     },
     filter(filter, callback) {
-        db.query(`SELECT * FROM chefs WHERE chefs.name ILIKE '%${filter}%'`, 
-        (err, results) => {
-            if (err) throw `${err}`
+        db.query(`SELECT * FROM chefs WHERE chefs.name ILIKE '%${filter}%'`,
+            (err, results) => {
+                if (err) throw `${err}`
 
-            callback(results.rows) 
-        })
+                callback(results.rows)
+            })
     },
     create(data, callback) {
         const query = `
@@ -42,22 +42,16 @@ module.exports = {
         })
     },
     find(id, callback) {
-        db.query(`SELECT * FROM chefs 
-        WHERE chefs.id = $1
-        `, [id], (err, results) => {
-            if (err) throw `Database error: ${err}`
-
-            callback(results.rows[0]) 
-        })
-    },
-    findChef(id, callback) {
-        db.query(`SELECT * 
+        db.query(`SELECT chefs.*, 
+        recipes.title AS recipes_name,  
+        recipes.image AS recipes_image,
+        recipes.id AS recipes_id
         FROM chefs 
-        INNER JOIN recipes 
+        LEFT JOIN recipes 
         ON (chefs.id = recipes.chef_id)
         WHERE chefs.id = $1
         `, [id], (err, results) => {
-            if (err) throw `Database error: ${err}`
+            if (err) throw `${err}`
 
             callback(results.rows[0], results.rows, results.rowCount)
         })

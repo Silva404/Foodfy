@@ -9,14 +9,14 @@
         <div class="chef-title">
             <h2>Chef:
                 {{chef.name}}</h2>
-            <a href="/admin/chefs/{{ chef.chef_id }}/edit" class="button">Editar chef</a>
+            <a href="/admin/chefs/{{ chef.id }}/edit" class="button">Editar chef</a>
         </div>
         <div class="chef-avatar">
             <img src="{{ chef.avatar_url}}" alt="{{ chef.name }}">
             <h1>{{chef.name}}</h1>
-            <p>{{ totalRecipes }}
-                {% if totalRecipes == 1 %}
-                    Receita
+            <p>{{ chef.totalRecipes }}
+                {% if chef.recipes_name %}
+                   {{ totalRecipes}} Receita
                 {% elseif totalRecipes > 1 %}
                     Receitas
                 {% else %}
@@ -27,18 +27,18 @@
     </section>
 
     <div class="chef-recipes">
-        {% if recipes %}
+        {% if chef.recipes_name %}
             <h2>Receitas</h2>
             <div class="cards-container">
 
-                {% for chef in recipes %}
-                    <div class="card-admin" id="{{chef.id}}">
-                        <img src="{{ chef.image}}" alt="{{ chef.name}}">
+                {% for recipe in recipes %}
+                    <div class="card-admin" id="{{recipe.recipes_id}}">
+                        <img src="{{ recipe.recipes_image }}" alt="{{ recipe.recipes_name}}">
                         <div class="title">
-                            <h4>{{ chef.title}}</h4>
+                            <h4>{{ recipe.recipes_name}}</h4>
                             <p>Por
-                                {{ chef.name}}</p>
-                            <a href="/recipes/{{ chef.id}}" id="view">Visualizar</a>
+                                {{ recipe.name}}</p>
+                            <a href="/recipes/{{ recipe.recipes_id}}" id="view">Visualizar</a>
                         </div>
                     </div>
                 {% endfor %}
