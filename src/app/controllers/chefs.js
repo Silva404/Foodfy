@@ -2,21 +2,24 @@ const Chefs = require('../models/Chefs')
 
 module.exports = {
     index(req, res) {
-        let { filter } = req.query 
+        let { filter, page, limit } = req.query 
 
-        if (filter) {
-            Chefs.filter(filter, chefs => {
-                console.log(chefs)
-                console.log(filter)
-                return res.render ('admin/chefs/chefs', { chefs, filter})
-            })
-        } else {
-            Chefs.all(chefs => {
-                console.log(chefs)
-                console.log(filter)
-                return res.render('admin/chefs/chefs', { chefs })
-            })
-        }
+        page = page || 1
+        limit = limit || 6
+
+        // if (filter) {
+        //     Chefs.filter(filter, chefs => {
+        //         console.log(chefs)
+        //         console.log(filter)
+        //         return res.render ('admin/chefs/chefs', { chefs, filter})
+        //     })
+        // } else {
+        //     Chefs.all(chefs => {
+        //         console.log(chefs)
+        //         console.log(filter)
+        //         return res.render('admin/chefs/chefs', { chefs })
+        //     })
+        // }
     },
     create(req, res) {
         return res.render('admin/chefs/create')

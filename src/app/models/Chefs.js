@@ -84,6 +84,6 @@ module.exports = {
         })
     },
     paginate(callback) {
-        
+        db.query(``)
     }
 }
