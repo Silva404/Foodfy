@@ -82,5 +82,8 @@ module.exports = {
 
             callback(results.rows)
         })
+    },
+    paginate(callback) {
+        
     }
 }

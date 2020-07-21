@@ -105,8 +105,10 @@ function createPagination(pagination) {
   let elements = ''
 
   for (let page of pages) {
-    const half = Math.floor(pages.length / 2)
+    const half = Math.floor(pages.length / 5)
     const middlePage = pages[half]
+    // temporario, não middle page e sim o page
+    // troca o let page pra outro nome e usa o page do const page pra pegar a page atual
 
     if (page == middlePage) {
       elements += `<a class="middle-page">${page}</a>`

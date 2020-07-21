@@ -75,10 +75,14 @@ section.grid .pagination {
     margin-right: 0.25em;
     color: var(--paginate-primary);
     background: var(--paginate-secondary);
-    /* border: 1px solid var(--paginate-terciary); */
+    border: 1px solid var(--paginate-secondary);
     border-radius: 0.5em;
 }
 
 .pagination .middle-page {
     font-weight: 700;
+
+    color: var(--paginate-primary);
+    background: var(--paginate-secondary);
+    border: 1px solid var(--paginate-terciary);
 }
