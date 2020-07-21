@@ -96,5 +96,41 @@ module.exports = {
 
             callback()
         })
+    },
+    paginate(params) {
+        let { filter, callback, limit, offset } = params
+
+        let query = '',
+            filterQuery = '',
+            totalQuery = `(
+                SELECT count(*)
+                FROM chefs 
+            ) AS total`
+
+        if (filter) {
+            filterQuery = `
+                WHERE chefs.name ILIKE '%${filter}%'
+            `
+
+            totalQuery = `(
+                SELECT count(*)
+                FROM chefs 
+                ${filterQuery}
+            ) AS total`
+        }
+
+        query = `
+        SELECT chefs.*,
+        ${totalQuery}
+        FROM chefs 
+        ${filterQuery}
+        LIMIT $1 OFFSET $2
+        `
+
+        db.query(query, [limit, offset], (err, results) => {
+            if (err) throw `${err}`
+
+            callback(results.rows)
+        })
     }
 }

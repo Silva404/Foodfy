@@ -2,34 +2,28 @@ const Chefs = require('../models/Chefs')
 
 module.exports = {
     index(req, res) {
-        let { filter, page, limit } = req.query 
+        let { filter, page, limit } = req.query
 
         page = page || 1
         limit = limit || 6
         let offset = limit * (page - 1)
 
-        const params = {
+        const params = { 
+            filter,
             page,
             limit,
-            offset
+            offset,
+            callback(chefs) {
+                const pagination = {
+                    total: Math.ceil(chefs[0].total / limit),
+                    page
+                }
+                
+                return res.render('admin/chefs/chefs', { chefs, filter, pagination })
+            }
         }
 
-
         Chefs.paginate(params)
-
-        // if (filter) {
-        //     Chefs.filter(filter, chefs => {
-        //         console.log(chefs)
-        //         console.log(filter)
-        //         return res.render ('admin/chefs/chefs', { chefs, filter})
-        //     })
-        // } else {
-        //     Chefs.all(chefs => {
-        //         console.log(chefs)
-        //         console.log(filter)
-        //         return res.render('admin/chefs/chefs', { chefs })
-        //     })
-        // }
     },
     create(req, res) {
         return res.render('admin/chefs/create')
@@ -59,19 +53,19 @@ module.exports = {
     },
     edit(req, res) {
         const { id } = req.body
- 
+
         Chefs.find(req.params.id, (chef, recipes) => {
             if (!chef) return res.send('Chef not found!')
 
-            return res.render('admin/chefs/edit', { chef, recipes }) 
+            return res.render('admin/chefs/edit', { chef, recipes })
         })
     },
-    put (req, res) {
+    put(req, res) {
         const keys = Object.keys(req.body)
 
         for (let key of keys) {
             if (req.body[key] == '') {
-                return res.send('Please fill all the fields') 
+                return res.send('Please fill all the fields')
             }
         }
 
@@ -79,12 +73,12 @@ module.exports = {
             return res.redirect(`/admin/chefs`)
         })
     },
-    delete (req, res) {        
-        Chefs.delete(req.params.id, () => { 
-        if (chef.recipes_name) {
-        } else {
-            return res.redirect(`/admin/chefs`)
-        }
+    delete(req, res) {
+        Chefs.delete(req.params.id, () => {
+            if (chef.recipes_name) {
+            } else {
+                return res.redirect(`/admin/chefs`)
+            }
         })
     }
 }

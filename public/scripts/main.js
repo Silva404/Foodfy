@@ -98,9 +98,9 @@ function paginate(selectedPage, totalPages) {
 }
 
 function createPagination(pagination) {
-  const page = +pagination.dataset.page
+  const presentPage = +pagination.dataset.page
   const total = +pagination.dataset.total
-  const pages = paginate(page, total)
+  const pages = paginate(presentPage, total)
 
   let elements = ''
 
@@ -110,7 +110,7 @@ function createPagination(pagination) {
     // temporario, não middle page e sim o page
     // troca o let page pra outro nome e usa o page do const page pra pegar a page atual
 
-    if (page == middlePage) {
+    if (page == presentPage) {
       elements += `<a class="middle-page">${page}</a>`
     } else {
       elements += `<a href="?page=${page}">${page}</a>`

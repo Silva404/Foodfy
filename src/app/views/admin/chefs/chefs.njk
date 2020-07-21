@@ -33,7 +33,7 @@
             {% endfor %}
         </div>
 
-        <div class="pagination" data-page="1" data-total="20"></div>
+        <div class="pagination" data-page={{pagination.page}} data-total={{pagination.total}} data-filter={{filter}}></div>
     </section>
 {% endblock content %}
 

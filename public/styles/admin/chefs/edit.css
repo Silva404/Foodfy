@@ -131,19 +131,22 @@ body {
     align-self: center;
     justify-self: center;
     display: grid;
+    border-radius: 0.5em;
+    box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
 }
 
 #modal .box h3 {
     align-self: center;
     margin: 2em 4em 1em;
     position: relative;
+    color: var(--input-txt-color);
 }
 
 #modal .box h3::after {
     content: '';
     width: 400px;
     height: 2px;
-    background: var(--desc-color);
+    background: var(--input-txt-color);
     position: absolute;
     top: 80px;
     border-radius: 50%;
@@ -151,10 +154,10 @@ body {
     opacity: 0.3;
 }
 
-#modal .box a {
+#modal .box h5 {
+    /* font-size: 1.4rem; */
     align-self: end;
-    margin-bottom: 2em;
-    font-weight: 500;
-    color: var(--primary-color);
+    margin-bottom: 1.8em;
+    font-weight: 700;
+    color: var(--primary-color);    
 }
-
