@@ -22,12 +22,13 @@
                     <a href="/admin/chefs">Chefs</a>
                 </nav>
 
-                {% block header %}
-                {% endblock header %}
+                {% block header %}{% endblock header %}
             </header>
 
             {% block content %}{% endblock content %}
+
         </div>
+        {% block modal %}{% endblock modal %}
 
         <footer>
             <p>Todos direitos reservados, receitas Foodfy.

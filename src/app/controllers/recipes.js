@@ -1,13 +1,13 @@
-const Admin = require('../models/Admin')
+const Recipes = require('../models/Recipes')
 
 module.exports = {
     index(req, res) {
-        Admin.all(recipes => {
+        Recipes.all(recipes => {
             return res.render('admin/recipes/recipes', { recipes })
         })
     },
     create(req, res) {
-        Admin.allChefs( chefs => {
+        Recipes.allChefs( chefs => {
         return res.render('./admin/recipes/create', { chefs })            
         })
     },
@@ -18,12 +18,12 @@ module.exports = {
             if (req.body[key] == '') return res.send('Please, fill and the fields.')
         }
 
-        Admin.create(req.body, recipe => {
+        Recipes.create(req.body, recipe => {
             res.redirect(`admin/recipes/${recipe.id}`)
         })
     },
     show(req, res) {
-        Admin.find(req.params.id, (recipe, chef) => {
+        Recipes.find(req.params.id, (recipe, chef) => {
             if (!recipe) {
                 res.send('Recipe not found.')
             }
@@ -32,7 +32,7 @@ module.exports = {
         })
     },
     edit(req, res) {
-        Admin.find(req.params.id, (recipes, chefs) => { 
+        Recipes.find(req.params.id, (recipes, chefs) => { 
             if (!recipes) {
                 res.send('Recipe not found.')
             }
@@ -47,12 +47,12 @@ module.exports = {
             if (req.body[key] == '') return res.send('Please, fill and the fields.')
         }
 
-        Admin.update(req.body, () => {
+        Recipes.update(req.body, () => {
             return res.redirect(`/admin/recipes/${req.body.id}`) 
         })
     },
     delete(req, res) {
-        Admin.delete(req.body.id, () => {
+        Recipes.delete(req.body.id, () => {
            return res.redirect('/admin/recipes')
         })
     }

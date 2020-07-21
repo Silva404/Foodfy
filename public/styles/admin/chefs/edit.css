@@ -15,10 +15,24 @@
     margin-bottom: 2em;
 }
 
+.title h3::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: var(--desc-color);
+    position: absolute;
+    top: 30px;
+    border-radius: 50%;
+    left: 0;
+    opacity: 0.3;
+}
+
 .title h3 {
     font-size: 2.2rem;
     margin-bottom: 1em;
     color: var(--primary-txt-color);
+    position: relative;
+
 }
 
 .item {
@@ -41,7 +55,6 @@
 }
 
 .button {
-    font-size: 1.8rem;  
     margin-right: 0.5em;
     padding: 0.5em 1.5em;
     border-radius: 0.5em;
@@ -89,4 +102,60 @@ input {
 
 .fields {
     align-self: center;
+}
+
+body {
+    overflow: hidden;
+}
+
+.content {
+    position: relative;
+}
+
+#modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: grid;
+    grid-template-columns: 1fr;
+    display: none;
+}
+
+#modal .box {
+    background: var(--white-color);
+    text-align: center;
+    width: 500px;
+    height: 200px;
+    align-self: center;
+    justify-self: center;
+    display: grid;
+}
+
+#modal .box h3 {
+    align-self: center;
+    margin: 2em 4em 1em;
+    position: relative;
+}
+
+#modal .box h3::after {
+    content: '';
+    width: 400px;
+    height: 2px;
+    background: var(--desc-color);
+    position: absolute;
+    top: 80px;
+    border-radius: 50%;
+    left: -20px;
+    opacity: 0.3;
+}
+
+#modal .box a {
+    align-self: end;
+    margin-bottom: 2em;
+    font-weight: 500;
+    color: var(--primary-color);
 }

@@ -53,12 +53,23 @@ else if (currentPage.includes('/home')) {
 // form delete confirmation box
 if (currentPage.includes('/edit')) {
   const formDelete = document.querySelector('#form-delete')
+  const modal = document.querySelector('#modal')
+  const popup = modal.querySelector('input[name=popup')
 
   formDelete.addEventListener('submit', e => {
-    const confirmation = confirm('Are you sure you want to delete')
+    if (popup.value !== null) {   
+      const close = modal.querySelector('.box a')
 
-    if (!confirmation) {
-      event.preventDefault()
-    }
+      modal.style.display = 'grid'
+      close.addEventListener('click', e => {
+        modal.style.display = 'none'
+      })
+    } else {
+      const confirmation = confirm('Are you sure you want to delete')
+
+      if (!confirmation) {
+        event.preventDefault()
+      }
+    }    
   })
 }

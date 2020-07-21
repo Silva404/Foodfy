@@ -1,7 +1,7 @@
 const express = require('express')
 const routes = express.Router()
 const site = require('./app/controllers/site')
-const recipes = require('./app/controllers/admin')
+const recipes = require('./app/controllers/recipes')
 const chefs = require('./app/controllers/chefs')
 
 //general

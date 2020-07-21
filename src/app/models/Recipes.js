@@ -67,10 +67,10 @@ module.exports = {
     update(data, callback) {
         const query = `
         UPDATE recipes SET 
-        image=($1)
-        title=($2)
-        ingredients=($3)
-        preparation=($4)
+        image=($1),
+        title=($2),
+        ingredients=($3),
+        preparation=($4),
         information=($5)
         WHERE id = $6
         `

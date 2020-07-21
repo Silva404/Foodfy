@@ -5,7 +5,7 @@
 {% endblock styles %}
 
 {% block content %}
-    <form id="form-save" method="POST" action="/admin/chefs?_method=PUT" id="{{chef.id}}">
+    <form id="form-save" method="POST" action="/admin/chefs?_method=PUT">
         <section class="container">
             <div class="aside">
                 <div class="title">
@@ -14,12 +14,26 @@
                 </div>
                 <div class="fields">
                     {% include 'admin/chefs/fields.njk' %}
+                    <input type="hidden" name="id" value="{{chef.id}}">
                 </div>
             </div>
             <div class="send">
                 <button type="submit" form="form-save" class="button">Salvar chef</button>
-                <button type="submit" form="form-delete" class="button btn-clean">Apagar campos</button>
+                <button type="submit" form="form-delete" class="button btn-clean">Apagar chef</button>
             </div>
         </section>
     </form>
+    <form action="/admin/chefs?_method=DELETE" method="post" id="form-delete">
+        <input type="hidden" name="id" value="{{chef.id}}">
+    </form>
 {% endblock content %}
+
+{% block modal %}
+    <div id="modal">
+        <input type="hidden" name="popup" value={{chef.recipes_name}}>
+        <div class="box">
+            <h3>Desculpe, mas você não pode apagar um chef que possui receitas.</h3>
+            <a href="#">OK</a>
+        </div>
+    </div>
+{% endblock modal %}

@@ -37,15 +37,22 @@ module.exports = {
     show(req, res) {
         Chefs.find(req.params.id, (chef, recipes, totalRecipes) => {
             if (!chef) return res.send('Chef not fouund!')
+            console.log(chef)
+            console.log(recipes)
+            console.log(totalRecipes)
 
             return res.render('admin/chefs/chef', { chef, recipes, totalRecipes })
         })
     },
     edit(req, res) {
-        Chefs.find(req.body, (chef) => {
+        const { id } = req.body
+ 
+        Chefs.find(req.params.id, (chef, recipes) => {
             if (!chef) return res.send('Chef not found!')
+            console.log(chef.recipes_name)
 
-            return res.render('admin/chefs/edit', { chef })
+            console.log(id)
+            return res.render('admin/chefs/edit', { chef, recipes }) 
         })
     },
     put (req, res) {
@@ -61,9 +68,12 @@ module.exports = {
             return res.redirect(`/admin/chefs`)
         })
     },
-    delete (req, res) {
+    delete (req, res) {        
         Chefs.delete(req.params.id, () => {
+        if (chef.recipes_name) {
+        } else {
             return res.redirect(`/admin/chefs`)
+        }
         })
     }
 }
