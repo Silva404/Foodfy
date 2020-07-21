@@ -6,6 +6,16 @@ module.exports = {
 
         page = page || 1
         limit = limit || 6
+        let offset = limit * (page - 1)
+
+        const params = {
+            page,
+            limit,
+            offset
+        }
+
+
+        Chefs.paginate(params)
 
         // if (filter) {
         //     Chefs.filter(filter, chefs => {

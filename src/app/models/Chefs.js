@@ -83,7 +83,7 @@ module.exports = {
             callback(results.rows)
         })
     },
-    paginate(callback) {
+    paginate(params) {
         db.query(``)
     }
 }
