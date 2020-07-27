@@ -1,9 +1,11 @@
 const PhotosUpload = {
+  input: '',
   preview: document.querySelector('#photos-preview'),
   uploadLimit: 5,
   files: [],
   handleFileInput(event) {
     const { files: fileList } = event.target
+    this.input = event.target
 
     if (this.hasLimit(event)) return
 
@@ -24,7 +26,7 @@ const PhotosUpload = {
       reader.readAsDataURL(file)
     })
 
-    this.getAllFiles()
+    this.input.files = this.getAllFiles()
   },
   getContainer(image) {
     const div = document.createElement('div')
@@ -37,11 +39,11 @@ const PhotosUpload = {
     return div
   },
   getAllFiles(){
-    const dataTransfer = new DataTransfer()
+    const dataTransfer = new ClipboardEvent('').clipboardData || new DataTransfer()
 
-    this.files.forEach(file => dataTrasnfer.files.item.add(file))
+    this.files.forEach(file => dataTransfer.items.add(file))
 
-    console.log(dataTransfer)
+    return dataTransfer.files
   },
   hasLimit(event) {
     const { files: fileList } = event.target
@@ -65,6 +67,9 @@ const PhotosUpload = {
     const photoDiv = event.target.parentNode
     const photoArray = Array.from(PhotosUpload.preview.children)
     const index = photoArray.indexOf(photoDiv)
+
+    PhotosUpload.files.splice(index, 1)
+    PhotosUpload.input.files = PhotosUpload.getAllFiles()
 
     photoDiv.remove()
   }
