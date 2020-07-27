@@ -20,14 +20,13 @@
 
 <div class="item">
     <div>Imagem da receita</div>
-    <div>
+    <div class="gallery">
         <div id="photos-upload">
-            <input type="file" name="photos" id="photos-input" multiple="multiple" accept="image/*">
+            <input type="file" name="photos" id="photos-input" multiple="multiple" accept="image/*" onchange="PhotosUpload.handleFileInput(event)">
             <span class="material-icons">add</span>
         </div>
-        <div id="photos-gallery"></div>
+        <div id="photos-preview"></div>
     </div>
-    {# <p>Selecione no máximo 5 fotos</p> #}
 </div>
 
 <div class="aside">
