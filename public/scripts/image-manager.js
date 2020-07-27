@@ -3,7 +3,7 @@ const PhotosUpload = {
   preview: document.querySelector('#photos-preview'),
   uploadLimit: 5,
   files: [],
-  gallery: document.querySelector('recipe_galery'),
+  gallery: document.querySelector('#recipe_galery'),
   handleFileInput(event) {
     const { files: fileList } = event.target
     this.input = event.target
@@ -12,7 +12,7 @@ const PhotosUpload = {
       this.uploadLimit = 5
     } else {
       this.uploadLimit = 1
-    }
+    } 
 
     if (this.hasLimit(event)) return
 
@@ -57,7 +57,7 @@ const PhotosUpload = {
     const { preview } = this
 
     if (fileList.length > this.uploadLimit) {
-      alert('Você não pode por mais de 5 fotos')
+      alert(`Você não pode por mais de ${this.uploadLimit} fotos`)
       event.preventDefault()
       return true
     }

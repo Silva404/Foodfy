@@ -1,14 +1,14 @@
 const Chefs = require('../models/Chefs')
 
 module.exports = {
-    index(req, res) {
+    async index(req, res) {
         let { filter, page, limit } = req.query
 
         page = page || 1
         limit = limit || 6
         let offset = limit * (page - 1)
 
-        const params = { 
+        const params = {
             filter,
             page,
             limit,
@@ -18,17 +18,17 @@ module.exports = {
                     total: Math.ceil(chefs[0].total / limit),
                     page
                 }
-                
+
                 return res.render('admin/chefs/chefs', { chefs, filter, pagination })
             }
         }
 
-        Chefs.paginate(params)
+        await Chefs.paginate(params)
     },
     create(req, res) {
         return res.render('admin/chefs/create')
     },
-    post(req, res) {
+    async post(req, res) {
         const keys = Object.keys(req.body)
 
         for (let key of keys) {
@@ -37,16 +37,18 @@ module.exports = {
             }
         }
 
-        Chefs.create(req.body, chef => {
-            return res.redirect(`/admin/chefs/${chef.id}`)
-        })
+        // Chefs.create(req.body, chef => {
+        //     return res.redirect(`/admin/chefs/${chef.id}`)
+        // })
+
+        let results = await Chefs.create(req.body)
+        const productId = results.rows[0].id
+
+        return res.redirect(`/admin/chefs/${productId}`)
     },
     show(req, res) {
         Chefs.find(req.params.id, (chef, recipes, totalRecipes) => {
             if (!chef) return res.send('Chef not fouund!')
-            console.log(chef)
-            console.log(recipes)
-            console.log(totalRecipes)
 
             return res.render('admin/chefs/chef', { chef, recipes, totalRecipes })
         })

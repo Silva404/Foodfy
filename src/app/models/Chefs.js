@@ -18,7 +18,7 @@ module.exports = {
                 callback(results.rows)
             })
     },
-    create(data, callback) {
+    create(data) {
         const query = `
         INSERT INTO chefs (
             name,
@@ -27,19 +27,14 @@ module.exports = {
         ) VALUES ($1, $2, $3)
         RETURNING id
         `
-
+        
         const values = [
             data.name,
             data.avatar_url,
             date(Date.now()).created
         ]
 
-        db.query(query, values, (err, results) => {
-            if (err) throw `Database error: ${err}`
-
-
-            callback(results.rows[0])
-        })
+        return db.query(query, values)
     },
     find(id, callback) {
         db.query(`SELECT chefs.*, 
