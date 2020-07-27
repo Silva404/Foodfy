@@ -47,9 +47,24 @@ const PhotosUpload = {
   },
   hasLimit(event) {
     const { files: fileList } = event.target
+    const { preview } = this
 
     if (fileList.length > this.uploadLimit) {
       alert('Você não pode por mais de 5 fotos')
+      event.preventDefault()
+      return true
+    }
+
+    const photosDiv = []
+    preview.childNodes.forEach(item => {
+      if (item.classList && item.classList.value == 'photo') {
+        photosDiv.push(item)
+      }
+    })
+
+    const total = fileList.length + photosDiv.length
+    if (total > this.uploadLimit) {
+      alert('Você atingiu o limite de fotos')
       event.preventDefault()
       return true
     }
