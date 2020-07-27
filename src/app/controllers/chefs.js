@@ -1,7 +1,7 @@
 const Chefs = require('../models/Chefs')
 
 module.exports = {
-    async index(req, res) {
+    index(req, res) {
         let { filter, page, limit } = req.query
 
         page = page || 1
@@ -23,7 +23,7 @@ module.exports = {
             }
         }
 
-        await Chefs.paginate(params)
+        Chefs.paginate(params)
     },
     create(req, res) {
         return res.render('admin/chefs/create')

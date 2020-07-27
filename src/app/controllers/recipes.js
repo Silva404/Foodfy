@@ -24,9 +24,6 @@ module.exports = {
         }
 
         Recipes.paginate(params)
-        // Recipes.all(recipes => {
-        //     return res.render('admin/recipes/recipes', { recipes })
-        // })
     },
     create(req, res) {
         Recipes.allChefs( chefs => {

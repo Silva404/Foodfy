@@ -62,12 +62,8 @@ module.exports = {
 
         return db.query(query, values)
     },
-    delete(id, callback) {
-        db.query(`DELETE FROM chefs WHERE id = $1`, [id], (err, results) => {
-            if (err) throw `Database error: ${err}`
-
-            callback(results.rows)
-        })
+    delete(id) {
+        return db.query(`DELETE FROM chefs WHERE id = $1`, [id])
     },
     paginate(params) {
         let { filter, callback, limit, offset } = params
