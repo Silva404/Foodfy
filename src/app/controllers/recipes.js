@@ -25,21 +25,27 @@ module.exports = {
 
         Recipes.paginate(params)
     },
-    create(req, res) {
-        Recipes.allChefs( chefs => {
-        return res.render('./admin/recipes/create', { chefs })            
-        })
+    async create(req, res) {
+        // Recipes.allChefs( chefs => {
+        // return res.render('./admin/recipes/create', { chefs })            
+        // })
+
+        let results = await Recipes.allChefs()
+        const chefs = results.rows
+
+        return res.render('./admin/recipes/create', { chefs })  
     },
-    post(req, res) {
+    async post(req, res) {
         const keys = Object.keys(req.body)
 
         for (key of keys) {
             if (req.body[key] == '') return res.send('Please, fill and the fields.')
         }
+        
+        let results = await Recipes.create(req.body) 
+        const recipeId = results.rows[0].id
 
-        Recipes.create(req.body, recipe => {
-            res.redirect(`admin/recipes/${recipe.id}`)
-        })
+        res.redirect(`admin/recipes/${recipeId}`)
     },
     show(req, res) {
         Recipes.find(req.params.id, (recipe, chef) => {

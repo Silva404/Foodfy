@@ -14,13 +14,9 @@ module.exports = {
         })
     },
     allChefs(callback) {
-        db.query(`SELECT * FROM chefs`, (err, results) => {
-            if (err) throw `Data error: ${err}`
-
-            callback(results.rows)
-        })
+        return db.query(`SELECT * FROM chefs`)
     },
-    create(data, callback) {
+    create(data) {
         const query = `
         INSERT INTO recipes (
             image,
@@ -43,11 +39,7 @@ module.exports = {
             data.chef_id
         ]
 
-        db.query(query, values, (err, results) => {
-            if (err) throw `Database error: ${err}`
-
-            callback(results.rows[0])
-        })
+        return db.query(query, values)
     },
     find(id, callback) {
         db.query(`SELECT *, recipes.id AS recipe_id
