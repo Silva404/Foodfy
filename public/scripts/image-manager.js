@@ -87,5 +87,5 @@ const PhotosUpload = {
     PhotosUpload.input.files = PhotosUpload.getAllFiles()
 
     photoDiv.remove()
-  }
+  } 
 }

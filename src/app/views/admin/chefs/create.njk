@@ -1,7 +1,7 @@
 {% extends 'admin-layout.njk' %}
 
 {% block styles %}
-    <link rel="stylesheet" href="/styles/form-fields.css">
+    <link rel="stylesheet" href="/styles/admin/chefs/form.css">
 {% endblock styles %}
 
 {% block content %}
@@ -10,7 +10,9 @@
             <div class="title">
                 <h3>Criando chef</h3>
             </div>
-            {% include 'admin/chefs/fields.njk' %}
+            <div class="fields">
+                {% include 'admin/chefs/fields.njk' %}
+            </div>
             <div class="send">
                 <button type="submit" class="button">Salvar chef</button>
                 {# <button type="submit" class="button btn-clean">Apagar campos</button> #}

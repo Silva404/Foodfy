@@ -1,0 +1,152 @@
+.title {
+  margin-top: 2em;
+}
+
+.title h3 {
+  font-size: 2.2rem;
+  margin-bottom: 1em;
+  color: var(--primary-txt-color);
+}
+
+.item {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--secondary-txt-color);
+}
+
+.send {
+  margin: 2em auto;
+  max-width: 300px;
+}
+
+.button {
+  font-size: 1.8rem;  
+  color: var(--white-color);
+  padding: 0.5em 1.5em;
+  background: var(--primary-color);
+  border-radius: 0.5em;
+  border: 1px solid var(--primary-color);
+}
+
+.send .btn-clean {
+  background: var(--white-color);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.delete {
+  background: var(--desc-color);
+}
+
+input,
+select {
+  width: 100%;
+  outline: none;
+  border: 1px solid var(--desc-color);
+  padding: 1em;
+  border-radius: 0.5em;
+  opacity: 0.7;
+  margin: 0.5em 0;
+}
+
+.newButton button {
+  margin: 0.5em 0 1em;
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: block;
+  color: var(--primary-color);
+  background: none;
+}
+
+.item select {
+  background: none;
+}
+
+form .container .send {
+  display: flex;
+  align-items: center;
+}
+
+form .container .send button {
+  margin: 0 auto;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 180px 1fr 200px;
+  gap: 2em;
+}
+
+#photos-preview img {
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border: 1px solid var(--primary-color);
+}
+
+#photos-upload {
+  width: 150px;
+  /* overflow: hidden; */
+  position: relative;
+}
+
+#photos-upload span {
+  width: 100%;
+  height: 100%;
+}
+
+#photos-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.8em 1.5em;
+  margin: 0;
+  opacity: 0;
+}
+
+.upload-button {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  padding: 0.5em 1.5em;
+  background: #fff;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.5em;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+
+#photos-preview .photo {
+  position: relative;
+}
+
+#photos-preview .photo i {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--delete-button);
+  opacity: 0;
+  font-size: 3em;
+  transform: scale(0.5) rotate(180deg);
+  transition: 400ms;
+}
+
+#photos-preview .photo img {
+  transition: 400ms;
+}
+
+#photos-preview .photo:hover i {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#photos-preview .photo:hover img {
+  opacity: 0.5;
+}
