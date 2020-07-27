@@ -48,5 +48,8 @@ const PhotosUpload = {
     button.innerHTML = "close"
 
     return button
+  },
+  removePhoto(event){
+    
   }
 }

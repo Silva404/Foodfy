@@ -120,6 +120,7 @@ select {
     left: 0;
 
     opacity: 0;
+    cursor: pointer;
 }
 
 #photos-upload span {
@@ -128,7 +129,10 @@ select {
     border: 1px solid var(--desc-color);
     color: var(--desc-color);
     border-radius: 0.25em;
-    padding: 2.5em 2.5em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .gallery {
@@ -154,6 +158,17 @@ select {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 200%;
+    color: var(--paginate-primary);
+    transform: scale(0.5) rotate(180deg);
+    transition: 400ms;
 }
 
 #photos-preview img {
@@ -163,4 +178,15 @@ select {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: 400ms ease;
+}
+
+#photos-preview .photo:hover i {
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+
+#photos-preview .photo:hover img{
+    opacity: 0.3;
 }
