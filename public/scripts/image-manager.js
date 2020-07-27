@@ -3,9 +3,16 @@ const PhotosUpload = {
   preview: document.querySelector('#photos-preview'),
   uploadLimit: 5,
   files: [],
+  gallery: document.querySelector('recipe_galery'),
   handleFileInput(event) {
     const { files: fileList } = event.target
     this.input = event.target
+
+    if (this.gallery) {
+      this.uploadLimit = 5
+    } else {
+      this.uploadLimit = 1
+    }
 
     if (this.hasLimit(event)) return
 
