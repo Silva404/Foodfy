@@ -5,7 +5,7 @@
 {% endblock styles %}
 
 {% block content %}
-    <form id="form-edit" method="POST" action="/admin/recipes?_method=PUT">
+    <form id="form-edit" method="POST" action="/admin/recipes?_method=PUT" enctype="multipart/form-data">
         <section class="container">
             <div class="title">
                 <h3>Criando receita</h3>

@@ -5,7 +5,7 @@
 {% endblock styles %}
 
 {% block content %}
-    <form action="/admin/chefs" method="POST">
+    <form action="/admin/chefs" method="POST" enctype="multipart/form-data">
         <section class="container">
             <div class="title">
                 <h3>Criando chef</h3>
@@ -15,7 +15,7 @@
             </div>
             <div class="send">
                 <button type="submit" class="button">Salvar chef</button>
-                {# <button type="submit" class="button btn-clean">Apagar campos</button> #}
+                <button type="submit" class="button btn-clean">Apagar campos</button>
             </div>
         </section>
     </form>

@@ -1,3 +1,8 @@
+.container {
+  display: grid;
+  grid-template: 80px 1fr 100px / 1fr ;
+}
+
 .title {
   margin-top: 2em;
 }
@@ -14,10 +19,6 @@
   color: var(--secondary-txt-color);
 }
 
-.send {
-  margin: 2em auto;
-  max-width: 300px;
-}
 
 .button {
   font-size: 1.8rem;  
@@ -46,7 +47,7 @@ select {
   padding: 1em;
   border-radius: 0.5em;
   opacity: 0.7;
-  margin: 0.5em 0;
+  /* margin: 0.5em 0; */
 }
 
 .newButton button {
@@ -62,14 +63,27 @@ select {
   background: none;
 }
 
-form .container .send {
+.send {
+  align-self: center;
+  justify-self: center;
+}
+
+.center {
+  display: grid;  
+}
+
+.center #photos-upload {
+  justify-self: center;
+}
+
+/* form .container .send {
   display: flex;
   align-items: center;
 }
 
 form .container .send button {
   margin: 0 auto;
-}
+} */
 
 .fields {
   display: grid;
@@ -115,6 +129,8 @@ form .container .send button {
   display: inline-block;
   cursor: pointer;
   text-align: center;
+
+  align-self: center;
 }
 
 #photos-preview .photo {

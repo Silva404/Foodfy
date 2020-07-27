@@ -61,7 +61,7 @@ const PhotosUpload = {
     const photosArray = Array.from(PhotosUpload.preview.children)
     const index = photosArray.indexOf(photosDiv)
 
-    PhotosUpload.files.slice(index, 1)
+    PhotosUpload.files.splice(index, 1)
     PhotosUpload.input.files = PhotosUpload.getAllFiles()
 
     photosDiv.remove()
