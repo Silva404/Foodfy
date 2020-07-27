@@ -41,22 +41,15 @@ module.exports = {
 
         return db.query(query, values)
     },
-    find(id, callback) {
-        db.query(`SELECT *, recipes.id AS recipe_id
+    find(id) {
+        return db.query(`SELECT *, recipes.id AS recipe_id
         FROM recipes 
         INNER JOIN chefs 
         ON (chefs.id = recipes.chef_id)
         WHERE recipes.id = $1
-        `, [id], (err, results) => {
-            if (err) throw `Database error: ${err}`
-            
-            console.log(results.rows[0])
-            console.log(results.rows)
-
-            callback(results.rows[0], results.rows)
-        })
+        `, [id])
     },
-    update(data, callback) {
+    update(data) {
         const query = `
         UPDATE recipes SET 
         image=($1),
@@ -76,18 +69,10 @@ module.exports = {
             data.id
         ]
 
-        db.query(query, values, (err, results) => {
-            if (err)`Database error: ${err}`
-            
-            callback()
-        })
+        return db.query(query, values)
     },
-    delete(id, callback) {
-        db.query(`DELETE FROM recipes WHERE id = $1`, [id], (err, results) => {
-            if (err)`Database error: ${err}`
-
-            callback()
-        })
+    delete(id) {
+        return db.query(`DELETE FROM recipes WHERE id = $1`, [id])
     },
     paginate(params) {
         let { filter, callback, limit, offset } = params

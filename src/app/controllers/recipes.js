@@ -8,7 +8,7 @@ module.exports = {
         limit = limit || 6
         let offset = limit * (page - 1)
 
-        const params = { 
+        const params = {
             filter,
             page,
             limit,
@@ -18,7 +18,7 @@ module.exports = {
                     total: Math.ceil(recipes[0].total / limit),
                     page
                 }
-                
+
                 return res.render('admin/recipes/recipes', { recipes, filter, pagination })
             }
         }
@@ -26,14 +26,10 @@ module.exports = {
         Recipes.paginate(params)
     },
     async create(req, res) {
-        // Recipes.allChefs( chefs => {
-        // return res.render('./admin/recipes/create', { chefs })            
-        // })
-
         let results = await Recipes.allChefs()
         const chefs = results.rows
 
-        return res.render('./admin/recipes/create', { chefs })  
+        return res.render('./admin/recipes/create', { chefs })
     },
     async post(req, res) {
         const keys = Object.keys(req.body)
@@ -41,44 +37,49 @@ module.exports = {
         for (key of keys) {
             if (req.body[key] == '') return res.send('Please, fill and the fields.')
         }
-        
-        let results = await Recipes.create(req.body) 
+
+        let results = await Recipes.create(req.body)
         const recipeId = results.rows[0].id
 
         res.redirect(`admin/recipes/${recipeId}`)
     },
-    show(req, res) {
-        Recipes.find(req.params.id, (recipe, chef) => {
-            if (!recipe) {
-                res.send('Recipe not found.')
-            }
-    
-            return res.render('admin/recipes/recipe', { recipe, chef })
-        })
-    },
-    edit(req, res) {
-        Recipes.find(req.params.id, (recipes, chefs) => { 
-            if (!recipes) {
-                res.send('Recipe not found.')
-            }
+    async show(req, res) {
+        let results = await Recipes.find(req.params.id)
+        const recipe = results.rows[0]
+        const chef = results.rows
 
-            return res.render('admin/recipes/edit', {  recipes, chefs }) 
-        })        
+        if (!recipe) {
+            res.send('Recipe not found.')
+        }
+
+        return res.render('admin/recipes/recipe', { recipe, chef })
+
     },
-    put(req, res) {
+    async edit(req, res) {
+        let results = await Recipes.find(req.params.id)
+        const recipes = results.rows[0]
+        const chefs = results.rows
+
+        if (!recipes) {
+            res.send('Recipe not found.')
+        }
+
+        return res.render('admin/recipes/edit', { recipes, chefs })
+    },
+    async put(req, res) {
         const keys = Object.keys(req.body)
 
         for (key of keys) {
             if (req.body[key] == '') return res.send('Please, fill and the fields.')
         }
 
-        Recipes.update(req.body, () => {
-            return res.redirect(`/admin/recipes/${req.body.id}`) 
-        })
+        await Recipes.update(req.body)        
+        
+        return res.redirect(`/admin/recipes/${req.body.id}`)
     },
-    delete(req, res) {
-        Recipes.delete(req.body.id, () => {
-           return res.redirect('/admin/recipes')
-        })
+    async delete(req, res) {
+        await Recipes.delete(req.body.id)
+
+        return res.redirect('/admin/recipes')
     }
 }
