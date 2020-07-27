@@ -5,10 +5,29 @@
     </div>
 
     <div class="item">
-        <div>Imagem da receita</div>
-        <div><input type="url" name="image" value="{{ recipes.image}}"></div>
+        <div>Chef</div>
+        <div>
+            <select name="chef_id">
+                {% for chef in chefs %}
+                    <option value="{{chef.id}}" {% if recipes.chef_id == chefs.id %} selected="selected" {% endif %}>
+                        {{ chef.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
     </div>
 </div>
+
+<div class="item">
+    <div>Imagem da receita</div>
+    <div>
+        <div id="photos-upload">
+            <input type="file" name="recipes" id="recipes-input" multiple accept="image/*">
+            <span class="material-icons">add</span>
+        </div>
+    </div>
+</div>
+
 <div class="aside">
 
     <div class="sub-item">
@@ -58,18 +77,6 @@
     </div>
 </div>
 <div class="aside">
-    <div class="item">
-        <div>Chef</div>
-        <div>
-            <select name="chef_id">
-                {% for chef in chefs %}
-                    <option value="{{chef.id}}" {% if recipes.chef_id == chefs.id %} selected="selected" {% endif %}>
-                        {{ chef.name }}
-                    </option>
-                {% endfor %}
-            </select>
-        </div>
-    </div>
 
     <div class="item">
         <div>Informações adicionais</div>
