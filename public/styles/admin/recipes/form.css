@@ -102,3 +102,15 @@ select {
 .aside .item + .item{
     margin-left: 1em;
 }
+
+#photos-upload {
+    position: relative;
+    display: block;
+    width: 150px;
+}
+
+#recipes-input {
+}
+
+#photos-upload span {
+}
