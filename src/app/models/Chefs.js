@@ -36,22 +36,17 @@ module.exports = {
 
         return db.query(query, values)
     },
-    find(id, callback) {
-        db.query(`SELECT chefs.*, 
+    find(id) {
+        return db.query(`SELECT chefs.*, 
         recipes.title AS recipes_name,  
-        recipes.image AS recipes_image,
         recipes.id AS recipes_id
         FROM chefs 
         LEFT JOIN recipes 
         ON (chefs.id = recipes.chef_id)
         WHERE chefs.id = $1
-        `, [id], (err, results) => {
-            if (err) throw `${err}`
-
-            callback(results.rows[0], results.rows, results.rowCount)
-        })
+        `, [id])
     },
-    update(data, callback) {
+    update(data) {
         const query = ` 
         UPDATE chefs SET
         name=($1),
@@ -65,11 +60,7 @@ module.exports = {
             data.id
         ]
 
-        db.query(query, values, (err, results) => {
-            if (err) throw `Database error: ${err}`
-
-            callback()
-        })
+        return db.query(query, values)
     },
     delete(id, callback) {
         db.query(`DELETE FROM chefs WHERE id = $1`, [id], (err, results) => {

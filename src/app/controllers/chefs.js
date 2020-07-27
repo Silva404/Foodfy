@@ -46,23 +46,23 @@ module.exports = {
 
         return res.redirect(`/admin/chefs/${productId}`)
     },
-    show(req, res) {
-        Chefs.find(req.params.id, (chef, recipes, totalRecipes) => {
-            if (!chef) return res.send('Chef not fouund!')
+    async show(req, res) {
+        let results = await Chefs.find(req.params.id)
+        const chef = results.rows[0]
+        const recipes = results.rows
+        const totalRecipes = results.rowCount
 
-            return res.render('admin/chefs/chef', { chef, recipes, totalRecipes })
-        })
+        return res.render('admin/chefs/chef', { chef, recipes, totalRecipes }) 
+
     },
-    edit(req, res) {
-        const { id } = req.body
+    async edit(req, res) {
+        let results = await Chefs.find(req.params.id)
+        const chef = results.rows[0]
+        const recipes = results.rows
 
-        Chefs.find(req.params.id, (chef, recipes) => {
-            if (!chef) return res.send('Chef not found!')
-
-            return res.render('admin/chefs/edit', { chef, recipes })
-        })
+        return res.render('admin/chefs/edit', { chef, recipes })
     },
-    put(req, res) {
+    async put(req, res) {
         const keys = Object.keys(req.body)
 
         for (let key of keys) {
@@ -71,16 +71,17 @@ module.exports = {
             }
         }
 
-        Chefs.update(req.body, () => {
-            return res.redirect(`/admin/chefs`)
-        })
+        await Chefs.update(req.body)
+
+        return res.redirect(`/admin/chefs`)        
     },
-    delete(req, res) {
-        Chefs.delete(req.params.id, () => {
-            if (chef.recipes_name) {
-            } else {
-                return res.redirect(`/admin/chefs`)
-            }
-        })
+    async delete(req, res) {        
+        await Chefs.delete(req.params.id)
+        
+        if (chef.recipes_name) {
+        } else {
+            return res.redirect(`/admin/chefs`)
+        }
+
     }
 }
