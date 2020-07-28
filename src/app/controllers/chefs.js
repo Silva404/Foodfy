@@ -1,4 +1,5 @@
 const Chefs = require('../models/Chefs')
+const File = require('../models/File')
 
 module.exports = {
     index(req, res) {
@@ -37,12 +38,14 @@ module.exports = {
             }
         }
 
-        // Chefs.create(req.body, chef => {
-        //     return res.redirect(`/admin/chefs/${chef.id}`)
-        // })
+        if (req.files.length == 0 ){
+            return res.send('Por favor, envie pelo menos uma foto')
+        }
 
         let results = await Chefs.create(req.body)
         const productId = results.rows[0].id
+
+
 
         return res.redirect(`/admin/chefs/${productId}`)
     },
