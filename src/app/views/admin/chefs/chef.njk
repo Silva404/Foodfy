@@ -16,7 +16,12 @@
             <h1>{{chef.name}}</h1>
             <p>{{ chef.totalRecipes }}
                 {% if chef.recipes_name %}
-                   Uma Receita
+                    {% if totalRecipes == 1 %}
+                        Uma receita
+                    {% elif totalRecipes > 1%}
+                        {{totalRecipes}}
+                        Receitas
+                    {% endif %}
                 {% elseif totalRecipes > 1 %}
                     Receitas
                 {% else %}
