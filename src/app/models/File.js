@@ -26,7 +26,7 @@ module.exports = {
         ) VALUES ($1, $2)
         RETURNING id
         `
-        
+
         const values = [
             data.name,
             date(Date.now()).created
@@ -34,3 +34,4 @@ module.exports = {
 
         return db.query(query, values)
     }
+}
