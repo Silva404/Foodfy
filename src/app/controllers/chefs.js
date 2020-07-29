@@ -38,15 +38,10 @@ module.exports = {
             }
         }
 
-        if (req.files.length == 0 )
+        if (req.files.length == 0)
             return res.send('Por favor, envie pelo menos uma foto')
-        
 
-        const filePromises = req.files.map(file => File.create({ ...files }))
-        let results = await filePromises[0]
-        const fileId = results.rows[0].id
-
-        results = await Chefs.create(req.body, fileId)
+        let results = await Chefs.create(req.body)
         const chefId = results.rows[0].id
 
         return res.redirect(`/admin/chefs/${chefId}`)
@@ -57,7 +52,7 @@ module.exports = {
         const recipes = results.rows
         const totalRecipes = results.rowCount
 
-        return res.render('admin/chefs/chef', { chef, recipes, totalRecipes }) 
+        return res.render('admin/chefs/chef', { chef, recipes, totalRecipes })
 
     },
     async edit(req, res) {
@@ -78,15 +73,15 @@ module.exports = {
 
         await Chefs.update(req.body)
 
-        return res.redirect(`/admin/chefs`)        
+        return res.redirect(`/admin/chefs`)
     },
-    async delete(req, res) {        
+    async delete(req, res) {    
         await Chefs.delete(req.params.id)
-        
+
         if (chef.recipes_name) {
         } else {
             return res.redirect(`/admin/chefs`)
         }
 
-    }
-}
+    }  
+} 

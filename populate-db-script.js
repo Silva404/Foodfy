@@ -26,35 +26,35 @@ CREATE TABLE recipe_files (
 )
 
 Insert Into chefs 
-(id, name, created_at) 
-values (1, 'Cleide Pereira', 2020-07-05);
+(id, name, created_at, file_id) 
+values (1, 'Cleide Pereira', 2020-07-05, 2);
 Insert Into chefs 
-(id, name, created_at) 
-values (2, 'Carlos Ferraz', 2020-07-05);
+(id, name, created_at, file_id) 
+values (2, 'Carlos Ferraz', 2020-07-05, 2);
 Insert Into chefs 
-(id, name, created_at) 
-values (3, 'Gabriele Peixoto', 2020-07-05);
+(id, name, created_at, file_id) 
+values (3, 'Gabriele Peixoto', 2020-07-05, 2);
 Insert Into chefs 
-(id, name, created_at) 
-values (4, 'Beatriz Vasconcelos', 2020-07-05);
+(id, name, created_at, file_id) 
+values (4, 'Beatriz Vasconcelos', 2020-07-05, 2);
 Insert Into chefs 
-(id, name, created_at) 
-values (5, 'Marcela', 2020-07-05);
+(id, name, created_at, file_id) 
+values (5, 'Marcela', 2020-07-05, 2);
 Insert Into chefs 
-(id, name, created_at) 
-values (6, 'Vanessa', 2020-07-05);
+(id, name, created_at, file_id) 
+values (6, 'Vanessa', 2020-07-05, 2);
 Insert Into chefs 
-(id, name, created_at) 
-values (7, 'Charles', 2020-07-05);
+(id, name, created_at, file_id) 
+values (7, 'Charles', 2020-07-05, 2);
 Insert Into chefs 
-(id, name, created_at) 
-values (8, 'Breno Silva', 2020-07-05);
+(id, name, created_at, file_id) 
+values (8, 'Breno Silva', 2020-07-05, 2);
 Insert Into chefs 
-(id, name, created_at) 
-values (9, 'Ricardo Pereira', 2020-07-05);
+(id, name, created_at, file_id) 
+values (9, 'Ricardo Pereira', 2020-07-05, 2);
 Insert Into chefs 
-(id, name, created_at) 
-values (10, 'Bianca Soares', 2020-07-05);
+(id, name, created_at, file_id) 
+values (10, 'Bianca Soares', 2020-07-05, 2);
 
 
 
