@@ -104,9 +104,10 @@ module.exports = {
         try {
             const keys = Object.keys(req.body)
 
-            for (key of keys && key != "removed_files") {
-                if (req.body[key] == '') return res.send('Please, fill and the fields.')
-            }
+            // for (key of keys) {
+            //     if (req.body[key] == "" && key != "removed_files") 
+            //     return res.send('Please, fill and the fields.')
+            // }
 
             if (req.body.removed_files) {
                 const removedFiles = req.body.removed_files.split(',')
@@ -116,6 +117,12 @@ module.exports = {
                 const removedFilePromise = removedFiles.map(id => File.delete(id))
 
                 await Promise.all(removedFilePromise)
+            }
+
+            if (req.files.length != 0) {
+                const newFilePromise = req.files.map(file => File.create(...file, id: req.body.id))
+                
+                await Promise.all(newFilePromise)
             }
 
             await Recipes.update(req.body)

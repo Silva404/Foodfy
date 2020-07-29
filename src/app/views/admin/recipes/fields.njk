@@ -1,7 +1,7 @@
 <div class="aside">
     <div class="item">
         <div>Nome da receita</div>
-        <div><input type="text" name="title" value="{{ recipes.title}}"></div>
+        <div><input type="text" name="title" value="{{ recipe.title}}"></div>
     </div>
 
     <div class="item">
@@ -51,7 +51,7 @@
                     <input type="text" name="ingredients[]" value="" placeholder="Novo ingrediente">
                 </div>
             {% endif %}
-            {% for ingredient in recipes.ingredients %}
+            {% for ingredient in recipe.ingredients %}
                 <div class="ingredient">
                     <input type="text" name="ingredients[]" value="{{ ingredient }}">
                 </div>
@@ -74,7 +74,7 @@
                     <input type="text" name="preparation[]" value="" placeholder="Adicione um modo de preparo">
                 </div>
             {% endif %}
-            {% for prepare in recipes.preparation %}
+            {% for prepare in recipe.preparation %}
                 <div class="preparation">
                     <input type="text" name="preparation[]" value="{{ prepare }}">
                 </div>
@@ -93,7 +93,7 @@
 
     <div class="item">
         <div>Informações adicionais</div>
-        <div><input type="text" name="information" value="{{ recipes.information}}"></div>
+        <div><input type="text" name="information" value="{{ recipe.information}}"></div>
     </div>
 </div>
 
