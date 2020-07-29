@@ -65,9 +65,6 @@ module.exports = {
                 res.send('Recipe not found.')
             }
 
-            // QUERO PEGAR O RECIPE.ID do recipe_files
-            // LINKAR o recip_files ao files pelo 
-            // file_id e files.id
             results = await Recipes.files(recipe.recipe_id)
             let files = results.rows
             files = files.map(file => ({
@@ -82,15 +79,27 @@ module.exports = {
         }
     },
     async edit(req, res) {
-        let results = await Recipes.find(req.params.id)
-        const recipes = results.rows[0]
-        const chefs = results.rows
+        try {
+            let results = await Recipes.find(req.params.id)
+            const recipe = results.rows[0]
+            const chefs = results.rows
 
-        if (!recipes) {
-            res.send('Recipe not found.')
+            if (!recipe) {
+                res.send('Recipe not found.')
+            }
+
+            console.log(recipe);
+            results = await Recipes.files(recipe.recipe_id)
+            let files = results.rows
+            files = files.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+            }))
+
+            return res.render('admin/recipes/edit', { recipe, chefs, files })
+        } catch (err) {
+            console.log(err)
         }
-
-        return res.render('admin/recipes/edit', { recipes, chefs })
     },
     async put(req, res) {
         const keys = Object.keys(req.body)

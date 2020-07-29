@@ -32,4 +32,4 @@ const imageGallery = {
     
     this.highlight.src = target.src
   }
-}
+} 
