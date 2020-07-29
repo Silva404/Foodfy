@@ -98,5 +98,8 @@ module.exports = {
 
             callback(results.rows)
         })
+    },
+    files(id) {
+        return db.query(`SELECT * FROM files WHERE files.id = $1 `, [id])
     }
 }

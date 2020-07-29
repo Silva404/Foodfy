@@ -66,7 +66,7 @@ if (currentPage.includes('/edit')) {
       const confirmation = confirm('Are you sure you want to delete')
 
       if (!confirmation) {
-        event.preventDefault()  
+        event.preventDefault()
       }
     }
   })
@@ -102,14 +102,11 @@ function createPagination(pagination) {
   const total = +pagination.dataset.total
   const pages = paginate(presentPage, total)
 
-  let elements = ''
+  let elements = []
+
+
 
   for (let page of pages) {
-    const half = Math.floor(pages.length / 5)
-    const middlePage = pages[half]
-    // temporario, não middle page e sim o page
-    // troca o let page pra outro nome e usa o page do const page pra pegar a page atual
-
     if (page == presentPage) {
       elements += `<a class="middle-page">${page}</a>`
     } else {

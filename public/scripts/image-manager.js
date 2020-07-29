@@ -81,7 +81,7 @@ const PhotosUpload = {
   getRemoveButton(){
     const button = document.createElement('i')
     button.classList.add('material-icons')
-    button.innerHTML = "close"
+    button.innerHTML = "delete"
 
     return button
   },

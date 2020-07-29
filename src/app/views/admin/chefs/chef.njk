@@ -12,7 +12,7 @@
             <a href="/admin/chefs/{{ chef.id }}/edit" class="button">Editar chef</a>
         </div>
         <div class="chef-avatar">
-            <img src="{{ chef.avatar_url}}" alt="{{ chef.name }}">
+            <img src="{{ avatar[0].src}}" alt="{{ chef.name }}">
             <h1>{{chef.name}}</h1>
             <p>{{ chef.totalRecipes }}
                 {% if chef.recipes_name %}
