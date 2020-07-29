@@ -39,9 +39,13 @@ module.exports = {
         }
 
         if (req.files.length == 0)
-            return res.send('Por favor, envie pelo menos uma foto')
+            return res.send('Por favor, envie pelo menos uma foto')        
 
-        let results = await Chefs.create(req.body)
+        const filePromise = req.files.map(file => File.create({ ...file }))
+        let results = await filePromise[0]
+        const fileId = results.rows[0].id
+
+        results = await Chefs.create(req.body, fileId)
         const chefId = results.rows[0].id
 
         return res.redirect(`/admin/chefs/${chefId}`)
@@ -83,5 +87,5 @@ module.exports = {
             return res.redirect(`/admin/chefs`)
         }
 
-    }  
+    }   
 } 
