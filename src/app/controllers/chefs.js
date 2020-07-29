@@ -42,11 +42,12 @@ module.exports = {
             return res.send('Por favor, envie pelo menos uma foto')
         }
 
-        let results = await Chefs.create(req.body)
+        let results = await File.create(req.body)
+        const fileId = results.rows[0].id
+
+        
+        results = await Chefs.create(req.body, fileId)
         const chefId = results.rows[0].id
-
-
-
 
 
         return res.redirect(`/admin/chefs/${chefId}`)

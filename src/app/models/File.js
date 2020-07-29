@@ -22,8 +22,7 @@ module.exports = {
         const query = `
         INSERT INTO chefs (
             name,
-            path,
-            
+            path            
         ) VALUES ($1, $2)
         RETURNING id
         `
