@@ -42,7 +42,7 @@ module.exports = {
             return res.send('Por favor, envie pelo menos uma foto')
         }
 
-        const filePromises = req.files.map(file => File.create(req.body)({ ...files }))
+        const filePromises = req.files.map(file => File.create({ ...files }))
         let results = await filePromises[0]
         const fileId = results.rows[0].id
 
