@@ -120,7 +120,7 @@ module.exports = {
             }
 
             if (req.files.length != 0) {
-                const newFilePromise = req.files.map(file => File.create(...file, id: req.body.id))
+                const newFilePromise = req.files.map(file => File.createRecipeFiles({ ...file, recipe_id: req.body.id }))
                 
                 await Promise.all(newFilePromise)
             }
