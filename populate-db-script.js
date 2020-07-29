@@ -14,10 +14,11 @@ CREATE TABLE chefs (
 CREATE TABLE recipes (
 	id SERIAL PRIMARY KEY,
   title text not null,
-  chef_id int not null
+  chef_id int not null,
   ingredients text[] not null,
   preparation text[] not null,
   information text not null,
+  created_at timestamp
 )
 
 CREATE TABLE recipe_files (
@@ -74,7 +75,9 @@ Coloque as folhas para cozinhar em água fervendo até que elas fiquem moles, re
 Em uma vasilha misture o arroz, a carne moída, a cebola, o alho, o caldo de carne e o sal,
 Amasse bem até que todos os ingredientes estejam bem misturados,
 Abra a folha em uma superfície e coloque a mistura de arroz e carne e enrole como se fosse um rocambole}', 
-'Saboreie, bon apetite', 2020-07-05, 1)
+'Saboreie, bon apetite', '2020-05-05 00:00:00', 1)
+
+
 
 INSERT INTO recipes 
 (id, title, ingredients, preparation, 
@@ -95,8 +98,7 @@ Adicionar os queijos e misturar até derreter,
 Cortar o tender em fatias de 1cm aproximadamente, mas não até o final, deixando uma base,
 Rechear cada fatia intercalando, uma com cenoura, outra com batata e outra com o creme de queijos e espinafre. Repetir o processo até terminar,
 Levar ao forno pré-aquecido à 180 graus por, aproximadamente, 1 hora}', 
-'Surpreenda seus familiares na ceia de Natal com esse delicioso tender recheado!', 2020-07-05, 1)
-
+'Surpreenda seus familiares na ceia de Natal com esse delicioso tender recheado!', '2020-05-05 00:00:00', 1)
 
 INSERT INTO recipes 
 (id, title, ingredients, preparation, 
@@ -119,5 +121,6 @@ Em uma frigideira, aquecer o azeite e dourar a cebola e o alho.,
 Acrescentar a linguiça e a costelinha defumada e refogar por, aproximadamente, 5 minutos ou até dourar.,
 Juntar as carnes à lentilha já cozida e deixar cozinhar por mais 20 minutos.,
 Corrigir o sal da lentilha, caso necessário, e servir com a cebola caramelada.}', 
-'Essa receita é perfeita para garantir boa sorte no novo ano!', 2020-07-05, 5)
+'Essa receita é perfeita para garantir boa sorte no novo ano!', '2020-05-05 00:00:00', 5)
+
 `

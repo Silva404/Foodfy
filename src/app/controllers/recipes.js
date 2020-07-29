@@ -50,8 +50,8 @@ module.exports = {
             const filePromises = req.files.map(file => File.createRecipeFiles({   ...file,
                 recipe_id: recipeId 
             }))
-            results = await Promise.all(filePromises)            
-
+            await Promise.all(filePromises)            
+ 
             res.redirect(`admin/recipes/${recipeId}`)
         } catch (err) {
             console.log(`ERRO => ${err}`)
