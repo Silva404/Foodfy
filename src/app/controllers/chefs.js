@@ -38,9 +38,9 @@ module.exports = {
             }
         }
 
-        if (req.files.length == 0 ){
+        if (req.files.length == 0 )
             return res.send('Por favor, envie pelo menos uma foto')
-        }
+        
 
         const filePromises = req.files.map(file => File.create({ ...files }))
         let results = await filePromises[0]
