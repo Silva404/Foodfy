@@ -43,11 +43,13 @@ module.exports = {
         }
 
         let results = await Chefs.create(req.body)
-        const productId = results.rows[0].id
+        const chefId = results.rows[0].id
 
 
 
-        return res.redirect(`/admin/chefs/${productId}`)
+
+
+        return res.redirect(`/admin/chefs/${chefId}`)
     },
     async show(req, res) {
         let results = await Chefs.find(req.params.id)
