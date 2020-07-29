@@ -13,7 +13,21 @@
         </div>
 
         <div class="hero">
-            <img src="{{ recipe.image}}" alt="{{ recipe.title }}">
+            {% if files %}
+                <div class="highlight">
+                    <img src="{{ files[0].src}}" alt="{{ recipe.title }}">
+                    <div class="dots">
+                        {% for image in files %}
+                            <img src="{{ image.src}}" alt="{{ recipe.title }}" class="active" onclick="imageGallery.setImage(event)">
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="preview">
+                    {% for image in files %}
+                        <img src="{{ image.src}}" alt="{{ recipe.title }}" class="active" onclick="imageGallery.setImage(event)">
+                    {% endfor %}
+                </div>
+            {% endif %}
             <h1>{{  recipe.title }}</h1>
             <p>por
                 {{  recipe.name }}</p>

@@ -48,24 +48,38 @@ module.exports = {
             const recipeId = results.rows[0].id
 
             const filePromises = req.files.map(file => File.createRecipeFiles({ ...file, recipe_id: recipeId }))
-            await Promise.all(filePromises)            
- 
-            res.redirect(`admin/recipes/${recipeId}`)
+            await Promise.all(filePromises)
+
+            res.redirect(`/admin/recipes/${recipeId}`)
         } catch (err) {
             console.log(`ERRO => ${err}`)
         }
     },
     async show(req, res) {
-        let results = await Recipes.find(req.params.id)
-        const recipe = results.rows[0]
-        const chef = results.rows
+        try {
+            let results = await Recipes.find(req.params.id)
+            const recipe = results.rows[0]
+            const chef = results.rows
 
-        if (!recipe) {
-            res.send('Recipe not found.')
+            if (!recipe) {
+                res.send('Recipe not found.')
+            }
+
+            // QUERO PEGAR O RECIPE.ID do recipe_files
+            // LINKAR o recip_files ao files pelo 
+            // file_id e files.id
+            results = await Recipes.files(recipe.recipe_id)
+            let files = results.rows
+            files = files.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+            }))
+
+            return res.render('admin/recipes/recipe', { recipe, chef, files })
+
+        } catch (err) {
+            console.log(err)
         }
-
-        return res.render('admin/recipes/recipe', { recipe, chef })
-
     },
     async edit(req, res) {
         let results = await Recipes.find(req.params.id)
