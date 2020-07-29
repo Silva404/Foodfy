@@ -1,3 +1,4 @@
+`
 CREATE TABLE files (
 	id SERIAL PRIMARY KEY,
   name text not null,
@@ -10,13 +11,13 @@ CREATE TABLE chefs (
   created_At int not null
 )
 
-CREATE TABLE files (
+CREATE TABLE recipes (
 	id SERIAL PRIMARY KEY,
   title text not null,
-  ingredients text[] not null,
-  information text[] not null,
-  created_At int not null,
   chef_id int not null
+  ingredients text[] not null,
+  preparation text[] not null,
+  information text not null,
 )
 
 CREATE TABLE recipe_files (
@@ -119,3 +120,4 @@ Acrescentar a linguiça e a costelinha defumada e refogar por, aproximadamente, 
 Juntar as carnes à lentilha já cozida e deixar cozinhar por mais 20 minutos.,
 Corrigir o sal da lentilha, caso necessário, e servir com a cebola caramelada.}', 
 'Essa receita é perfeita para garantir boa sorte no novo ano!', 2020-07-05, 5)
+`

@@ -58,7 +58,6 @@ module.exports = {
         try {
             let results = await Chefs.find(req.params.id)
             const chef = results.rows[0]
-            console.log(chef)
             const recipes = results.rows
             const totalRecipes = results.rowCount
 

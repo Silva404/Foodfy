@@ -1,4 +1,5 @@
 const Recipes = require('../models/Recipes')
+const File = require('../models/File')
 
 module.exports = {
     index(req, res) {
@@ -26,22 +27,35 @@ module.exports = {
         Recipes.paginate(params)
     },
     async create(req, res) {
-        let results = await Recipes.allChefs()
-        const chefs = results.rows
+        try {
+            let results = await Recipes.allChefs()
+            const chefs = results.rows
 
-        return res.render('./admin/recipes/create', { chefs })
+            return res.render('./admin/recipes/create', { chefs })
+        } catch (err) {
+            console.log(err)
+        }
     },
     async post(req, res) {
-        const keys = Object.keys(req.body)
+        try {
+            const keys = Object.keys(req.body)
 
-        for (key of keys) {
-            if (req.body[key] == '') return res.send('Please, fill and the fields.')
+            for (key of keys) {
+                if (req.body[key] == '') return res.send('Please, fill and the fields.')
+            }
+
+            let results = await Recipes.create(req.body)
+            const recipeId = results.rows[0].id
+
+            const filePromises = req.files.map(file => File.createRecipeFiles({   ...file,
+                recipe_id: recipeId 
+            }))
+            results = await Promise.all(filePromises)            
+
+            res.redirect(`admin/recipes/${recipeId}`)
+        } catch (err) {
+            console.log(`ERRO => ${err}`)
         }
-
-        let results = await Recipes.create(req.body)
-        const recipeId = results.rows[0].id
-
-        res.redirect(`admin/recipes/${recipeId}`)
     },
     async show(req, res) {
         let results = await Recipes.find(req.params.id)
@@ -73,8 +87,8 @@ module.exports = {
             if (req.body[key] == '') return res.send('Please, fill and the fields.')
         }
 
-        await Recipes.update(req.body)        
-        
+        await Recipes.update(req.body)
+
         return res.redirect(`/admin/recipes/${req.body.id}`)
     },
     async delete(req, res) {
