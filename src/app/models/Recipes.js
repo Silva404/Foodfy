@@ -111,7 +111,7 @@ module.exports = {
         })
     },
     files(id) {
-        return db.query(`SELECT files.path 
+        return db.query(`SELECT files.* 
         FROM files
         LEFT JOIN recipe_files 
         ON (files.id = recipe_files.file_id)

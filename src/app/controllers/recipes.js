@@ -86,7 +86,7 @@ module.exports = {
 
             if (!recipe) {
                 res.send('Recipe not found.')
-            } 
+            }
 
             results = await Recipes.files(recipe.recipe_id)
             let files = results.rows
@@ -101,19 +101,27 @@ module.exports = {
         }
     },
     async put(req, res) {
-        const keys = Object.keys(req.body)
+        try {
+            const keys = Object.keys(req.body)
 
-        for (key of keys) {
-            if (req.body[key] == '') return res.send('Please, fill and the fields.')
+            for (key of keys) {
+                if (req.body[key] == '') return res.send('Please, fill and the fields.')
+            }
+
+            await Recipes.update(req.body)
+
+            return res.redirect(`/admin/recipes/${req.body.id}`)
+        } catch (err) {
+            console.log(err)
         }
-
-        await Recipes.update(req.body)
-
-        return res.redirect(`/admin/recipes/${req.body.id}`)
     },
     async delete(req, res) {
-        await Recipes.delete(req.body.id)
+        try {
+            await Recipes.delete(req.body.id)
 
-        return res.redirect('/admin/recipes')
+            return res.redirect('/admin/recipes')
+        } catch (err) {
+            console.log(err)
+        }
     }
 }
