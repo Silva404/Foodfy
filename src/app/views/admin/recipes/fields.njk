@@ -25,7 +25,19 @@
             <input type="file" name="recipe_photos" id="photos-input" multiple="multiple" accept="image/*" onchange="PhotosUpload.handleFileInput(event)">
             <span class="material-icons">add</span>
         </div>
-        <div id="photos-preview"></div>
+        <div id="photos-preview">
+            {% if files %}
+                {% for image in files %}
+                    <div id="{{image.id}}" class="photo">
+                        <img src="{{image.path}}">
+                        <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">
+                            delete
+                        </i>
+                    </div>
+                {% endfor %}
+                <input type="hidden" name="removed_files">
+            {% endif %}
+        </div>
     </div>
 </div>
 

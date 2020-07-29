@@ -12,7 +12,7 @@ const PhotosUpload = {
       this.uploadLimit = 5
     } else {
       this.uploadLimit = 1
-    } 
+    }
 
     if (this.hasLimit(event)) return
 
@@ -45,7 +45,7 @@ const PhotosUpload = {
 
     return div
   },
-  getAllFiles(){
+  getAllFiles() {
     const dataTransfer = new ClipboardEvent('').clipboardData || new DataTransfer()
 
     this.files.forEach(file => dataTransfer.items.add(file))
@@ -78,14 +78,14 @@ const PhotosUpload = {
 
     return false
   },
-  getRemoveButton(){
+  getRemoveButton() {
     const button = document.createElement('i')
     button.classList.add('material-icons')
     button.innerHTML = "delete"
 
     return button
   },
-  removePhoto(event){
+  removePhoto(event) {
     const photoDiv = event.target.parentNode
     const photoArray = Array.from(PhotosUpload.preview.children)
     const index = photoArray.indexOf(photoDiv)
@@ -94,5 +94,15 @@ const PhotosUpload = {
     PhotosUpload.input.files = PhotosUpload.getAllFiles()
 
     photoDiv.remove()
-  } 
+  },
+  removeOldPhoto(event) {
+    const photoDiv = event.target.parentNode
+
+    if (photoDiv.id) {
+      const removedFiles = document.querySelector('input[name="removed_files"')
+      if (removedFiles) removedFiles.value += `${photoDiv.id},`
+    }
+
+    photoDiv.remove()
+  }
 }

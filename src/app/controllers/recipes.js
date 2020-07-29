@@ -86,14 +86,13 @@ module.exports = {
 
             if (!recipe) {
                 res.send('Recipe not found.')
-            }
+            } 
 
-            console.log(recipe);
             results = await Recipes.files(recipe.recipe_id)
             let files = results.rows
             files = files.map(file => ({
                 ...file,
-                src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+                path: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
             }))
 
             return res.render('admin/recipes/edit', { recipe, chefs, files })
