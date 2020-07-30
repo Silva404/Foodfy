@@ -27,23 +27,23 @@ module.exports = {
         // await Recipes.paginate(params)
 
 
-        
+
 
         // NOVO PROBLEMA
         // fazer um map em cada receita e uma promise.all
 
+        let results = await Recipes.all()
+        let recipesIds = results.rows
 
+        // results = await Recipes.recipeFiles(recipesIds)
+        // let recipes = results.rows
+        // recipes = recipes.map(recipe => ({
+        //     ...recipe,
+        //     path: `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`
+        // }))
 
-
-        let results = await Recipes.recipeFiles(2)
-        let recipes = results.rows
-        recipes = recipes.map(recipe => ({
-            ...recipe,
-            path: `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`
-        }))
-
-        console.log(recipes);
-        return res.render('admin/recipes/recipes', { recipes })
+        // console.log(recipes);
+        return res.render('admin/recipes/recipes', { recipesIds })
     },
     async create(req, res) {
         try {

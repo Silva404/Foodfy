@@ -2,10 +2,8 @@ const db = require('../../config/db')
 const { date } = require('../../lib/utils')
 
 module.exports = {
-    all(callback) {
-        return db.query(`SELECT recipes.id
-            FROM recipes
-            WHERE id = $1`, [id])
+    all() {
+        return db.query(`SELECT recipes.id FROM recipes`)
     },
     allChefs(callback) {
         return db.query(`SELECT * FROM chefs`)
