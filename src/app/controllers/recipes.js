@@ -3,34 +3,47 @@ const File = require('../models/File')
 
 module.exports = {
     async index(req, res) {
-        let { filter, page, limit } = req.query
+        // let { filter, page, limit } = req.query
 
-        page = page || 1
-        limit = limit || 6
-        let offset = limit * (page - 1)
+        // page = page || 1
+        // limit = limit || 6
+        // let offset = limit * (page - 1)
 
-        const params = {
-            filter,
-            page,
-            limit,
-            offset,
-            async callback(recipes) {
-                const pagination = {
-                    total: Math.ceil(recipes[0].total / limit),
-                    page
-                }
+        // const params = {
+        //     filter,
+        //     page,
+        //     limit,
+        //     offset,
+        //     async callback(recipes) {
+        //         const pagination = {
+        //             total: Math.ceil(recipes[0].total / limit),
+        //             page
+        //         }
 
-                let files = recipes
-                files = files.map(file => Recipes.files(file.id))
-                // await Promise.all(files)
-                console.log(recipes[0]);
-                console.log(files);
+        //         return res.render('admin/recipes/recipes', { recipes, filter, pagination })
+        //     }
+        // }
 
-                return res.render('admin/recipes/recipes', { recipes, filter, pagination })
-            }
-        }
+        // await Recipes.paginate(params)
 
-        await Recipes.paginate(params)
+
+        
+
+        // NOVO PROBLEMA
+        // fazer um map em cada receita e uma promise.all
+
+
+
+
+        let results = await Recipes.recipeFiles(2)
+        let recipes = results.rows
+        recipes = recipes.map(recipe => ({
+            ...recipe,
+            path: `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`
+        }))
+
+        console.log(recipes);
+        return res.render('admin/recipes/recipes', { recipes })
     },
     async create(req, res) {
         try {

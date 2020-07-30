@@ -3,15 +3,9 @@ const { date } = require('../../lib/utils')
 
 module.exports = {
     all(callback) {
-        db.query(`SELECT recipes.*,
-        chefs.name AS chef_name
-        FROM recipes
-        LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
-        `, (err, results) => {
-            if (err) throw `Data error: ${err}`
-
-            callback(results.rows)
-        })
+        return db.query(`SELECT recipes.id
+            FROM recipes
+            WHERE id = $1`, [id])
     },
     allChefs(callback) {
         return db.query(`SELECT * FROM chefs`)
@@ -26,7 +20,7 @@ module.exports = {
             created_at,
             chef_id 
         ) VALUES ($1, $2, $3, $4, $5, $6)
-        RETURNING id` 
+        RETURNING id`
 
         const values = [
             data.title,
@@ -114,5 +108,24 @@ module.exports = {
         LEFT JOIN recipe_files 
         ON (files.id = recipe_files.file_id)
         WHERE recipe_files.recipe_id = $1`, [id])
+    },
+    recipeFiles(id) {
+        const query = `
+        SELECT *, (
+            SELECT files.path
+            FROM files
+            LEFT JOIN recipe_files 
+            ON (files.id = recipe_files.file_id)
+            WHERE recipe_files.recipe_id = $1
+            LIMIT 1
+            ) 
+        FROM recipes 
+        LEFT JOIN recipe_files ON 
+        (recipes.id = recipe_files.recipe_id)
+        WHERE recipes.id = $1
+        LIMIT 1
+        `
+
+        return db.query(query, [id])
     }
 }
