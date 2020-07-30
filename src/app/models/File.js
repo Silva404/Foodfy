@@ -70,8 +70,8 @@ module.exports = {
         try {
             const result = await db.query(`SELECT * FROM files WHERE id = $1`, [id])
             const file = result.rows[0]
-
             fs.unlinkSync(file.path)
+            // LOCAL DELETE
 
             await db.query(`DELETE FROM recipe_files WHERE recipe_files.file_id = $1`, [id])
 

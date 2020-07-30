@@ -26,11 +26,6 @@ module.exports = {
 
         // await Recipes.paginate(params)
 
-
-
-
-        // NOVO PROBLEMA
-        // fazer um map em cada receita e uma promise.all
         
         let results = await Recipes.all()
         let recipesIds = results.rows
@@ -159,9 +154,6 @@ module.exports = {
     },
     async delete(req, res) {
         try {
-            
-
-            await File.delete(req.body.id)
             await Recipes.delete(req.body.id)
             
             return res.redirect('/admin/recipes')
