@@ -20,7 +20,6 @@ module.exports = {
                     page
                 }
 
-                console.log(recipes);
                 return res.render('admin/recipes/recipes', { recipes, filter, pagination })
             }
         }
@@ -112,11 +111,13 @@ module.exports = {
             // }
 
             if (req.files.length != 0) {
-                const newFilePromise = req.files.map(file => File.createRecipeFiles({ ...file,
-                    recipe_id: req.body.id }))                
-                
+                const newFilePromise = req.files.map(file => File.createRecipeFiles({
+                    ...file,
+                    recipe_id: req.body.id
+                }))
+
                 await Promise.all(newFilePromise)
-            }            
+            }
 
             if (req.body.removed_files) {
                 const removedFiles = req.body.removed_files.split(',')
