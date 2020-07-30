@@ -2,7 +2,7 @@ const Recipes = require('../models/Recipes')
 const File = require('../models/File')
 
 module.exports = {
-    index(req, res) {
+    async index(req, res) {
         let { filter, page, limit } = req.query
 
         page = page || 1
@@ -14,17 +14,23 @@ module.exports = {
             page,
             limit,
             offset,
-            callback(recipes) {
+            async callback(recipes) {
                 const pagination = {
                     total: Math.ceil(recipes[0].total / limit),
                     page
                 }
 
+                let files = recipes
+                files = files.map(file => Recipes.files(file.id))
+                // await Promise.all(files)
+                console.log(recipes[0]);
+                console.log(files);
+
                 return res.render('admin/recipes/recipes', { recipes, filter, pagination })
             }
         }
 
-        Recipes.paginate(params)
+        await Recipes.paginate(params)
     },
     async create(req, res) {
         try {
