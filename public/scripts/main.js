@@ -49,7 +49,8 @@ else if (currentPage.includes('/home')) {
 }
 
 // form delete confirmation box
-if (currentPage.includes('/edit')) {
+const modal = document.querySelector('#modal')
+if (modal) {
   const formDelete = document.querySelector('#form-delete')
   const modal = document.querySelector('#modal')
   const popup = modal.querySelector('input[name=popup')
@@ -101,6 +102,7 @@ function createPagination(pagination) {
   const presentPage = +pagination.dataset.page
   const total = +pagination.dataset.total
   const pages = paginate(presentPage, total)
+  const pagesDiv = document.querySelector('.pagination-pages')
 
   let elements = []
 
@@ -114,7 +116,7 @@ function createPagination(pagination) {
     }
   }
 
-  pagination.innerHTML = elements
+  pagesDiv.innerHTML += elements
 }
 
 const pagination = document.querySelector('.pagination')
@@ -122,4 +124,3 @@ const pagination = document.querySelector('.pagination')
 if (pagination) {
   createPagination(pagination)
 }
-

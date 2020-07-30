@@ -35,7 +35,21 @@
             {% endfor %}
         </div>
 
-        <div class="pagination" data-page={{pagination.page}} data-total={{pagination.total}} data-filter={{filter}}></div>
+        <div class="pagination" data-page={{pagination.page}} data-total={{pagination.total}} data-filter={{filter}}>
+            {% if pagination.page == 1 %}
+                <span class="deactivated">Anterior</span>
+            {% elif pagination.page > 1%}
+                <a href="{{pagination.page}} - 1">Anterior</a>
+            {% endif %}
+            <div class="pagination-pages"></div>
+            {% if pagination.total == 1 %}
+                <span class="deactivated">Próxima</span>
+            {% elif pagination.total > 1%}
+                <a href="{{pagination.page}} + 1">Próxima</a>
+            {% elif pagination.total == pagination.page %}
+                <span class="deactivated">Próxima</span>
+            {% endif %}
+        </div>
     </section>
 {% endblock content %}
 

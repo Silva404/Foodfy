@@ -5,28 +5,45 @@
 {% endblock styles %}
 
 {% block content %}
-<section class="grid">
-    <div class="recipe-title">
-        <h3>Gerenciar receitas</h3>
-        <a href="/admin/recipes/create" class="button">Nova receita</a>
-    </div>
-    <div class="cards-container">
-        {% for recipe in recipes %}
-            <div class="card-admin" id="{{recipe.id}}">
-                <img src="{{ recipe.image}}" alt="{{ recipe.name}}">
-                <div class="title">
-                    <h4>{{ recipe.title}}</h4>
-                    <p>por
-                        {{ recipe.chef_name}}</p>
-                    <a href="#" id="view">Visualizar</a>
+    <section class="grid">
+        <div class="recipe-title">
+            <h3>Gerenciar receitas</h3>
+            <a href="/admin/recipes/create" class="button">Nova receita</a>
+        </div>
+        <div class="cards-container">
+            {% for recipe in recipes %}
+                <div class="card-admin" id="{{recipe.id}}">
+                    <img src="{{ recipe.image}}" alt="{{ recipe.name}}">
+                    <div class="title">
+                        <h4>{{ recipe.title}}</h4>
+                        <p>por
+                            {{ recipe.chef_name}}</p>
+                        <a href="#" id="view">Visualizar</a>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+
+        <div class="pagination" data-page={{pagination.page}} data-total={{pagination.total}} data-filter={{filter}}>
+            {% if pagination.page == 1 %}
+                <span class="deactivated">Anterior</span>
+            {% elif pagination.page > 1%}
+                <a href="{{pagination.page}} - 1">Anterior</a>
+            {% endif %}
+            <div class="pagination-pages"></div>
+            {% if pagination.total == 1 %}
+                <span class="deactivated">Próxima</span>
+            {% elif pagination.total > 1%}
+                <a href="{{pagination.page}} + 1">Próxima</a>
+            {% elif pagination.total == pagination.page %}
+                <span class="deactivated">Próxima</span>
+            {% endif %}
+        </div>
+    </section>
+    <div class="totalPagination">
+        {# <a href="{{pagination.total}}">Ultima</a> #}
     </div>
 
-     <div class="pagination" data-page={{pagination.page}} data-total={{pagination.total}} data-filter={{filter}}></div>
-     </section>
-     
 {% endblock content %}
 
 {% block scripts %}
