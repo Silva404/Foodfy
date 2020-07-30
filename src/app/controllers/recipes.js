@@ -109,6 +109,13 @@ module.exports = {
             //     return res.send('Please, fill and the fields.')
             // }
 
+            if (req.files.length != 0) {
+                const newFilePromise = req.files.map(file => File.createRecipeFiles({ ...file,
+                    recipe_id: req.body.id }))                
+                
+                await Promise.all(newFilePromise)
+            }            
+
             if (req.body.removed_files) {
                 const removedFiles = req.body.removed_files.split(',')
                 const lastIndex = removedFiles.length - 1
@@ -117,12 +124,6 @@ module.exports = {
                 const removedFilePromise = removedFiles.map(id => File.delete(id))
 
                 await Promise.all(removedFilePromise)
-            }
-
-            if (req.files.length != 0) {
-                const newFilePromise = req.files.map(file => File.createRecipeFiles({ ...file, recipe_id: req.body.id }))
-                
-                await Promise.all(newFilePromise)
             }
 
             await Recipes.update(req.body)
@@ -135,6 +136,8 @@ module.exports = {
     async delete(req, res) {
         try {
             await Recipes.delete(req.body.id)
+
+            // await File.delete(id)
 
             return res.redirect('/admin/recipes')
         } catch (err) {
