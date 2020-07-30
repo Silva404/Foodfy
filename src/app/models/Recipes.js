@@ -61,18 +61,15 @@ module.exports = {
         return db.query(query, values)
     },
     async delete(id) {
-        // results pegar o id do file_id pra saber o path dele
-        // local delete
         const results = await db.query(`SELECT * FROM recipe_files WHERE recipe_files.recipe_id = $1`, [id])
         const deleteId = results.rows[0].file_id
 
         const result = await db.query(`SELECT * FROM files WHERE id = $1`, [deleteId])
         const file = result.rows[0]
-        fs.unlinkSync(file.path)
+        fs.unlinkSync(file.path)    
 
 
-        // db delete
-        await db.query(`DELETE FROM files WHERE files.id = $1`, [results])
+        await db.query(`DELETE FROM files WHERE files.id = $1`, [deleteId])
         await db.query(`DELETE FROM recipe_files WHERE recipe_files.recipe_id = $1`, [id])
 
         return db.query(`DELETE FROM recipes WHERE id = $1`, [id])
