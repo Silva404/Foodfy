@@ -38,7 +38,7 @@ module.exports = {
         recipesIds = recipesIds.map(recipe => Recipes.recipeFiles(recipe.id))
         console.log(recipesIds);
 
-        results = await Recipes.recipeFiles(2)
+        results = await Recipes.recipeFiles(3)
         let recipes = results.rows
         recipes = recipes.map(recipe => ({
             ...recipe,
@@ -159,10 +159,11 @@ module.exports = {
     },
     async delete(req, res) {
         try {
+            
+
+            await File.delete(req.body.id)
             await Recipes.delete(req.body.id)
-
-            // await File.delete(id)
-
+            
             return res.redirect('/admin/recipes')
         } catch (err) {
             console.log(err)
