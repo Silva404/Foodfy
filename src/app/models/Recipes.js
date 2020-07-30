@@ -3,7 +3,7 @@ const { date } = require('../../lib/utils')
 
 module.exports = {
     all() {
-        return db.query(`SELECT recipes.id FROM recipes`)
+        return db.query(`SELECT * FROM recipes`)
     },
     allChefs(callback) {
         return db.query(`SELECT * FROM chefs`)

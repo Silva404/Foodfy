@@ -12,7 +12,7 @@
         </div>
         <div class="cards-container">
             {% for recipe in recipes %}
-                <div class="card-admin" id="{{recipe.id}}">
+                <div class="card-admin" id="{{recipe.recipe_id}}">
                     <img src="{{ recipe.path }}" alt="{{ recipe.name}}">
                     <div class="title">
                         <h4>{{ recipe.title}}</h4>
