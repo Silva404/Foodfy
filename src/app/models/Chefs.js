@@ -100,6 +100,6 @@ module.exports = {
         })
     },
     files(id) {
-        return db.query(`SELECT * FROM files WHERE files.id = $1 `, [id])
+        return db.query(`SELECT files.path FROM files WHERE files.id = $1 `, [id])
     }
 }

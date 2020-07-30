@@ -67,7 +67,6 @@ module.exports = {
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
             }))
-            console.log(avatar)
 
             return res.render('admin/chefs/chef', { chef, recipes, totalRecipes, avatar })
         } catch (err) {
@@ -80,7 +79,16 @@ module.exports = {
             const chef = results.rows[0]
             const recipes = results.rows
 
-            return res.render('admin/chefs/edit', { chef, recipes })
+            results = await Chefs.files(chef.file_id)
+            let avatar = results.rows   
+            avatar = avatar.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+            }))
+
+            console.log(avatar);
+
+            return res.render('admin/chefs/edit', { chef, recipes, avatar })
         } catch (err) {
             console.log(err)
         }

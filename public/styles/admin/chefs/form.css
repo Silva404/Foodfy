@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template: 80px 1fr 100px / 1fr ;
+  grid-template: 1fr 1fr/ 1fr ;
 }
 
 .title {
@@ -69,7 +69,7 @@ select {
 }
 
 .center {
-  display: grid;  
+  /* display: grid;   */
 }
 
 .center #photos-upload {
@@ -165,4 +165,91 @@ form .container .send button {
 
 #photos-preview .photo:hover img {
   opacity: 0.5;
+}
+
+
+body {
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+}
+
+#modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-columns: 1fr;
+  display: none;
+  animation: 600ms ease forwards show-up;
+}
+
+#modal .box {
+  background: var(--white-color);
+  text-align: center;
+  width: 500px;
+  height: 200px;
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  border-radius: 0.5em;
+  box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
+  animation: 600ms ease forwards slide-top;
+}
+
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(10px) scale(0.8);
+            transform: translateY(10px) scale(0.8);
+            opacity: 0.8;
+  }
+  30% {
+    -webkit-transform: translateY(-40px) scale(0.98);
+            transform: translateY(-40px) scale(0.98);
+  }
+  100% {
+    -webkit-transform: translateY(-50px) scale(1);
+            transform: translateY(-50px) scale(1);
+  }
+}
+
+@keyframes show-up {
+  from {
+    opacity: 0.7;
+
+  } to {
+    opacity: 1;
+  }
+}
+
+#modal .box h3 {
+  align-self: center;
+  margin: 2em 4em 1em;
+  position: relative;
+  color: var(--input-txt-color);
+}
+
+#modal .box h3::after {
+  content: '';
+  width: 400px;
+  height: 2px;
+  background: var(--input-txt-color);
+  position: absolute;
+  top: 80px;
+  border-radius: 50%;
+  left: -20px;
+  opacity: 0.3;
+}
+
+#modal .box h5 {
+  align-self: end;
+  margin-bottom: 1.8em;
+  font-weight: 500;
+  color: var(--primary-color);    
 }

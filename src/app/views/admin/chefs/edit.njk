@@ -1,7 +1,7 @@
 {% extends 'admin-layout.njk' %}
 
 {% block styles %}
-    <link rel="stylesheet" href="/styles/admin/chefs/edit.css">
+    <link rel="stylesheet" href="/styles/admin/chefs/form.css">
 {% endblock styles %}
 
 {% block content %}
@@ -10,7 +10,7 @@
             <div class="aside">
                 <div class="title">
                     <h3>Editando chef</h3>
-                    <img src="{{ chef.avatar_url}}" alt="{{ chef.name}}">
+                    <img src="{{avatar.src}}" alt="{{ chef.name }}">
                 </div>
                 <div class="fields">
                     {% include 'admin/chefs/fields.njk' %}
@@ -31,8 +31,8 @@
 {% block modal %}
     <div id="modal">
         <input type="hidden" name="popup" value={{chef.recipes_name}}>
-        <div class="box">
-            <h3>Desculpe, mas você não pode apagar um chef que possui receitas.</h3>
+        <div class="box">                
+            <h3>Desculpe, você não pode apagar um chef que possui receitas.</h3>
             <h5 id="ok">OK</h5>
         </div>
     </div>
