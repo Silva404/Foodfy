@@ -106,8 +106,6 @@ function createPagination(pagination) {
 
   let elements = []
 
-
-
   for (let page of pages) {
     if (page == presentPage) {
       elements += `<a class="middle-page">${page}</a>`

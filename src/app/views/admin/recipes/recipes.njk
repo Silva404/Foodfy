@@ -28,16 +28,19 @@
             {% if pagination.page == 1 %}
                 <span class="deactivated">Anterior</span>
             {% elif pagination.page > 1%}
-                <a href="{{pagination.page}} - 1">Anterior</a>
+                <a class="pageBefore">Anterior</a>
             {% endif %}
+
             <div class="pagination-pages"></div>
-            {% if pagination.total == 1 %}
+
+            {% if pagination.total == 1 %} 
                 <span class="deactivated">Próxima</span>
-            {% elif pagination.total > 1%}
-                <a href="{{pagination.page}} + 1">Próxima</a>
             {% elif pagination.total == pagination.page %}
                 <span class="deactivated">Próxima</span>
+            {% elif pagination.total != 1%}
+                <a href={{pagination.page}} >Próxima</a>
             {% endif %}
+
         </div>
     </section>
     <div class="totalPagination">

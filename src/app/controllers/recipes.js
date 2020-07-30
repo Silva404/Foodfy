@@ -20,6 +20,7 @@ module.exports = {
                     page
                 }
 
+                console.log(recipes);
                 return res.render('admin/recipes/recipes', { recipes, filter, pagination })
             }
         }
@@ -60,6 +61,7 @@ module.exports = {
             let results = await Recipes.find(req.params.id)
             const recipe = results.rows[0]
             const chef = results.rows
+
 
             if (!recipe) {
                 res.send('Recipe not found.')
