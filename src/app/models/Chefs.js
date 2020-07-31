@@ -130,6 +130,16 @@ module.exports = {
 
         return db.query(query, [id])
     },
+    async getChefAvatar(id) {
+        const results = await db.query(`
+        SELECT files.path FROM files 
+        LEFT JOIN chefs ON 
+        (chefs.file_id = files.id)
+        WHERE chefs.id = $1
+        `, [id])
+
+        return results.rows[0]
+    },
     async findChefRecipes(id) {
         try {
             const results = await db.query(`
