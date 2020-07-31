@@ -2,13 +2,8 @@ const db = require('../../config/db')
 const { date } = require('../../lib/utils')
 
 module.exports = {
-    all(callback) {
-        db.query(`SELECT * FROM chefs`,
-            (err, results) => {
-                if (err)`Database error: ${err}`
-
-                callback(results.rows)
-            })
+    all() {
+        return db.query(`SELECT * FROM chefs`)
     },
     filter(filter, callback) {
         db.query(`SELECT * FROM chefs WHERE chefs.name ILIKE '%${filter}%'`,
@@ -49,12 +44,14 @@ module.exports = {
     update(data) {
         const query = ` 
         UPDATE chefs SET
-        name=($1)
-        WHERE id = $2 
+        name=($1),
+        file_id=($2)
+        WHERE id = $3 
         `
 
         const values = [
             data.name,
+            data.file_id,
             data.id
         ]
 
@@ -101,5 +98,24 @@ module.exports = {
     },
     files(id) {
         return db.query(`SELECT files.path FROM files WHERE files.id = $1 `, [id])
+    },
+    chefFiles(id) {
+        const query = `
+        SELECT *, (
+            SELECT files.path
+            FROM files
+            LEFT JOIN recipe_files 
+            ON (files.id = recipe_files.file_id)
+            WHERE recipe_files.recipe_id = $1
+            LIMIT 1
+            ) 
+        FROM recipes 
+        LEFT JOIN recipe_files ON 
+        (recipes.id = recipe_files.recipe_id)
+        WHERE recipes.id = $1
+        LIMIT 1
+        `
+
+        return db.query(query, [id])
     }
 }

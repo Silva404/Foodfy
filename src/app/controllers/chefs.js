@@ -1,30 +1,57 @@
 const Chefs = require('../models/Chefs')
 const File = require('../models/File')
+const { files } = require('../models/Chefs')
 
 module.exports = {
-    index(req, res) {
-        let { filter, page, limit } = req.query
+    async index(req, res) {
+        // let { filter, page, limit } = req.query
 
-        page = page || 1
-        limit = limit || 6
-        let offset = limit * (page - 1)
+        // page = page || 1
+        // limit = limit || 6
+        // let offset = limit * (page - 1)
 
-        const params = {
-            filter,
-            page,
-            limit,
-            offset,
-            callback(chefs) {
-                const pagination = {
-                    total: Math.ceil(chefs[0].total / limit),
-                    page
-                }
+        // const params = {
+        //     filter,
+        //     page,
+        //     limit,
+        //     offset,
+        //     callback(chefs) {
+        //         const pagination = {
+        //             total: Math.ceil(chefs[0].total / limit),
+        //             page
+        //         }
 
-                return res.render('admin/chefs/chefs', { chefs, filter, pagination })
+        //         return res.render('admin/chefs/chefs', { chefs, filter, pagination })
+        //     }
+        // }
+
+        // Chefs.paginate(params)
+        try {
+            let results = Chefs.all()
+            const chefs = results.rows
+
+            async function getImage(chefId) {
+                let results = chefs.chefFiles(chefId)
+                const files = results.map(chef => {
+                    `${req.protocol}://${req.headers.host}${chef.path.replace("public", "")}`
+
+                    return chef[0]
+                })
             }
-        }
 
-        Chefs.paginate(params)
+            // const chefPromises = chefs.map(async chef => {
+            //     chef.image = await getImage(chef.id)
+
+            //     return chef
+            // })
+
+            // const chefImage = await Promise.all(chefPromises)
+
+            // , { chefs: chefImage}
+            return res.render('admin/chefs/chefs')
+        } catch (err) {
+            console.log(err)
+        }
     },
     create(req, res) {
         return res.render('admin/chefs/create')
@@ -62,7 +89,7 @@ module.exports = {
             const totalRecipes = results.rowCount
 
             results = await Chefs.files(chef.file_id)
-            let avatar = results.rows   
+            let avatar = results.rows
             avatar = avatar.map(file => ({
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
@@ -80,7 +107,7 @@ module.exports = {
             const recipes = results.rows
 
             results = await Chefs.files(chef.file_id)
-            let avatar = results.rows   
+            let avatar = results.rows
             avatar = avatar.map(file => ({
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
@@ -102,8 +129,19 @@ module.exports = {
                     return res.send('Please fill all the fields')
                 }
             }
+            
+            if (req.files.lenght != 0 ){
+                const filePromise = req.files.map(file => File.create(file))
 
-            await Chefs.update(req.body)
+                await Promise.all(filePromise)
+            }
+
+            // if (req.removed_files) {
+
+            // }
+
+            await File.
+            // await Chefs.update(req.body)
 
             return res.redirect(`/admin/chefs`)
         } catch (err) {

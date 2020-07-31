@@ -18,8 +18,8 @@ module.exports = {
                 callback(results.rows)
             })
     },
-    create({ filename, path }) {
-        const query = `
+    async createChefFiles({ data ,filename, path }) {
+        let query = `
         INSERT INTO files (
             name,
             path            
@@ -27,9 +27,25 @@ module.exports = {
         RETURNING id
         `
 
-        const values = [
+        let values = [
             filename,
             path
+        ]
+
+        const results = await db.query(query, values)
+        const fileId = results.rows[0].id
+
+        query = ` 
+        UPDATE chefs SET
+        name=($1),
+        file_id=($2)
+        WHERE id = $3 
+        `
+
+        values = [
+            data.name,
+            fileId,
+            data.id
         ]
 
         return db.query(query, values)
@@ -79,5 +95,37 @@ module.exports = {
         } catch (err) {
             console.log(err)
         }
+    },
+    async updateChefFiles() {
+        let query = `
+        INSERT INTO files (
+            name,
+            path            
+        ) VALUES ($1, $2)
+        RETURNING id
+        `
+
+        let values = [
+            filename,
+            path
+        ]
+
+        const results = await db.query(query, values)
+        const fileId = results.rows[0].id
+
+        query = ` 
+        UPDATE chefs SET
+        name=($1),
+        file_id=($2)
+        WHERE id = $3 
+        `
+
+        values = [
+            data.name,
+            fileId,
+            data.id
+        ]
+
+        return db.query(query, values)
     }
 }

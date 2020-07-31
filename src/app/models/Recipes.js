@@ -74,7 +74,7 @@ module.exports = {
 
         return db.query(`DELETE FROM recipes WHERE id = $1`, [id])
     },
-    paginate(params) {
+    paginate(params) {  
         let { filter, callback, limit, offset } = params
 
         let query = '',

@@ -26,21 +26,32 @@ module.exports = {
 
         // await Recipes.paginate(params)
 
-        
-        let results = await Recipes.all()
-        let recipesIds = results.rows
+        try {
+            let results = await Recipes.all()
+            const recipes = results.rows
 
-        recipesIds = recipesIds.map(recipe => Recipes.recipeFiles(recipe.id))
-        console.log(recipesIds);
+            if (!recipes) return res.send("Recipe not found")
 
-        results = await Recipes.recipeFiles(3)
-        let recipes = results.rows
-        recipes = recipes.map(recipe => ({
-            ...recipe,
-            path: `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`
-        })) 
+            async function getImage(recipeId) {
+                let results = await Recipes.recipeFiles(recipeId)
+                const recipes = results.rows.map(recipe => `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`)
 
-        return res.render('admin/recipes/recipes', { recipes })
+                return recipes[0]
+            }
+
+            const promiseRecipes = recipes.map(async recipe => {
+                recipe.image = await getImage(recipe.id)
+
+                return recipe
+            })
+            // .filter((product, index) => index > 1 ? false : true)
+
+            const eachRecipeFixed = await Promise.all(promiseRecipes)
+
+            return res.render('admin/recipes/recipes', { recipes: eachRecipeFixed })
+        } catch (err) {
+            console.log(err)
+        }
     },
     async create(req, res) {
         try {
@@ -76,7 +87,6 @@ module.exports = {
             let results = await Recipes.find(req.params.id)
             const recipe = results.rows[0]
             const chef = results.rows
-
 
             if (!recipe) {
                 res.send('Recipe not found.')
@@ -155,7 +165,7 @@ module.exports = {
     async delete(req, res) {
         try {
             await Recipes.delete(req.body.id)
-            
+
             return res.redirect('/admin/recipes')
         } catch (err) {
             console.log(err)

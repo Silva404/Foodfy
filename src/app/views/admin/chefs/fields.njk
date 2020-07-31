@@ -1,10 +1,22 @@
 <div class="item center">
     <div>Foto</div>
     <div id="photos-preview">
-        {# <img src="/assets/cat.png" alt=""> #}
+        {% if files %}
+            {% for image in files %}
+                <div id="{{image.id}}" class="photo">
+                    <img src="{{image.path}}">
+                    <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">
+                        delete
+                    </i>
+                </div>
+            {% endfor %}
+            <input type="hidden" name="removed_files">
+        {% endif %}
     </div>
     <div id="photos-upload">
-        <input type="file" name="chef_photos" id="photos-input" multiple accept="images/*" onchange="PhotosUpload.handleFileInput(event)"> 
+        <div class="photo">
+            <input type="file" name="chef_photos" id="photos-input" multiple="multiple" accept="images/*" onchange="PhotosUpload.handleFileInput(event)">
+        </div>
         <span class="upload-button">Enviar avatar</span>
     </div>
 </div>
