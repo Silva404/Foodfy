@@ -1,10 +1,10 @@
 <div class="item center">
     <div>Foto</div>
     <div id="photos-preview">
-        {% if files %}
-            {% for image in files %}
-                <div id="{{image.id}}" class="photo">
-                    <img src="{{image.path}}">
+        {% if avatar %}
+            {% for image in avatar %}
+                <div id="{{chef.id}}" class="photo">
+                    <img src="{{ avatar[0].src}}" alt="{{ chef.name }}">
                     <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">
                         delete
                     </i>

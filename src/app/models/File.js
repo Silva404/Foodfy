@@ -18,7 +18,7 @@ module.exports = {
                 callback(results.rows)
             })
     },
-    async createChefFiles({ data ,filename, path }) {
+    create({ filename, path }) {
         let query = `
         INSERT INTO files (
             name,
@@ -30,22 +30,6 @@ module.exports = {
         let values = [
             filename,
             path
-        ]
-
-        const results = await db.query(query, values)
-        const fileId = results.rows[0].id
-
-        query = ` 
-        UPDATE chefs SET
-        name=($1),
-        file_id=($2)
-        WHERE id = $3 
-        `
-
-        values = [
-            data.name,
-            fileId,
-            data.id
         ]
 
         return db.query(query, values)
@@ -96,36 +80,16 @@ module.exports = {
             console.log(err)
         }
     },
-    async updateChefFiles() {
-        let query = `
-        INSERT INTO files (
-            name,
-            path            
-        ) VALUES ($1, $2)
-        RETURNING id
-        `
+    async chefFileDelete(id) {
+        try {
+            const result = await db.query(`SELECT * FROM files WHERE id = $1`, [id])
+            const file = result.rows[0]
+            fs.unlinkSync(file.path)
+            // LOCAL DELETE
 
-        let values = [
-            filename,
-            path
-        ]
-
-        const results = await db.query(query, values)
-        const fileId = results.rows[0].id
-
-        query = ` 
-        UPDATE chefs SET
-        name=($1),
-        file_id=($2)
-        WHERE id = $3 
-        `
-
-        values = [
-            data.name,
-            fileId,
-            data.id
-        ]
-
-        return db.query(query, values)
+            return db.query(`DELETE FROM files WHERE id = $1`, [id])
+        } catch (err) {
+            console.log(err)
+        }
     }
 }

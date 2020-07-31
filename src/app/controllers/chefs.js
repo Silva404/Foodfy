@@ -113,8 +113,6 @@ module.exports = {
                 src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
             }))
 
-            console.log(avatar);
-
             return res.render('admin/chefs/edit', { chef, recipes, avatar })
         } catch (err) {
             console.log(err)
@@ -136,11 +134,17 @@ module.exports = {
                 await Promise.all(filePromise)
             }
 
-            // if (req.removed_files) {
+            if (req.removed_files) {
+                const removedFiles = req.body.removed_files.split(',')
+                const lastIndex = removedFiles.length - 1
+                removedFiles.splice(lastIndex, 1)
 
-            // }
+                const filePromises = removedFiles.map(id => File.chefFileDelete(id))
 
-            await File.
+                await Promise.all(filePromises)
+            }
+
+            // await File.
             // await Chefs.update(req.body)
 
             return res.redirect(`/admin/chefs`)
