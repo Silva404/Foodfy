@@ -105,7 +105,6 @@ module.exports = {
             let results = await Chefs.find(req.params.id)
             const chef = results.rows[0]
             const recipes = results.rows
-
             console.log(chef);
 
             results = await Chefs.files(chef.file_id)
@@ -129,27 +128,29 @@ module.exports = {
                     return res.send('Please fill all the fields')
                 }
             }
+
+            let results = await Chefs.files(req.body.id)
+            let fileId = results.rows[0].id
             
             if (req.files.length != 0 ){
                 const filePromise = req.files.map(file => File.create(file))
 
                 const results = await filePromise[0]
-                const fileId = results.rows[0].id
-                await Chefs.updateFile(req.body, fileId)
-            } else {
-                await Chefs.update(req.body) 
+                fileId = results.rows[0].id
+                console.log(fileId);
             }
-
+            console.log(`FileId ver se atualizou: ${fileId}`);
             if (req.removed_files) {
                 const removedFiles = req.body.removed_files.split(',')
                 const lastIndex = removedFiles.length - 1
                 removedFiles.splice(lastIndex, 1)
-
+                
                 const filePromises = removedFiles.map(id => File.chefFileDelete(id))
-
+                
                 await Promise.all(filePromises)
             }
-
+            
+            await Chefs.update(req.body, fileId)
 
             return res.redirect(`/admin/chefs`)
         } catch (err) {

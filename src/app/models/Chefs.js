@@ -41,23 +41,7 @@ module.exports = {
         WHERE chefs.id = $1
         `, [id])
     },
-    update(data) {
-        const query = ` 
-        UPDATE chefs SET
-        name=($1),
-        file_id=($2)
-        WHERE id = $3 
-        `
-
-        const values = [
-            data.name,
-            data.file_id,
-            data.id
-        ]
-
-        return db.query(query, values)
-    },
-    updateFile(data, file_id) {
+    update(data, file_id) {
         const query = ` 
         UPDATE chefs SET
         name=($1),
@@ -117,19 +101,11 @@ module.exports = {
     },
     chefFiles(id) {
         const query = `
-        SELECT *, (
-            SELECT files.path
-            FROM files
-            LEFT JOIN recipe_files 
-            ON (files.id = recipe_files.file_id)
-            WHERE recipe_files.recipe_id = $1
-            LIMIT 1
-            ) 
-        FROM recipes 
-        LEFT JOIN recipe_files ON 
-        (recipes.id = recipe_files.recipe_id)
-        WHERE recipes.id = $1
-        LIMIT 1
+        SELECT files.*
+        FROM files 
+        LEFT JOIN chefs
+        ON (files.id = chefs.file_id) 
+        WHERE chefs.id = $1
         `
 
         return db.query(query, [id])
