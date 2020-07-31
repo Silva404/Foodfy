@@ -103,10 +103,14 @@ module.exports = {
             })
 
             const recipes = await Promise.all(recipePromise)
-            const file = await Chefs.files(chefId)
-            console.log(file);
 
-            return res.render('admin/chefs/chef', { chef, recipes })
+            let chefFile = await Chefs.getChefAvatar(chefId)
+            let { path } = chefFile
+            path = {
+                chefAvatar: `${req.protocol}://${req.headers.host}${path.replace("public", "")}`
+            }
+
+            return res.render('admin/chefs/chef', { chef, recipes, path })
         } catch (err) {
             console.log(err)
         }
