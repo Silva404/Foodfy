@@ -107,7 +107,7 @@ module.exports = {
         ON (files.id = chefs.file_id) 
         WHERE chefs.id = $1
         `
-
+        
         return db.query(query, [id])
     }
 }

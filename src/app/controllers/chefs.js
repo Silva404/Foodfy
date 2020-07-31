@@ -1,6 +1,5 @@
 const Chefs = require('../models/Chefs')
 const File = require('../models/File')
-const { files } = require('../models/Chefs')
 
 module.exports = {
     async index(req, res) {
@@ -27,28 +26,29 @@ module.exports = {
 
         // Chefs.paginate(params)
         try {
-            let results = Chefs.all()
+
+            let results = await Chefs.all()
             const chefs = results.rows
 
-            async function getImage(chefId) {
-                let results = chefs.chefFiles(chefId)
-                const files = results.map(chef => {
-                    `${req.protocol}://${req.headers.host}${chef.path.replace("public", "")}`
+            if (!chefs) return res.send("Chef not found")
 
-                    return chef[0]
-                })
+            async function getImage(chefId) {
+                let results = await Chefs.chefFiles(chefId)
+                const files = results.rows.map(chef => 
+                    `${req.protocol}://${req.headers.host}${chef.path.replace("public", "")}`)
+                return files[0]
             }
 
-            // const chefPromises = chefs.map(async chef => {
-            //     chef.image = await getImage(chef.id)
+            const chefPromises = chefs.map(async chef => {
+                chef.image = await getImage(chef.id)
 
-            //     return chef
-            // })
+                return chef
+            })
 
-            // const chefImage = await Promise.all(chefPromises)
+            const chefImage = await Promise.all(chefPromises)
+            console.log(chefImage);
 
-            // , { chefs: chefImage}
-            return res.render('admin/chefs/chefs')
+            return res.render('admin/chefs/chefs', { chefs: chefImage})
         } catch (err) {
             console.log(err)
         }
@@ -87,6 +87,10 @@ module.exports = {
             const chef = results.rows[0]
             const recipes = results.rows
             const totalRecipes = results.rowCount
+
+            // ESTRATÉGIA DE MAP EM CIMA DE MAP
+            // QUE NEM NA HOME 
+            // USAR chefFiles, nele contem a image
 
             results = await Chefs.files(chef.file_id)
             let avatar = results.rows
@@ -130,24 +134,24 @@ module.exports = {
 
             let results = await Chefs.chefFiles(req.body.id)
             let fileId = results.rows[0].id
-            
-            if (req.files.length != 0 ){
+
+            if (req.files.length != 0) {
                 const filePromise = req.files.map(file => File.create(file))
 
                 const results = await filePromise[0]
                 fileId = results.rows[0].id
             }
-            
+
             if (req.removed_files) {
                 const removedFiles = req.body.removed_files.split(',')
                 const lastIndex = removedFiles.length - 1
                 removedFiles.splice(lastIndex, 1)
-                
+
                 const filePromises = removedFiles.map(id => File.chefFileDelete(id))
-                
+
                 await Promise.all(filePromises)
             }
-            
+
             await Chefs.update(req.body, fileId)
 
             return res.redirect(`/admin/chefs`)

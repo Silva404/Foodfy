@@ -13,7 +13,9 @@
         <div class="cards-container">
             {% for recipe in recipes %}
                 <div class="card-admin" id="{{recipe.id}}">
-                    <img src="{{ recipe.image }}" alt="{{ recipe.name}}">
+                    <div class="img">
+                        <img src="{{ recipe.image }}" alt="{{ recipe.name}}">
+                    </div>
                     <div class="title">
                         <h4>{{ recipe.title}}</h4>
                         <p>por
@@ -33,12 +35,12 @@
 
             <div class="pagination-pages"></div>
 
-            {% if pagination.total == 1 %} 
+            {% if pagination.total == 1 %}
                 <span class="deactivated">Próxima</span>
             {% elif pagination.total == pagination.page %}
                 <span class="deactivated">Próxima</span>
             {% elif pagination.total != 1%}
-                <a href={{pagination.page}} >Próxima</a>
+                <a href={{pagination.page}}>Próxima</a>
             {% endif %}
 
         </div>
