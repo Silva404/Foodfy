@@ -105,7 +105,6 @@ module.exports = {
             let results = await Chefs.find(req.params.id)
             const chef = results.rows[0]
             const recipes = results.rows
-            console.log(chef);
 
             results = await Chefs.files(chef.file_id)
             let avatar = results.rows
@@ -129,7 +128,7 @@ module.exports = {
                 }
             }
 
-            let results = await Chefs.files(req.body.id)
+            let results = await Chefs.chefFiles(req.body.id)
             let fileId = results.rows[0].id
             
             if (req.files.length != 0 ){
@@ -137,9 +136,8 @@ module.exports = {
 
                 const results = await filePromise[0]
                 fileId = results.rows[0].id
-                console.log(fileId);
             }
-            console.log(`FileId ver se atualizou: ${fileId}`);
+            
             if (req.removed_files) {
                 const removedFiles = req.body.removed_files.split(',')
                 const lastIndex = removedFiles.length - 1
