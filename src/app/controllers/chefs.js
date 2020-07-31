@@ -1,4 +1,5 @@
 const Chefs = require('../models/Chefs')
+const Recipes = require('../models/Recipes')
 const File = require('../models/File')
 
 module.exports = {
@@ -46,7 +47,6 @@ module.exports = {
             })
 
             const chefImage = await Promise.all(chefPromises)
-            console.log(chefImage);
 
             return res.render('admin/chefs/chefs', { chefs: chefImage})
         } catch (err) {
@@ -83,14 +83,22 @@ module.exports = {
     },
     async show(req, res) {
         try {
-            let results = await Chefs.find(req.params.id)
-            const chef = results.rows[0]
-            const recipes = results.rows
-            const totalRecipes = results.rowCount
+            // const totalRecipes = results.rowCount
+            // const recipes = results.rows
+            // recipes, totalRecipes,
 
-            // ESTRATÉGIA DE MAP EM CIMA DE MAP
-            // QUE NEM NA HOME 
-            // USAR chefFiles, nele contem a image
+
+            // const chef = results.rows[0]
+            const chefId = req.params.id 
+            let chef = await Chefs.find(chefId)
+
+            if (!chef) return res.send("Chef not found")
+
+            const chefRecipes = await Chefs.findChefRecipes(chefId)
+
+            async function getImage(recipeId) {
+                let results = await Recipes.files(recipeId)
+            }
 
             results = await Chefs.files(chef.file_id)
             let avatar = results.rows
@@ -99,7 +107,7 @@ module.exports = {
                 src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
             }))
 
-            return res.render('admin/chefs/chef', { chef, recipes, totalRecipes, avatar })
+            return res.render('admin/chefs/chef', { chef, recipes: chefRecipes, avatar })
         } catch (err) {
             console.log(err)
         }

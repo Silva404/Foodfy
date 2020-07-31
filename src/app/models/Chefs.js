@@ -22,17 +22,18 @@ module.exports = {
         ) VALUES ($1, $2, $3)
         RETURNING id
         `
-        
+
         const values = [
             data.name,
             date(Date.now()).created,
             file_id
-        ] 
+        ]
 
         return db.query(query, values)
     },
-    find(id) {
-        return db.query(`SELECT chefs.*, 
+    async find(id) {
+        try {
+            const results = await db.query(`SELECT chefs.*, 
         recipes.title AS recipes_name,  
         recipes.id AS recipes_id
         FROM chefs 
@@ -40,6 +41,11 @@ module.exports = {
         ON (chefs.id = recipes.chef_id)
         WHERE chefs.id = $1
         `, [id])
+
+            return results.rows[0]
+        } catch (err) {
+            console.log(err)
+        }
     },
     update(data, file_id) {
         const query = ` 
@@ -101,13 +107,36 @@ module.exports = {
     },
     chefFiles(id) {
         const query = `
-        SELECT files.*
-        FROM files 
-        LEFT JOIN chefs
-        ON (files.id = chefs.file_id) 
-        WHERE chefs.id = $1
+        SELECT *, (
+            SELECT files.path
+            FROM files
+            LEFT JOIN recipe_files 
+            ON (files.id = recipe_files.file_id)
+            WHERE recipe_files.recipe_id = $1
+            LIMIT 1
+            ) 
+        FROM recipes 
+        LEFT JOIN recipe_files ON 
+        (recipes.id = recipe_files.recipe_id)
+        WHERE recipes.id = $1
+        LIMIT 1
         `
-        
+
         return db.query(query, [id])
+    },
+    async findChefRecipes(id) {
+        try {
+            const results = await db.query(`
+            SELECT *
+            FROM chefs 
+            LEFT JOIN recipes
+            ON (recipes.chef_id = chefs.id) 
+            WHERE chefs.id = $1
+            `, [id])
+
+            return results.rows
+        } catch (err) {
+            console.log(err)
+        }
     }
 }
