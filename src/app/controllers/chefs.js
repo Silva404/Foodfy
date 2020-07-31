@@ -83,12 +83,6 @@ module.exports = {
     },
     async show(req, res) {
         try {
-            // const totalRecipes = results.rowCount
-            // const recipes = results.rows
-            // recipes, totalRecipes,
-
-
-            // const chef = results.rows[0]
             const chefId = req.params.id 
             let chef = await Chefs.find(chefId)
 
@@ -98,16 +92,21 @@ module.exports = {
 
             async function getImage(recipeId) {
                 let results = await Recipes.files(recipeId)
+                return results[0].path
             }
 
-            results = await Chefs.files(chef.file_id)
-            let avatar = results.rows
-            avatar = avatar.map(file => ({
-                ...file,
-                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
-            }))
+            const recipePromise = chefRecipes.map(async recipe => {
+                recipe.image = await getImage(recipe.id)
+                recipe.image = `${req.protocol}://${req.headers.host}${recipe.image.replace("public", "")}`
 
-            return res.render('admin/chefs/chef', { chef, recipes: chefRecipes, avatar })
+                return recipe
+            })
+
+            const recipes = await Promise.all(recipePromise)
+            const file = await Chefs.files(chefId)
+            console.log(file);
+
+            return res.render('admin/chefs/chef', { chef, recipes })
         } catch (err) {
             console.log(err)
         }
@@ -115,17 +114,15 @@ module.exports = {
     async edit(req, res) {
         try {
             let results = await Chefs.find(req.params.id)
-            const chef = results.rows[0]
-            const recipes = results.rows
+            const chef = results
 
-            results = await Chefs.files(chef.file_id)
-            let avatar = results.rows
+            let avatar = await Chefs.files(chef.file_id)
             avatar = avatar.map(file => ({
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
             }))
 
-            return res.render('admin/chefs/edit', { chef, recipes, avatar })
+            return res.render('admin/chefs/edit', { chef, avatar })
         } catch (err) {
             console.log(err)
         }

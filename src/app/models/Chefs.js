@@ -102,8 +102,14 @@ module.exports = {
             callback(results.rows)
         })
     },
-    files(id) {
-        return db.query(`SELECT files.path FROM files WHERE files.id = $1 `, [id])
+    async files(id) {
+        try {
+            const results = await db.query(`SELECT files.path FROM files WHERE files.id = $1 `, [id])
+
+            return results.rows
+        } catch (err) {
+            console.log(err);
+        }
     },
     chefFiles(id) {
         const query = `

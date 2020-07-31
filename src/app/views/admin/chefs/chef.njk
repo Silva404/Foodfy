@@ -37,13 +37,13 @@
             <div class="cards-container">
 
                 {% for recipe in recipes %}
-                    <div class="card-admin" id="{{recipe.recipes_id}}">
-                        <img src="{{ recipe.recipes_image }}" alt="{{ recipe.recipes_name}}">
+                    <div class="card-admin" id="{{recipe.id}}">
+                        <img src="{{ recipe.image }}" alt="{{ recipe.title}}">
                         <div class="title">
-                            <h4>{{ recipe.recipes_name}}</h4>
+                            <h4>{{ recipe.title}}</h4>
                             <p>Por
                                 {{ recipe.name}}</p>
-                            <a href="/recipes/{{ recipe.recipes_id}}" id="view">Visualizar</a>
+                            <a href="/recipes/{{ recipe.id}}" id="view">Visualizar</a>
                         </div>
                     </div>
                 {% endfor %}

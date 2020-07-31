@@ -66,7 +66,7 @@ module.exports = {
 
         const result = await db.query(`SELECT * FROM files WHERE id = $1`, [deleteId])
         const file = result.rows[0]
-        fs.unlinkSync(file.path)    
+        fs.unlinkSync(file.path)
 
 
         await db.query(`DELETE FROM files WHERE files.id = $1`, [deleteId])
@@ -74,7 +74,7 @@ module.exports = {
 
         return db.query(`DELETE FROM recipes WHERE id = $1`, [id])
     },
-    paginate(params) {  
+    paginate(params) {
         let { filter, callback, limit, offset } = params
 
         let query = '',
@@ -112,12 +112,18 @@ module.exports = {
             callback(results.rows)
         })
     },
-    files(id) {
-        return db.query(`SELECT files.* 
-        FROM files
-        LEFT JOIN recipe_files 
-        ON (files.id = recipe_files.file_id)
-        WHERE recipe_files.recipe_id = $1`, [id])
+    async files(id) {
+        try {
+            const results = await db.query(`SELECT files.* 
+            FROM files
+            LEFT JOIN recipe_files 
+            ON (files.id = recipe_files.file_id)
+            WHERE recipe_files.recipe_id = $1`, [id])
+
+            return results.rows
+        } catch (err) {
+            console.log(err);
+        }
     },
     recipeFiles(id) {
         const query = `
