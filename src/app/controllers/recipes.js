@@ -43,10 +43,12 @@ module.exports = {
                 recipe.image = await getImage(recipe.id)
 
                 return recipe
-            })
-            // .filter((product, index) => index > 1 ? false : true)
+            }).filter((product, index) => index > 1 ? false : true)            
 
             const eachRecipeFixed = await Promise.all(promiseRecipes)
+            console.log(eachRecipeFixed);
+
+            
 
             return res.render('admin/recipes/recipes', { recipes: eachRecipeFixed })
         } catch (err) {

@@ -35,7 +35,7 @@ module.exports = {
 
             async function getImage(chefId) {
                 let results = await Chefs.chefFiles(chefId)
-                const files = results.rows.map(chef => 
+                const files = results.rows.map(chef =>
                     `${req.protocol}://${req.headers.host}${chef.path.replace("public", "")}`)
                 return files[0]
             }
@@ -48,7 +48,7 @@ module.exports = {
 
             const chefImage = await Promise.all(chefPromises)
 
-            return res.render('admin/chefs/chefs', { chefs: chefImage})
+            return res.render('admin/chefs/chefs', { chefs: chefImage })
         } catch (err) {
             console.log(err)
         }
@@ -83,7 +83,7 @@ module.exports = {
     },
     async show(req, res) {
         try {
-            const chefId = req.params.id 
+            const chefId = req.params.id
             let chef = await Chefs.find(chefId)
 
             if (!chef) return res.send("Chef not found")
