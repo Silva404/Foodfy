@@ -106,6 +106,8 @@ module.exports = {
             const chef = results.rows[0]
             const recipes = results.rows
 
+            console.log(chef);
+
             results = await Chefs.files(chef.file_id)
             let avatar = results.rows
             avatar = avatar.map(file => ({
@@ -123,15 +125,19 @@ module.exports = {
             const keys = Object.keys(req.body)
 
             for (let key of keys) {
-                if (req.body[key] == '') {
+                if (req.body[key] == '' && key != "removed_files") {
                     return res.send('Please fill all the fields')
                 }
             }
             
-            if (req.files.lenght != 0 ){
+            if (req.files.length != 0 ){
                 const filePromise = req.files.map(file => File.create(file))
 
-                await Promise.all(filePromise)
+                const results = await filePromise[0]
+                const fileId = results.rows[0].id
+                await Chefs.updateFile(req.body, fileId)
+            } else {
+                await Chefs.update(req.body) 
             }
 
             if (req.removed_files) {
@@ -144,8 +150,6 @@ module.exports = {
                 await Promise.all(filePromises)
             }
 
-            // await File.
-            // await Chefs.update(req.body)
 
             return res.redirect(`/admin/chefs`)
         } catch (err) {
