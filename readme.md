@@ -4,15 +4,15 @@
 
 ### Release History
 * 0.0.1
- * Static website, without any funcionality
+   * Static website, without any funcionality
 * 0.0.2
- * Static website, with recipes and responsivy layout
+   * Static website, with recipes and responsivy layout
 * 0.0.3
- * Added a recipes uploader, without a real database
+   * Added a recipes uploader, without a real database
 * 0.0.4
- * Database added, Admin part where you cant manage your recipes
+   * Database added, Admin part where you cant manage your recipes
 * 0.0.5
- * Recipes uploader remade, image uploader
+   * Recipes uploader remade, image uploader
  
 
 ### Installation
