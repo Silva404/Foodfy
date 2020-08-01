@@ -46,7 +46,7 @@
     <div class="sub-item">
         <div id="ingredients" class="item">
             <div>Ingredientes</div>
-            {% if not recipes.ingredients %}
+            {% if not recipe.ingredients %}
                 <div class="ingredient">
                     <input type="text" name="ingredients[]" value="" placeholder="Novo ingrediente">
                 </div>
@@ -69,7 +69,7 @@
     <div class="sub-item">
         <div id="preparation" class="item">
             <div>Modo de preparo</div>
-            {% if not recipes.preparation %}
+            {% if not recipe.preparation %}
                 <div class="preparation">
                     <input type="text" name="preparation[]" value="" placeholder="Adicione um modo de preparo">
                 </div>
