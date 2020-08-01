@@ -14,15 +14,11 @@
         <div class="chef-avatar">
             <img src="{{ chefFile.path }}" alt="{{ chef.name }}">
             <h1>{{chef.name}}</h1>
-            <p>{{ chef.totalRecipes }}
-                {% if chef.recipes_name %}
-                    {% if totalRecipes == 1 %}
-                        Uma receita
-                    {% elif totalRecipes > 1%}
-                        {{totalRecipes}}
-                        Receitas
-                    {% endif %}
-                {% elseif totalRecipes > 1 %}
+            <p>
+                {% if chef.total_recipes == 1 %}
+                    Uma receita
+                {% elif chef.total_recipes > 1%}
+                    {{chef.total_recipes}}
                     Receitas
                 {% else %}
                     Nenhuma Receita encontrada
@@ -32,10 +28,9 @@
     </section>
 
     <div class="chef-recipes">
-        {% if chef.recipes_name %}
+        {% if chef.total_recipes >= 1 %}
             <h2>Receitas</h2>
             <div class="cards-container">
-
                 {% for recipe in recipes %}
                     <div class="card-admin" id="{{recipe.id}}">
                         <img src="{{ recipe.image }}" alt="{{ recipe.title}}">

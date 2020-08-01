@@ -87,6 +87,7 @@ module.exports = {
 
             const chefRecipes = await Chefs.findChefRecipes(chefId)
 
+
             async function getImage(recipeId) {
                 let results = await Recipes.files(recipeId)
                 return results[0].path
@@ -101,10 +102,9 @@ module.exports = {
 
             const recipes = await Promise.all(recipePromise)
 
-            let chefFile = await Chefs.getChefAvatar(chefId) 
+            let chefFile = await Chefs.getChefAvatar(chefId)
             chefFile.path = `${req.protocol}://${req.headers.host}${chefFile.path.replace("public", "")}`
-            
-            
+
             return res.render('admin/chefs/chef', { chef, recipes, chefFile })
         } catch (err) {
             console.log(err)
