@@ -2,8 +2,10 @@ const db = require('../../config/db')
 const { date } = require('../../lib/utils')
 
 module.exports = {
-    all() {
-        return db.query(`SELECT * FROM chefs`)
+    async all() {
+        const results = await db.query(`SELECT * FROM chefs`)
+
+        return results.rows
     },
     filter(filter, callback) {
         db.query(`SELECT * FROM chefs WHERE chefs.name ILIKE '%${filter}%'`,

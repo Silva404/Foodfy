@@ -3,11 +3,10 @@ const { date } = require('../../lib/utils')
 const fs = require('fs')
 
 module.exports = {
-    all() {
-        return db.query(`SELECT * FROM recipes`)
-    },
-    allChefs(callback) {
-        return db.query(`SELECT * FROM chefs`)
+    async all() {
+        const results = await db.query(`SELECT * FROM recipes`)
+
+        return results.rows
     },
     create(data) {
         const query = `
@@ -32,13 +31,15 @@ module.exports = {
 
         return db.query(query, values)
     },
-    find(id) {
-        return db.query(`SELECT *, recipes.id AS recipe_id
+    async find(id) {
+        const results = await db.query(`SELECT *, recipes.id AS recipe_id
         FROM recipes 
         INNER JOIN chefs 
         ON (chefs.id = recipes.chef_id)
         WHERE recipes.id = $1
         `, [id])
+
+        return results.rows
     },
     update(data) {
         const query = `
@@ -125,7 +126,7 @@ module.exports = {
             console.log(err);
         }
     },
-    recipeFiles(id) {
+    async recipeFiles(id) {
         const query = `
         SELECT *, (
             SELECT files.path
@@ -142,6 +143,8 @@ module.exports = {
         LIMIT 1
         `
 
-        return db.query(query, [id])
+        const results = await db.query(query, [id])
+
+        return results.rows
     }
 }

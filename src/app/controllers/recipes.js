@@ -1,5 +1,6 @@
 const Recipes = require('../models/Recipes')
 const File = require('../models/File')
+const Chefs = require('../models/Chefs')
 
 module.exports = {
     async index(req, res) {
@@ -27,16 +28,15 @@ module.exports = {
         // await Recipes.paginate(params)
 
         try {
-            let results = await Recipes.all()
-            const recipes = results.rows
+            const recipes = await Recipes.all()
 
             if (!recipes) return res.send("Recipe not found")
 
             async function getImage(recipeId) {
                 let results = await Recipes.recipeFiles(recipeId)
-                const recipes = results.rows.map(recipe => `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`)
+                results = results.map(recipe => `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`)
 
-                return recipes[0]
+                return results[0]
             }
 
             const promiseRecipes = recipes.map(async recipe => {
@@ -46,9 +46,14 @@ module.exports = {
             }).filter((product, index) => index > 1 ? false : true)            
 
             const eachRecipeFixed = await Promise.all(promiseRecipes)
-            console.log(eachRecipeFixed);
 
-            
+            const chefs = recipes.map(async chef => {
+                const chefs = await Recipes.find(chef.id)
+
+                return chefs
+            })
+            const chefsPromise = await Promise.all(chefs)
+            console.log(chefsPromise);
 
             return res.render('admin/recipes/recipes', { recipes: eachRecipeFixed })
         } catch (err) {
@@ -57,8 +62,7 @@ module.exports = {
     },
     async create(req, res) {
         try {
-            let results = await Recipes.allChefs()
-            const chefs = results.rows
+            const chefs = await Chefs.all()
 
             return res.render('./admin/recipes/create', { chefs })
         } catch (err) {
@@ -81,27 +85,26 @@ module.exports = {
 
             res.redirect(`/admin/recipes/${recipeId}`)
         } catch (err) {
-            console.log(`ERRO => ${err}`)
+            console.log(err)
         }
     },
     async show(req, res) {
         try {
             let results = await Recipes.find(req.params.id)
-            const recipe = results.rows[0]
-            const chef = results.rows
+            const recipe = results[0]
+            const chef = results
 
             if (!recipe) {
                 res.send('Recipe not found.')
             }
 
             results = await Recipes.files(recipe.recipe_id)
-            let files = results.rows
-            files = files.map(file => ({
+            results = results.map(file => ({
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
             }))
 
-            return res.render('admin/recipes/recipe', { recipe, chef, files })
+            return res.render('admin/recipes/recipe', { recipe, chef, files: results })
 
         } catch (err) {
             console.log(err)
@@ -110,21 +113,20 @@ module.exports = {
     async edit(req, res) {
         try {
             let results = await Recipes.find(req.params.id)
-            const recipe = results.rows[0]
-            const chefs = results.rows
+            const recipe = results[0]
+            const chefs = results
 
             if (!recipe) {
                 res.send('Recipe not found.')
             }
 
             results = await Recipes.files(recipe.recipe_id)
-            let files = results.rows
-            files = files.map(file => ({
+            results = results.map(file => ({
                 ...file,
                 path: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
             }))
 
-            return res.render('admin/recipes/edit', { recipe, chefs, files })
+            return res.render('admin/recipes/edit', { recipe, chefs, files: results })
         } catch (err) {
             console.log(err)
         }

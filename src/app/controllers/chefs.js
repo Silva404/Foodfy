@@ -27,9 +27,7 @@ module.exports = {
 
         // Chefs.paginate(params)
         try {
-
-            let results = await Chefs.all()
-            const chefs = results.rows
+            const chefs = await Chefs.all()
 
             if (!chefs) return res.send("Chef not found")
 
