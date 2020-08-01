@@ -1,16 +1,43 @@
 const Site = require('../models/Site')
+const Recipes = require('../models/Recipes')
 
 module.exports = {
     index(req, res) {
         return res.redirect("/home")
     },
-    home(req, res) {
-        Site.all((recipes) => {
+    async home(req, res) {
+        try {
+            const recipes = await Recipes.all()
 
-            return res.render("site/index", { recipes })
-        })
+            if (!recipes) return res.send("Recipe not found")
+
+            async function getImage(recipeId) {
+                let results = await Recipes.recipeFiles(recipeId)
+                results = results.map(recipe => `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`)
+
+                return results[0]
+            }
+
+            const recipesPromise = recipes.map(async recipe => {
+                recipe.image = await getImage(recipe.id)
+
+                return recipe
+            })           
+
+            const eachRecipeFixed = await Promise.all(recipesPromise)
+            console.log(eachRecipeFixed);
+
+            return res.render("site/index", { recipes: eachRecipeFixed })
+        } catch (err) {
+            console.log(err)
+        }
+
+        // Site.all((recipes) => {
+
+        //     return res.render("site/index", { recipes })
+        // })
     },
-    recipes(req, res) {
+    async recipes(req, res) {
         let { filter } = req.query
 
         if (filter) {
@@ -18,9 +45,11 @@ module.exports = {
                 return res.render('site/recipes', { recipes, filter })                
             })
         }
-         else {
+         else {   
             Site.all(recipes => {
                 return res.render("site/recipes", { recipes })
+
+                
             })
         }        
     },

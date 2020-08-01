@@ -25,9 +25,8 @@
             <div class="card-admin recipes-page" id="{{ recipe.recipe_id}}">
                 <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
                 <div class="title">
-                    <h4>{{ recipe.title }}
-                    <h4>
-                        <p>Por <strong>{{ recipe.name }}</strong></p>
+                    <h4>{{ recipe.title }}<h4>
+                    <p>Por <strong>{{ recipe.author }}</strong></p>
                 </div>
                     </div>
                 {% endfor %}

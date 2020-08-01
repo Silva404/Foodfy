@@ -35,8 +35,6 @@ module.exports = {
     },
     async find(id) {
         try {
-            // recipes.title AS recipes_name,  
-            // recipes.id AS recipes_id
             const results = await db.query(`SELECT chefs.*, 
             count(recipes) AS total_recipes
             FROM chefs 

@@ -137,7 +137,7 @@ module.exports = {
             }
 
             let results = await Recipes.recipeFiles(req.body.id)
-            let fileId = results.rows[0].id
+            let fileId = results[0].id
 
             if (req.files.length != 0) {
                 const filePromise = req.files.map(file => File.create(file))
