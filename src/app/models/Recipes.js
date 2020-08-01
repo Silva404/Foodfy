@@ -4,7 +4,13 @@ const fs = require('fs')
 
 module.exports = {
     async all() {
-        const results = await db.query(`SELECT * FROM recipes`)
+        const results = await db.query(`SELECT recipes.*,
+        chefs.name AS author
+        FROM recipes
+        LEFT JOIN chefs 
+        ON (chefs.id = recipes.chef_id)
+        ORDER BY created_at DESC
+        `)
 
         return results.rows
     },

@@ -29,6 +29,7 @@ module.exports = {
 
         try {
             const recipes = await Recipes.all()
+            console.log(recipes);
 
             if (!recipes) return res.send("Recipe not found")
 
@@ -39,21 +40,13 @@ module.exports = {
                 return results[0]
             }
 
-            const promiseRecipes = recipes.map(async recipe => {
+            const recipesPromise = recipes.map(async recipe => {
                 recipe.image = await getImage(recipe.id)
 
                 return recipe
-            }).filter((product, index) => index > 1 ? false : true)            
+            })           
 
-            const eachRecipeFixed = await Promise.all(promiseRecipes)
-
-            const chefs = recipes.map(async chef => {
-                const chefs = await Recipes.find(chef.id)
-
-                return chefs
-            })
-            const chefsPromise = await Promise.all(chefs)
-            console.log(chefsPromise);
+            const eachRecipeFixed = await Promise.all(recipesPromise)
 
             return res.render('admin/recipes/recipes', { recipes: eachRecipeFixed })
         } catch (err) {
