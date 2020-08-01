@@ -34,7 +34,7 @@ module.exports = {
                 let results = await Chefs.getChefAvatar(chefId)
                 // results.map(chef => `${req.protocol}://${req.headers.host}${chef.path.replace("public", "")}`)
 
-                return results[0].path
+                return results.path
             }
 
             const chefPromises = chefs.map(async chef => {
@@ -44,7 +44,6 @@ module.exports = {
                 return chef
             })
             const chefImage = await Promise.all(chefPromises)
-            console.log(chefImage);
 
             return res.render('admin/chefs/chefs', { chefs: chefImage })
         } catch (err) {
@@ -102,13 +101,11 @@ module.exports = {
 
             const recipes = await Promise.all(recipePromise)
 
-            let chefFile = await Chefs.getChefAvatar(chefId)
-            let { path } = chefFile
-            path = {
-                chefAvatar: `${req.protocol}://${req.headers.host}${path.replace("public", "")}`
-            }
-
-            return res.render('admin/chefs/chef', { chef, recipes, path })
+            let chefFile = await Chefs.getChefAvatar(chefId) 
+            chefFile.path = `${req.protocol}://${req.headers.host}${chefFile.path.replace("public", "")}`
+            
+            
+            return res.render('admin/chefs/chef', { chef, recipes, chefFile })
         } catch (err) {
             console.log(err)
         }
