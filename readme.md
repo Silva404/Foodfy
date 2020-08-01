@@ -2,28 +2,31 @@
 > Foodfy is a responsive web site to find and share your favorite recipes worldwide!
 
 
-<h1 align="left">
-    <img src="https://user-images.githubusercontent.com/62123441/85238123-244a3a00-b402-11ea-8463-e749b6baf8ff.gif" width="100%">
-    <img src="https://user-images.githubusercontent.com/62123441/85238183-94f15680-b402-11ea-9fb7-f0ce8f6cc995.gif" width="80%">
-</h1>
-
+### Release History
+* 0.0.1
+ * Static website, without any funcionality
+* 0.0.2
+ * Static website, with recipes and responsivy layout
+* 0.0.3
+ * Added a recipes uploader, without a real database
+* 0.0.4
+ * Database added, Admin part where you cant manage your recipes
+* 0.0.5
+ * Recipes uploader remade, image uploader
+ 
 
 ### Installation
 
 You'll need Node.js, besides a few dependencies. 
 
 ```bash
-npm install express
-npm install nodemon -D
-npm install nunjucks
+npm install 
 ```
-
-### Usage
-go to server.js and change the port to your preference, 3000 by. Then, run npm start in terminal.
-```bash
-$ npm start
-```
-
+### Previous versions
+<h1 align="left">
+    <img src="https://user-images.githubusercontent.com/62123441/85238123-244a3a00-b402-11ea-8463-e749b6baf8ff.gif" width="100%">
+    <img src="https://user-images.githubusercontent.com/62123441/85238183-94f15680-b402-11ea-9fb7-f0ce8f6cc995.gif" width="80%">
+</h1>
 
 ### Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -31,7 +34,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ### Autor
 Made by [Breno Silva](https://github.com/Silva404)  | 
 [Linkedin](https://www.linkedin.com/in/breno-silva-3604461a5/)
-
 
 
 
