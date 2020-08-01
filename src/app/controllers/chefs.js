@@ -5,7 +5,6 @@ const File = require('../models/File')
 module.exports = {
     async index(req, res) {
         // let { filter, page, limit } = req.query
-
         // page = page || 1
         // limit = limit || 6
         // let offset = limit * (page - 1)
@@ -24,27 +23,28 @@ module.exports = {
         //         return res.render('admin/chefs/chefs', { chefs, filter, pagination })
         //     }
         // }
-
         // Chefs.paginate(params)
+
         try {
             const chefs = await Chefs.all()
 
             if (!chefs) return res.send("Chef not found")
 
             async function getImage(chefId) {
-                let results = await Chefs.chefFiles(chefId)
-                const files = results.rows.map(chef =>
-                    `${req.protocol}://${req.headers.host}${chef.path.replace("public", "")}`)
-                return files[0]
+                let results = await Chefs.getChefAvatar(chefId)
+                // results.map(chef => `${req.protocol}://${req.headers.host}${chef.path.replace("public", "")}`)
+
+                return results[0].path
             }
 
             const chefPromises = chefs.map(async chef => {
                 chef.image = await getImage(chef.id)
+                chef.image = `${req.protocol}://${req.headers.host}${chef.image.replace("public", "")}`
 
                 return chef
             })
-
             const chefImage = await Promise.all(chefPromises)
+            console.log(chefImage);
 
             return res.render('admin/chefs/chefs', { chefs: chefImage })
         } catch (err) {
@@ -139,7 +139,7 @@ module.exports = {
                 }
             }
 
-            let results = await Chefs.chefFiles(req.body.id)
+            let results = await Recipes.recipeFiles(req.body.id)
             let fileId = results.rows[0].id
 
             if (req.files.length != 0) {

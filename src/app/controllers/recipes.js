@@ -29,7 +29,6 @@ module.exports = {
 
         try {
             const recipes = await Recipes.all()
-            console.log(recipes);
 
             if (!recipes) return res.send("Recipe not found")
 
@@ -47,6 +46,7 @@ module.exports = {
             })           
 
             const eachRecipeFixed = await Promise.all(recipesPromise)
+            console.log(eachRecipeFixed);
 
             return res.render('admin/recipes/recipes', { recipes: eachRecipeFixed })
         } catch (err) {
