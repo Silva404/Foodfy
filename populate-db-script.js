@@ -29,7 +29,7 @@ CREATE TABLE recipe_files (
 
 Insert Into chefs 
 (id, name, created_at, file_id) 
-values (1, 'Cleide Pereira', 2020-07-05, 2);
+values (1, 'Cleide Pereira', now(), 2);
 Insert Into chefs 
 (id, name, created_at, file_id) 
 values (2, 'Carlos Ferraz', 2020-07-05, 2);
