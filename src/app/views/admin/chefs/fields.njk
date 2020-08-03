@@ -2,16 +2,14 @@
     <div>Foto</div>
     <div id="photos-preview">
         {% if avatar %}
-            {% for image in avatar %}
-                <div id="{{chef.id}}" class="photo">
-                    <img src="{{ avatar[0].src}}" alt="{{ chef.name }}">
-                    <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">
-                        delete
-                    </i>
-                </div>
-            {% endfor %}
-            <input type="hidden" name="removed_files">
+            <div id="{{chef.file_id}}" class="photo">
+                <img src="{{ avatar[0].src}}" alt="{{ chef.name }}">
+                <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">
+                    delete
+                </i>
+            </div>
         {% endif %}
+            <input type="hidden" name="removed_files">
     </div>
     <div id="photos-upload">
         <div class="photo">
