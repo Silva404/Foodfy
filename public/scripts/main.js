@@ -53,10 +53,10 @@ const modal = document.querySelector('#modal')
 if (modal) {
   const formDelete = document.querySelector('#form-delete')
   const modal = document.querySelector('#modal')
-  const popup = modal.querySelector('input[name=popup')
+  const popup = modal.querySelector('input[name=popup]')
 
   formDelete.addEventListener('submit', e => {
-    if (popup.value !== null) {
+    if (popup.value !== '0') {
       const close = modal.querySelector('#ok')
 
       modal.style.display = 'grid'

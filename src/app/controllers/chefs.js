@@ -106,6 +106,7 @@ module.exports = {
         try {
             let results = await Chefs.find(req.params.id)
             const chef = results
+            console.log(chef);
 
             let avatar = await Chefs.files(chef.file_id)
             avatar = avatar.map(file => ({
@@ -155,10 +156,15 @@ module.exports = {
     },
     async delete(req, res) {
         try {
-            await Chefs.delete(req.params.id)
+            const chefId = req.params.id
+            const chefRecipes = await Chefs.findChefRecipes(chefId)
+            const recipeExist = chefRecipes[0].id
 
-            if (chef.recipes_name) {
+            if (recipeExist) {
+                
+
             } else {
+                await Chefs.delete(chefId)
                 return res.redirect(`/admin/chefs`)
             }
         } catch (err) {
