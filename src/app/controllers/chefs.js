@@ -58,7 +58,7 @@ module.exports = {
             const keys = Object.keys(req.body)
 
             for (let key of keys) {
-                if (req.body[key] == '') {
+                if (req.body[key] == '' && key != "removed_files") {
                     return res.send('Please, fill all the fields!')
                 }
             }
@@ -86,21 +86,24 @@ module.exports = {
             if (!chef) return res.send("Chef not found")
 
             const chefRecipes = await Chefs.findChefRecipes(chefId)
+            const recipeExist = chefRecipes[0].id
+            let recipes = ''
 
-
-            async function getImage(recipeId) {
-                let results = await Recipes.files(recipeId)
-                return results[0].path
+            if (recipeExist != null) {
+                async function getImage(recipeId) {
+                    let results = await Recipes.files(recipeId)
+                    return results[0].path
+                }
+    
+                const recipePromise = chefRecipes.map(async recipe => {
+                    recipe.image = await getImage(recipe.id)
+                    recipe.image = `${req.protocol}://${req.headers.host}${recipe.image.replace("public", "")}`
+    
+                    return recipe
+                })
+    
+                recipes = await Promise.all(recipePromise)
             }
-
-            const recipePromise = chefRecipes.map(async recipe => {
-                recipe.image = await getImage(recipe.id)
-                recipe.image = `${req.protocol}://${req.headers.host}${recipe.image.replace("public", "")}`
-
-                return recipe
-            })
-
-            const recipes = await Promise.all(recipePromise)
 
             let chefFile = await Chefs.getChefAvatar(chefId)
             chefFile.path = `${req.protocol}://${req.headers.host}${chefFile.path.replace("public", "")}`
