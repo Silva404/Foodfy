@@ -82,7 +82,6 @@ module.exports = {
     },
     async chefFileDelete(id) {
         try {
-            //
             const result = await db.query(`SELECT * FROM files WHERE id = $1`, [id])
             const file = result.rows[0]
             fs.unlinkSync(file.path)
