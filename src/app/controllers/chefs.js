@@ -165,7 +165,7 @@ module.exports = {
     },
     async delete(req, res) {
         try {
-            await Chefs.delete(req.params.id)
+            await Chefs.delete(req.params.id)           
 
             if (chef.recipes_name) {
             } else {

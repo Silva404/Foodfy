@@ -64,8 +64,18 @@ module.exports = {
 
         return db.query(query, values)
     },
-    delete(id) {
-        return db.query(`DELETE FROM chefs WHERE id = $1`, [id])
+    async delete(id) {
+        let results = await db.query(`
+        SELECT files.id,
+        FROM files
+        LEFT JOIN chefs ON (chefs.file_id = files.id)
+        WHERE chefs.id = $1
+        `, [id])
+        const file_id = results.rows[0]
+        await db.query(`DELETE FROM files WHERE files.id = $1`, [file_id])
+
+        results = await db.query(`DELETE FROM chefs WHERE id = $1`, [id])
+        return results
     },
     paginate(params) {
         let { filter, callback, limit, offset } = params

@@ -54,4 +54,4 @@ BEFORE UPDATE ON chefs
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
-INSERT INTO categories(name) VALUES('Eletrônicos');
+INSERT INTO recipes(name, file_id) VALUES('Cleide, ');
