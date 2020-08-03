@@ -77,8 +77,8 @@ module.exports = {
         results = await db.query(`DELETE FROM chefs WHERE id = $1`, [id])
         return results
     },
-    paginate(params) {
-        let { filter, callback, limit, offset } = params
+    async paginate(params) {
+        let { filter, limit, offset } = params
 
         let query = '',
             filterQuery = '',
@@ -107,11 +107,9 @@ module.exports = {
         LIMIT $1 OFFSET $2
         `
 
-        db.query(query, [limit, offset], (err, results) => {
-            if (err) throw `${err}`
+        const results = await db.query(query, [limit, offset])
 
-            callback(results.rows)
-        })
+        return results.rows
     },
     async files(id) {
         try {

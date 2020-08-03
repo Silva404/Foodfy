@@ -4,35 +4,26 @@ const File = require('../models/File')
 
 module.exports = {
     async index(req, res) {
-        // let { filter, page, limit } = req.query
-        // page = page || 1
-        // limit = limit || 6
-        // let offset = limit * (page - 1)
 
-        // const params = {
-        //     filter,
-        //     page,
-        //     limit,
-        //     offset,
-        //     callback(chefs) {
-        //         const pagination = {
-        //             total: Math.ceil(chefs[0].total / limit),
-        //             page
-        //         }
-
-        //         return res.render('admin/chefs/chefs', { chefs, filter, pagination })
-        //     }
-        // }
-        // Chefs.paginate(params)
 
         try {
-            const chefs = await Chefs.all()
+            let { filter, page, limit } = req.query
+            page = page || 1
+            limit = limit || 6
+            let offset = limit * (page - 1)
+
+            const params = { filter, page, limit, offset }
+
+            const chefs = await Chefs.paginate(params)
+            const pagination = {
+                total: Math.ceil(chefs[0].total / limit),
+                page
+            }
 
             if (!chefs) return res.send("Chef not found")
 
             async function getImage(chefId) {
                 let results = await Chefs.getChefAvatar(chefId)
-                // results.map(chef => `${req.protocol}://${req.headers.host}${chef.path.replace("public", "")}`)
 
                 return results.path
             }
@@ -45,7 +36,7 @@ module.exports = {
             })
             const chefImage = await Promise.all(chefPromises)
 
-            return res.render('admin/chefs/chefs', { chefs: chefImage })
+            return res.render('admin/chefs/chefs', { chefs: chefImage, filter, pagination })
         } catch (err) {
             console.log(err)
         }
@@ -94,14 +85,14 @@ module.exports = {
                     let results = await Recipes.files(recipeId)
                     return results[0].path
                 }
-    
+
                 const recipePromise = chefRecipes.map(async recipe => {
                     recipe.image = await getImage(recipe.id)
                     recipe.image = `${req.protocol}://${req.headers.host}${recipe.image.replace("public", "")}`
-    
+
                     return recipe
                 })
-    
+
                 recipes = await Promise.all(recipePromise)
             }
 
@@ -168,7 +159,7 @@ module.exports = {
     },
     async delete(req, res) {
         try {
-            await Chefs.delete(req.params.id)           
+            await Chefs.delete(req.params.id)
 
             if (chef.recipes_name) {
             } else {

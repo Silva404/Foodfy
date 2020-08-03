@@ -9,7 +9,6 @@
     font-size: 2.2rem;
 }
 
-
 .chef-title {
     display: flex;
     align-items: center;
@@ -30,7 +29,6 @@
 
 .card-admin {
     display: flex;
-    /* align-items: center; */
     margin-top: 1em;
     transition: 200ms ease;
     opacity: 0.95;

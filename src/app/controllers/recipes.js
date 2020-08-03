@@ -3,32 +3,21 @@ const File = require('../models/File')
 const Chefs = require('../models/Chefs')
 
 module.exports = {
-    async index(req, res) {
-        // let { filter, page, limit } = req.query
-
-        // page = page || 1
-        // limit = limit || 6
-        // let offset = limit * (page - 1)
-
-        // const params = {
-        //     filter,
-        //     page,
-        //     limit,
-        //     offset,
-        //     async callback(recipes) {
-        //         const pagination = {
-        //             total: Math.ceil(recipes[0].total / limit),
-        //             page
-        //         }
-
-        //         return res.render('admin/recipes/recipes', { recipes, filter, pagination })
-        //     }
-        // }
-
-        // await Recipes.paginate(params)
-
+    async index(req, res) {        
         try {
-            const recipes = await Recipes.all()
+            let { filter, page, limit } = req.query
+    
+            page = page || 1
+            limit = limit || 6
+            let offset = limit * (page - 1)
+    
+            const params = { filter, page, limit, offset }
+
+            const recipes = await Recipes.paginate(params)
+            const pagination = {
+                total: Math.ceil(recipes[0].total / limit),
+                page
+            }
 
             if (!recipes) return res.send("Recipe not found")
 
@@ -43,12 +32,12 @@ module.exports = {
                 recipe.image = await getImage(recipe.id)
 
                 return recipe
-            })           
+            })
 
             const eachRecipeFixed = await Promise.all(recipesPromise)
             console.log(eachRecipeFixed);
 
-            return res.render('admin/recipes/recipes', { recipes: eachRecipeFixed })
+            return res.render('admin/recipes/recipes', { recipes: eachRecipeFixed, filter, pagination })
         } catch (err) {
             console.log(err)
         }

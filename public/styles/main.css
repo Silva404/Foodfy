@@ -80,6 +80,13 @@ header input {
     border-radius: 0.5em;
     display: inline-block;
     cursor: pointer;
+    transition: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+}
+
+.button:hover {
+    color: #fff;
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
 }
 
 .page{
