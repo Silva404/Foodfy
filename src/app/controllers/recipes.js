@@ -117,10 +117,10 @@ module.exports = {
         try {
             const keys = Object.keys(req.body)
 
-            // for (key of keys) {
-            //     if (req.body[key] == "" && key != "removed_files") 
-            //     return res.send('Please, fill and the fields.')
-            // }
+            for (key of keys) {
+                if (req.body[key] == "" && key != "removed_files") 
+                return res.send('Please, fill and the fields.')
+            }
 
             if (req.files.length != 0) {
                 const newFilePromise = req.files.map(file => File.createRecipeFiles({

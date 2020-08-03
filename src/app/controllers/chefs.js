@@ -4,8 +4,6 @@ const File = require('../models/File')
 
 module.exports = {
     async index(req, res) {
-
-
         try {
             let { filter, page, limit } = req.query
             page = page || 1
@@ -145,9 +143,7 @@ module.exports = {
                 const lastIndex = removedFiles.length - 1
                 removedFiles.splice(lastIndex, 1)
 
-                const filePromises = removedFiles.map(id => File.chefFileDelete(id))
-
-                await Promise.all(filePromises)
+                await removedFiles.map(id => File.chefFileDelete(id))
             }
 
             await Chefs.update(req.body, fileId)
