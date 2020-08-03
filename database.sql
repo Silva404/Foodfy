@@ -1,45 +1,38 @@
-DROP DATABASE IF EXISTS launchstore;
-CREATE DATABASE launchstore;
+DROP DATABASE IF EXISTS foodfy;
+CREATE DATABASE foodfy;
 
-CREATE TABLE "products" (
+CREATE TABLE "recipes" (
 	"id" SERIAL PRIMARY KEY,
-  "category_id" int NOT NULL,
-  "user_id" int,
-  "name" text NOT NULL,
-  "description" text NOT NULL,
-  "old_price" int,
-  "price" int NOT NULL,
-  "quantity" int DEFAULT 0,
-  "status" int DEFAULT 1,
+  "title" text NOT NULL,
+  "chef_id" int NOT NULL,
+  "ingredients" text[] NOT NULL,
+  "preparation" text[] NOT NULL,
+  "information" text NOT NULL,
   "created_at" timestamp DEFAULT (now()),
   "updated_at" timestamp DEFAULT (now())
 );
   
-CREATE TABLE "categories" (
+CREATE TABLE "recipe_files" (
 	"id" SERIAL PRIMARY KEY,
-  "name" text NOT NULL
+  "recipe_id" int NOT NULL,
+  "file_id" int NOT NULL 
 );
-    
+
 CREATE TABLE "files" (
 	"id" SERIAL PRIMARY KEY,
   "name" text NOT NULL,
-  "path" text NOT NULL,
-  "product_id" int NOT NULL
+  "path" text NOT NULL
 );
 
-CREATE TABLE "users" (
+CREATE TABLE "chefs" (
 	"id" SERIAL PRIMARY KEY,
   "name" text NOT NULL,
-  "email" text UNIQUE NOT NULL,
-  "password" text NOT NULL,
-  "cpf_cnpj" int UNIQUE NOT NULL,
-  "cep" text,
-  "address" text,
+  "file_id" int UNIQUE NOT NULL,
   "created_at" timestamp DEFAULT (now()),
   "updated_at" timestamp DEFAULT (now())
 );
 
-ALTER TABLE "products" ADD FOREIGN KEY ("category_id") REFERENCES "categories" ("id");
+ALTER TABLE "recipes" ADD FOREIGN KEY ("chef_id") REFERENCES "chefs" ("id");
 ALTER TABLE "files" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
 ALTER TABLE "products" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 
@@ -52,16 +45,13 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER set_timestamp
-BEFORE UPDATE ON products
+BEFORE UPDATE ON recipes
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
 CREATE TRIGGER set_timestamp
-BEFORE UPDATE ON users
+BEFORE UPDATE ON chefs
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
 INSERT INTO categories(name) VALUES('Eletrônicos');
-INSERT INTO categories(name) VALUES('Roupas');
-INSERT INTO categories(name) VALUES('Móveis');
-INSERT INTO categories(name) VALUES('Comida');
