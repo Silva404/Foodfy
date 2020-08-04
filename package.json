@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Silva404/Foodfy#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "intl": "^1.2.5",
     "method-override": "^3.0.0",
