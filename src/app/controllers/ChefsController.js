@@ -156,17 +156,9 @@ module.exports = {
     },
     async delete(req, res) {
         try {
-            const chefId = req.params.id
-            const chefRecipes = await Chefs.findChefRecipes(chefId)
-            const recipeExist = chefRecipes[0].id
+            await Chefs.delete(req.body.id)
 
-            if (recipeExist) {
-                
-
-            } else {
-                await Chefs.delete(chefId)
-                return res.redirect(`/admin/chefs`)
-            }
+            return res.redirect(`/admin/chefs`)
         } catch (err) {
             console.log(err)
         }

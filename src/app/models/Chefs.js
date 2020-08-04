@@ -1,5 +1,6 @@
 const db = require('../../config/db')
 const { date } = require('../../lib/utils')
+const fs = require('fs')
 
 module.exports = {
     async all() {
@@ -65,17 +66,24 @@ module.exports = {
         return db.query(query, values)
     },
     async delete(id) {
-        let results = await db.query(`
-        SELECT files.id,
-        FROM files
-        LEFT JOIN chefs ON (chefs.file_id = files.id)
-        WHERE chefs.id = $1
-        `, [id])
-        const file_id = results.rows[0]
-        await db.query(`DELETE FROM files WHERE files.id = $1`, [file_id])
+        try {
+            await db.query(`DELETE FROM chefs WHERE id = $1`, [id])
 
-        results = await db.query(`DELETE FROM chefs WHERE id = $1`, [id])
-        return results
+            const results = await db.query(`
+            SELECT files.* FROM files
+            LEFT JOIN chefs ON (chefs.file_id = files.id)
+            WHERE chefs.id = $1`, [id])
+            const file = results.rows
+
+            file.map(async file => {
+                fs.unlinkSync(file.path)
+
+                await db.query(`DELETE FROM files 
+                WHERE id = $1`, [file.id])
+            })
+        } catch (err) {
+            console.log(err)
+        }
     },
     async paginate(params) {
         let { filter, limit, offset } = params

@@ -63,6 +63,7 @@ if (modal) {
       close.addEventListener('click', e => {
         modal.style.display = 'none'
       })
+      event.preventDefault()
     } else {
       const confirmation = confirm('Are you sure you want to delete')
 

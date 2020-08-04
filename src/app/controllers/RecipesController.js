@@ -35,6 +35,7 @@ module.exports = {
             })
 
             const eachRecipeFixed = await Promise.all(recipesPromise)
+            console.log(eachRecipeFixed);
 
             return res.render('admin/recipes/recipes', { recipes: eachRecipeFixed, filter, pagination })
         } catch (err) {
