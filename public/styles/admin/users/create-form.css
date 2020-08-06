@@ -1,10 +1,6 @@
 .container {
   display: grid;
-  grid-template: 100px 1fr 1fr / 1fr;
-}
-.container.edit {
-  display: grid;
-  grid-template: 1fr 1fr 1fr / 1fr;
+  grid-template: 100px 1fr 50px 200px / 1fr;
 }
 
 .title {
@@ -25,11 +21,20 @@
 }
 
 .button {
-  font-size: 1.8rem;  
+  font-size: 1.4rem;  
   color: var(--white-color);
-  padding: 0.5em 1.5em;
+  height: 3em;
+  width: 10em;
+  text-align: center;
+
   background: var(--primary-color);
   border-radius: 0.5em;
+  border: 1px solid var(--primary-color);
+}
+
+a.button {
+  background: var(--white-color);
+  color: var(--primary-color);
   border: 1px solid var(--primary-color);
 }
 
@@ -69,7 +74,8 @@ input[type=checkbox]{
 
 .item.checkbox {
   display: flex;
-  width: 200px;
+  width: 500px;
+  margin: 0 auto;
   align-items: center;
 
 }

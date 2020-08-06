@@ -43,8 +43,8 @@ const Validate = {
   inputName(value) {
     let error = ''
 
-    if (value.length < 8) {
-      error = "Nome deve possuir ao menos 8 caracteres"
+    if (value.length < 6) {
+      error = "Nome deve possuir ao menos 6 caracteres"
     }
 
     return {

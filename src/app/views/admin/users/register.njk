@@ -5,7 +5,7 @@
 {% endblock styles %}
 
 {% block content %}
-    <form action="/admin/chefs" method="POST">
+    <form action="/admin/users" method="POST">
         <section class="container">
             <div class="title">
                 <h3>Criar Usuário</h3>
@@ -13,9 +13,13 @@
             <div class="fields">
                 {% include 'admin/users/fields.njk' %}
             </div>
+            <div class="item checkbox">
+                <input type="checkbox" name="is_admin" {% if checked  %} value="false" {%else%} {% endif %}>
+                <div>Administrador</div>
+            </div>
             <div class="send">
                 <button type="submit" class="button">Salvar chef</button>
-                {# <button type="submit" class="button ">Apagar campos</button> #}
+               <a href="/admin/users/create" class="button">Cancelar</a>
             </div>
         </section>
     </form>

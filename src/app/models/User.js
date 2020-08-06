@@ -26,13 +26,13 @@ module.exports = {
       is_admin
     )
     `
-    const passwordHash = await hash(data.password, 8)
+    const passwordHash = 1
 
     const values = [
       data.name,
       data.email,
       passwordHash,
-      data.is_admin 
+      false
     ]
 
     const results = await db.query(query, values)

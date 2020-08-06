@@ -9,8 +9,3 @@
     <div>
         <input type="text" name="email" value="{{ user.email}}" onkeydown="Mask.apply(this, 'isEmail')" onblur="Validate.apply(this, 'isEmail')"></div>
 </div>
-
-<div class="item checkbox">
-    <input type="checkbox" name="is_admin" {% if checked  %} value="false" {% else %} {% endif %}>
-    <div>Administrador</div>
-</div>
