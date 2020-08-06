@@ -4,6 +4,9 @@ module.exports = {
   async list(req, res) {
 
   }, 
+  create(req, res) {
+    return res.render('admin/users/create')
+  },
   async post(req, res) {
     const userId = User.create(req.body)
 

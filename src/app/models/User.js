@@ -22,8 +22,8 @@ module.exports = {
     INSERT INTO users(
       name,
       email,
-      address,
-      password
+      password,
+      is_admin
     )
     `
     const passwordHash = await hash(data.password, 8)
@@ -31,8 +31,8 @@ module.exports = {
     const values = [
       data.name,
       data.email,
-      data.address,
-      passwordHash
+      passwordHash,
+      data.is_admin 
     ]
 
     const results = await db.query(query, values)

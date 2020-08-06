@@ -1,0 +1,83 @@
+.container {
+  display: grid;
+  grid-template: 100px 1fr 1fr / 1fr;
+}
+.container.edit {
+  display: grid;
+  grid-template: 1fr 1fr 1fr / 1fr;
+}
+
+.title {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.title h3 {
+  font-size: 2.2rem;
+  margin: 2em 0 1em;
+  color: var(--primary-txt-color);
+}
+
+.item {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--secondary-txt-color);
+}
+
+.button {
+  font-size: 1.8rem;  
+  color: var(--white-color);
+  padding: 0.5em 1.5em;
+  background: var(--primary-color);
+  border-radius: 0.5em;
+  border: 1px solid var(--primary-color);
+}
+
+input,
+select {
+  width: 100%;
+  outline: none;
+  border: 1px solid var(--desc-color);
+  padding: 1em;
+  border-radius: 0.5em;
+  opacity: 0.7;
+}
+
+.send {
+  align-self: center;
+  justify-self: center;
+}
+
+.center #photos-upload {
+  justify-self: center;
+}
+
+
+.fields {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.item {
+  margin-bottom: 1.2em;
+  position: relative;
+}
+
+input[type=checkbox]{
+  width: 30px;
+}
+
+.item.checkbox {
+  display: flex;
+  width: 200px;
+  align-items: center;
+
+}
+
+.error {
+  position: absolute; 
+  right: 0;
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: var(--primary-color);
+}

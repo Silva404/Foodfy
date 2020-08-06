@@ -1,0 +1,22 @@
+{% extends 'admin-layout.njk' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/styles/admin/users/create-form.css">
+{% endblock styles %}
+
+{% block content %}
+    <form action="/admin/chefs" method="POST">
+        <section class="container">
+            <div class="title">
+                <h3>Criar Usuário</h3>
+            </div>
+            <div class="fields">
+                {% include 'admin/users/fields.njk' %}
+            </div>
+            <div class="send">
+                <button type="submit" class="button">Salvar chef</button>
+                {# <button type="submit" class="button ">Apagar campos</button> #}
+            </div>
+        </section>
+    </form>
+{% endblock content %}
