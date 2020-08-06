@@ -106,7 +106,6 @@ module.exports = {
         try {
             let results = await Chefs.find(req.params.id)
             const chef = results
-            console.log(chef);
 
             let avatar = await Chefs.files(chef.file_id)
             avatar = avatar.map(file => ({

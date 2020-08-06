@@ -5,6 +5,7 @@ CREATE TABLE "recipes" (
 	"id" SERIAL PRIMARY KEY,
   "title" text NOT NULL,
   "chef_id" int NOT NULL,
+  "user_id" int,
   "ingredients" text[] NOT NULL,
   "preparation" text[] NOT NULL,
   "information" text NOT NULL,
@@ -47,6 +48,7 @@ CREATE TABLE "users" (
 ALTER TABLE "recipes" ADD FOREIGN KEY ("chef_id") REFERENCES "chefs" ("id");
 ALTER TABLE "chefs" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id");
 ALTER TABLE "recipe_files" ADD FOREIGN KEY ("recipe_id") REFERENCES "recipes" ("id");
+ALTER TABLE "recipes" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 
 CREATE FUNCTION trigger_set_timestamp()
 RETURNS TRIGGER AS $$
@@ -66,4 +68,4 @@ BEFORE UPDATE ON chefs
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
-INSERT INTO recipes(name, file_id) VALUES('Cleide, ');
+-- INSERT INTO recipes(name, file_id) VALUES('Cleide, ');
