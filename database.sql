@@ -45,6 +45,16 @@ CREATE TABLE "users" (
   "updated_at" TIMESTAMP DEFAULT(now())
 );
 
+CREATE TABLE "session" (
+  "sid" varchar NOT NULL COLLATE "default",
+  "sess" json NOT NULL,
+  "expire" timestamp(6) NOT NULL
+)
+WITH (OIDS=FALSE);
+ALTER TABLE "session" 
+ADD CONSTRAINT "session_pkey" 
+PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
 ALTER TABLE "recipes" ADD FOREIGN KEY ("chef_id") REFERENCES "chefs" ("id");
 ALTER TABLE "chefs" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id");
 ALTER TABLE "recipe_files" ADD FOREIGN KEY ("recipe_id") REFERENCES "recipes" ("id");
