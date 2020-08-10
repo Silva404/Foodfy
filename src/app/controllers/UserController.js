@@ -3,10 +3,17 @@ const mailer = require('../../lib/mailer')
 
 module.exports = {
   async list(req, res) {
+    const users = await User.all()
 
+    return res.render('admin/users/users', { users })
   },
   create(req, res) {
     return res.render('admin/users/register')
+  },
+  async show(req, res) {
+    const user = await User.findUser(req.params.id)
+
+    return res.render('admin/users/user', { user })
   },
   async post(req, res) {
     try {      

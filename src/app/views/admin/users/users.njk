@@ -5,8 +5,8 @@
 {% endblock styles %}
 
 {% block header %}
-    <form action="/admin/chefs" method="get" id="search">
-        <input type="text" name="filter" value="{{ filter }}" placeholder="Procurar um chef">
+    <form action="/admin/users" method="get" id="search">
+        <input type="text" name="filter" value="{{ filter }}" placeholder="Procurar um user">
         <button type="submit" class="button">
             <span class="material-icons">
                 search
@@ -17,22 +17,22 @@
 
 {% block content %}
     <section class="grid">
-        <div class="chef-title">
-            <h3>Gerenciar chefs</h3>
-            <a href="/admin/chefs/create" class="button">Novo chef</a>
+        <div class="user-title">
+            <h3>Gerenciar usuários</h3>
+            <a href="/admin/users/create" class="button">Novo Usuário</a>
         </div>
         <div class="cards-container">
-            {% for chef in chefs %}
-                <div class="card-admin" id="{{chef.id}}">
+            {% for user in users %}
+                <div class="card-admin" id="{{user.id}}">
                     <div class="img">
-                        <img src="{{ chef.image}}" alt="{{ chef.name}}">
+                        <img src="{{ user.image}}" alt="{{ user.name}}">
                     </div>
                     <div class="title">
-                        <h4>{{ chef.name}}</h4>
-                        <p>{% if chef.total == 1 %}
+                        <h4>{{ user.name}}</h4>
+                        <p>{% if user.total == 1 %}
                             0 Receitas
                         {% endif %}</p>
-                        <a href="#" id="view">Visualizar</a>
+                        <a href="/admin/users/{{user.id}}" id="view">Visualizar</a>
                     </div>
                 </div>
             {% endfor %}

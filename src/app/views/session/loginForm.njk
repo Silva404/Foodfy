@@ -8,15 +8,11 @@
     <form action="/admin/users" method="POST">
         <section class="container">
             <div class="title">
-                <h3>Criar Novo Usuário</h3>
+                <h3>Iniciar Sessão</h3>
             </div>
             <div class="fields">
                 {% include 'admin/users/fields.njk' %}
-            </div>
-            <div class="item checkbox">
-                <input type="checkbox" name="is_admin" {% if checked  %} value="false" {%else%} {% endif %}>
-                <div>Administrador</div>
-            </div>
+            </div>           
             <div class="send">
                 <button type="submit" class="button">Salvar chef</button>
                <a href="/admin/users/create" class="button">Cancelar</a>

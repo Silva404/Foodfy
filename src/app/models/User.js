@@ -2,12 +2,21 @@ const db = require("../../config/db")
 const crypt = require('crypto')
 
 module.exports = {
-  async findUser(id) {
-    const results = await db.query(`SELECT * FROM users WHERE id = $1`, [id])
+  async all() {
+    const results = await db.query(`SELECT * FROM users`)
 
-    return results.rows[0]
+    return results.rows
   },
-  async findOne(filters){
+  async findUser(id) {
+    try {
+      const results = await db.query(`SELECT * FROM users WHERE id = $1`, [id])
+
+      return results.rows[0]
+    } catch (err) {
+      console.error(err)
+    }
+  },
+  async findOne(filters) {
     let query = `SELECT * FROM users`
 
     Object.keys(filters).map(key => {
@@ -22,7 +31,7 @@ module.exports = {
 
     return results.rows[0]
   },
-  async create(data){
+  async create(data) {
     const query = `
     INSERT INTO users (
       name,
