@@ -29,7 +29,7 @@ body {
   content: '';
   height: 8px;
   width: 0%;
-  background: rgba(133, 133, 133, 0.1);
+  background: rgba(31, 31, 31, 0.2);
   animation: loading-bar 3.5s 1s forwards;
 }
 
@@ -55,7 +55,7 @@ body {
   }
 }
 
-.error {
+.erro {
   background: var(--error-bg-color);
   color: var(--error-txt-color);
 }

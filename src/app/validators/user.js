@@ -21,10 +21,16 @@ async function post(req, res, next) {
   }
 
   const { email } = req.body
-
+  
   const user = User.findOne({
     where: email
   })
+
+  if (user) {
+    return res.render('admin/users/register', {
+      erro: "Usuário já cadastrado!"
+    })
+  }
 
   next()
 }
