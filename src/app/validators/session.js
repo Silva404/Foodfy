@@ -59,19 +59,19 @@ async function reset(req, res, next) {
 
   try {
     const user = await User.findOne({ where: { email } })
-    if (!user) return res.render("session/password-reset", {
+    if (!user) return res.render("session/resetForm", {
       user: req.body,
       erro: "Usuário não encontrado!"
     })
 
-    if (password != passwordRepeat) return res.render("session/password-reset", {
+    if (password != passwordRepeat) return res.render("session/resetForm", {
       user: req.body,
-      erro: "Senhas inválidas."
+      alert: "Senhas inválidas."
     })
 
-    if (token == user.reset_token) return res.render("session/password-reset", { 
+    if (token != user.reset_token) return res.render("session/resetForm", { 
       user: req.body,
-      erro: "Chave de acesso expirada."
+      erro: 'Chave inválida, solicite uma nova recuperação de senha'
     })
 
     req.user = user
