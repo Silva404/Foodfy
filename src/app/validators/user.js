@@ -28,7 +28,7 @@ async function post(req, res, next) {
 
   if (user) {
     return res.render('admin/users/register', {
-      erro: "Usuário já cadastrado!"
+      erro: "Usuário cadastrado com sucesso!"
     })
   }
 
