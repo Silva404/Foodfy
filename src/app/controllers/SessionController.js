@@ -5,6 +5,6 @@ module.exports = {
   login(req, res) {
     // if ()
 
-    return res.redirect('/users')
+    return res.redirect('/profile')
   }
 } 

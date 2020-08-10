@@ -11,6 +11,13 @@
 
     --delete-button: #fd3d40;
 
+    --error-bg-color: #f87c7e;
+    --error-txt-color: #b13a3c;
+    --alert-bg-color: #f2ff91;
+    --alert-txt-color: #abb836;
+    --success-bg-color: #73f885;
+    --success-txt-color: #3faa4d;
+
     --paginate-primary: #F06769;
     --paginate-secondary: #FEF0EF;
     --paginate-terciary: #e9a2a3;

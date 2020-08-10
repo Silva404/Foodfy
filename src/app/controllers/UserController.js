@@ -16,10 +16,11 @@ module.exports = {
     return res.render('admin/users/user', { user })
   },
   async post(req, res) {
-    try {      
-      const userId = await User.create(req.body)
-      const user = await User.findUser(userId.id)
+    try { 
+      // const userId = await User.create(req.body)
+      // const user = await User.findUser(userId.id)
 
+      // req.session.userId = userId
 
       await mailer.sendMail({
         to: user.email,
@@ -41,7 +42,7 @@ module.exports = {
       console.error(err)
     }
 
-    return res.redirect('/')
+    return res.redirect('/admin/users')
   },
   async put(req, res) {
 

@@ -10,7 +10,7 @@ const UserValidator = require('../app/validators/user')
 
 
 routes.get('/login', SessionController.loginForm)
-// routes.post('/login', SessionController.login)
+routes.post('/login', SessionController.login)
 // routes.post('/logout', SessionController.logout)
 
 // routes.get('/forgot-password', SessionController.forgotForm)
@@ -25,7 +25,7 @@ routes.get('/create', UserController.create)
 routes.get('/:id', UserController.show)
 
 routes.get('/', UserController.list) 
-routes.post('/', UserController.post) 
+routes.post('/', UserValidator.post, UserController.post) 
 // routes.put('/', UserController.put)
 // routes.delete('/', UserController.delete)
 

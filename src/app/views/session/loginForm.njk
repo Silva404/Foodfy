@@ -5,13 +5,13 @@
 {% endblock styles %}
 
 {% block content %}
-    <form action="/admin/users" method="POST">
+    <form action="/admin/users/login" method="POST">
         <section class="container">
             <div class="title">
                 <h3>Iniciar Sessão</h3>
             </div>
             <div class="fields">
-                {% include 'admin/users/fields.njk' %}
+                {% include 'session/fields.njk' %}
             </div>           
             <div class="send">
                 <button type="submit" class="button">Salvar chef</button>
