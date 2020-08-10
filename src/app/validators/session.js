@@ -20,7 +20,7 @@ async function login(req, res, next) {
     }
     const passed = await compare(password, user.password)
     console.log(passed);
-    
+
     if (!passed) {
       return res.render('session/loginForm', {
         user: user,
@@ -36,6 +36,26 @@ async function login(req, res, next) {
   }
 }
 
+async function forgot(req, res, next) {
+  const { email } = req.body
+
+  try {
+    const user = await User.findOne({ where: { email } })
+    console.log(user);
+    if (!user) return res.render("session/forgotForm", { 
+      user: req.body,
+      erro: "Usuário não encontrado!"
+    })
+
+    req.user = user
+
+    next()
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 module.exports = {
-  login
+  login,
+  forgot
 }
