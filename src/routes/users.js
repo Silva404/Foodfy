@@ -8,7 +8,6 @@ const SessionValidator = require('../app/validators/session')
 const UserValidator = require('../app/validators/user')
 
 
-
 routes.get('/login', SessionController.loginForm)
 routes.post('/login',  SessionValidator.login, SessionController.login)
 routes.post('/logout', SessionController.logout)
@@ -17,7 +16,6 @@ routes.get('/forgot-password', SessionController.forgotForm)
 routes.post('/forgot-password', SessionValidator.forgot, SessionController.forgot)
 routes.get('/password-reset', SessionController.resetForm)
 routes.post('/password-reset', SessionValidator.reset, SessionController.reset)
-
 
 
 // routes.get('/profile', UserController.profile)
