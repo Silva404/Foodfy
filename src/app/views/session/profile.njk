@@ -5,20 +5,19 @@
 {% endblock styles %}
 
 {% block content %}
-    <form action="/admin/users/login" method="POST">
+    <form action="admin/users" method="POST">
         <section class="container">
             <div class="title">
-                <h3>Iniciar Sessão</h3>
+                <h3>Seja bem vindo {{user.name}}</h3>
             </div>
             <div class="fields">
-                {% include 'session/fields.njk' %}
+                {% include 'session/profileFields.njk' %}
             </div>
 
             <div class="send">
-                <a href="/users/forgot-password">Esqueceu a senha ?</a>
-                <button type="submit" class="button">Entrar</button>
-            </div>
-
+                <button type="submit" class="button">Nova senha</button>
+            </div>       
+            
         </section>
     </form>
 {% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'admin-layout.njk' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/styles/admin/users/create-form.css">
+{% endblock styles %}
+
+{% block content %}
+    <form action="/password-reset" method="POST">
+        <section class="container">
+            <div class="title">
+                <h3>Esqueceu a senha?</h3>
+            </div>
+            <div class="fields">
+                <div class="item">
+                    <div>Email</div>
+                    <div>
+                        <input type="text" name="email" value="{{ user.email}}" onkeydown="Mask.apply(this, 'isEmail')" onblur="Validate.apply(this, 'isEmail')"></div>
+                </div>
+            </div>
+
+            <div class="send">
+                <button type="submit" class="button">Nova senha</button>
+            </div>
+
+        </section>
+    </form>
+{% endblock content %}

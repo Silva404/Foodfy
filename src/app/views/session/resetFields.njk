@@ -1,0 +1,15 @@
+<div class="item">
+    <div>Email</div>
+    <div>
+        <input type="text" name="email" value="{{ user.email}}" onkeydown="Mask.apply(this, 'isEmail')" onblur="Validate.apply(this, 'isEmail')"></div>
+</div>
+
+<div class="item">
+    <div>Senha</div>
+    <div><input type="password" name="password"></div>
+</div>
+
+<div class="item">
+    <div>Repita a senha</div>
+    <div><input type="password" name="passwordRepeat"></div>
+</div>

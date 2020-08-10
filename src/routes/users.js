@@ -13,9 +13,9 @@ routes.get('/login', SessionController.loginForm)
 routes.post('/login',  SessionValidator.login, SessionController.login)
 // routes.post('/logout', SessionController.logout)
 
-// routes.get('/forgot-password', SessionController.forgotForm)
+routes.get('/forgot-password', SessionController.forgotForm)
 // routes.post('/forgot-password', SessionController.forgot)
-// routes.get('/password-reset', SessionController.resetForm)
+routes.get('/password-reset', SessionController.resetForm)
 // routes.post('/password-reset', SessionController.reset)
 
 
