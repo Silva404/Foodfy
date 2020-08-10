@@ -12,10 +12,21 @@
             </div>
             <div class="fields">
                 {% include 'session/fields.njk' %}
-            </div>           
+            </div>
+
             <div class="send">
-                <button type="submit" class="button">Salvar chef</button>
-               <a href="/admin/users/create" class="button">Cancelar</a>
+                <button type="submit" class="button">Entrar</button>
+            </div>
+            
+            <div class="footer">
+                <ul>
+                    <li>
+                        <a href="/users/register">Registre-se</a>
+                    </li>
+                    <li>
+                        <a href="/users/forgot-password">Esqueci a senha</a>
+                    </li>
+                </ul>
             </div>
         </section>
     </form>

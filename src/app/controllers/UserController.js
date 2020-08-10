@@ -17,10 +17,10 @@ module.exports = {
   },
   async post(req, res) {
     try { 
-      // const userId = await User.create(req.body)
-      // const user = await User.findUser(userId.id)
+      const userId = await User.create(req.body)
+      const user = await User.findUser(userId.id)
 
-      // req.session.userId = userId
+      req.session.userId = userId
 
       await mailer.sendMail({
         to: user.email,

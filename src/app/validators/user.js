@@ -20,7 +20,7 @@ async function post(req, res, next) {
     return res.render('admin/users/register', fillAllTheFields)
   }
 
-  const { email } = req.body
+  const { email } = req.body  
   
   const user = User.findOne({
     where: email
