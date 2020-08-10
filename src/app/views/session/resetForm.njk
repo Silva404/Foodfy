@@ -16,8 +16,9 @@
 
             <div class="send">
                 <button type="submit" class="button">Nova senha</button>
-            </div>       
-            
+            </div>
+
+            <input type="hidden" name="token" value="req.params.token">
         </section>
     </form>
 {% endblock content %}

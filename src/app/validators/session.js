@@ -41,8 +41,7 @@ async function forgot(req, res, next) {
 
   try {
     const user = await User.findOne({ where: { email } })
-    console.log(user);
-    if (!user) return res.render("session/forgotForm", { 
+    if (!user) return res.render("session/forgotForm", {
       user: req.body,
       erro: "Usuário não encontrado!"
     })
@@ -55,7 +54,36 @@ async function forgot(req, res, next) {
   }
 }
 
+async function reset(req, res, next) {
+  const { email, password, token, passwordRepeat } = req.body
+
+  try {
+    const user = await User.findOne({ where: { email } })
+    if (!user) return res.render("session/password-reset", {
+      user: req.body,
+      erro: "Usuário não encontrado!"
+    })
+
+    if (password != passwordRepeat) return res.render("session/password-reset", {
+      user: req.body,
+      erro: "Senhas inválidas."
+    })
+
+    if (token == user.reset_token) return res.render("session/password-reset", { 
+      user: req.body,
+      erro: "Chave de acesso expirada."
+    })
+
+    req.user = user
+
+    next()
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 module.exports = {
   login,
-  forgot
+  forgot,
+  reset
 }
