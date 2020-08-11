@@ -34,6 +34,7 @@ module.exports = {
             })
             const chefImage = await Promise.all(chefPromises)
 
+
             return res.render('admin/chefs/chefs', { chefs: chefImage, filter, pagination })
         } catch (err) {
             console.log(err)

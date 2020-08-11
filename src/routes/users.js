@@ -20,12 +20,11 @@ routes.post('/password-reset', SessionValidator.reset, SessionController.reset)
 
 
 routes.get('/profile', onlyUsers, UserController.profile)
-routes.get('/create', isAdmin, UserController.create)
-routes.get('/:id', isAdmin, UserController.show)
-
-routes.get('/', isAdmin, UserController.list)
-routes.post('/', isAdmin, UserValidator.post, UserController.post)
-// routes.put('/', isAdmin, UserController.put)
-// routes.delete('/', isAdmin, UserController.delete)
+routes.get('/create', onlyUsers, isAdmin, UserController.create)
+routes.get('/:id', onlyUsers, isAdmin, UserController.show)
+routes.get('/', onlyUsers, UserController.list)
+routes.post('/', onlyUsers, isAdmin, UserValidator.post, UserController.post)
+// routes.put('/', onlyUsers, UserController.put)
+// routes.delete('/', onlyUsers, isAdmin, UserController.delete)
 
 module.exports = routes

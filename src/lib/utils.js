@@ -11,6 +11,12 @@ module.exports = {
             month,
             year,
             created: `${year}/${month}/${day}`
-        } 
-    } 
+        }
+    },
+    erro() {
+        let error = ''
+        if (req.session.error) {
+            return error = req.session.error
+        }
+    }
 }

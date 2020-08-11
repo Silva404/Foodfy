@@ -4,6 +4,12 @@
 </div>
 {% endif %}
 
+{% if error %}
+<div class="messages erro">
+  {{error}}  
+</div>
+{% endif %}
+
 {% if alert %}
 <div class="messages alert">
   {{alert}}

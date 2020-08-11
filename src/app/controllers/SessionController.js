@@ -9,7 +9,8 @@ module.exports = {
   },
   login(req, res) {
     req.session.userId = req.user.id
-
+    req.session.isAdmin = req.user.is_admin
+    
     return res.redirect('/admin/users')
   },
   logout(req, res) {
@@ -37,7 +38,7 @@ module.exports = {
 
       await mailer.sendMail({
         to: user.email,
-        from: 'foodfy-admin@mail.com',
+        from: 'no-reply@foodfy-admin.com',
         subject: 'Recuperação de senha',
         html: `
         <h2>Recuperação de senha</h2>

@@ -1,4 +1,4 @@
-function onlyUsers(req, res, next)  {
+function onlyUsers(req, res, next) {
   if (!req.session.userId) return res.redirect('/admin/users/login')
 
   next()
@@ -11,7 +11,11 @@ function isLoggedRedirectToList(req, res, next) {
 }
 
 function isAdmin(req, res, next) {
-  // if (!req.user.is_admin) return 
+  if (!req.session.isAdmin) {
+    req.session.error = "Desculpe, somente administradores tem acesso a essa página."
+ 
+    return res.redirect(`${req.headers.referer}`)
+  }
 
   next()
 }
