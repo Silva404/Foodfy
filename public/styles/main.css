@@ -66,6 +66,11 @@ header .links a {
     color: #555454;
 }
 
+.logout button i.material-icons {
+    color: var(--primary-color);
+    background: none;
+}
+
 header a {
     position: relative;
 }

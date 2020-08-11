@@ -5,7 +5,8 @@ function onlyUsers(req, res, next) {
 }
 
 function isLoggedRedirectToList(req, res, next) {
-  if (req.session.userId) return res.redirect('/admin/users/profile')
+  console.log(req.session);
+  if (req.session.userId) return res.redirect('/admin/users/list')
 
   next()
 }
