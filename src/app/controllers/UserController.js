@@ -2,6 +2,9 @@ const User = require('../models/User')
 const mailer = require('../../lib/mailer')
 
 module.exports = {
+  profile(req, res) {
+    return res.redirect('/')
+  },
   async list(req, res) {
     const users = await User.all()
 

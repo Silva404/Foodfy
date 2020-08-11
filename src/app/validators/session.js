@@ -3,11 +3,9 @@ const { compare } = require("bcryptjs")
 
 async function login(req, res, next) {
   const { email, password } = req.body
-  console.log(password);
 
   try {
     const user = await User.findOne({ where: { email } })
-    console.log(user);
     if (!user) {
       return res.render('session/loginForm', {
         user: req.body,
@@ -15,11 +13,7 @@ async function login(req, res, next) {
       })
     }
 
-    if (user.password == password) {
-      console.log('TRUEEEE');
-    }
     const passed = await compare(password, user.password)
-    console.log(passed);
 
     if (!passed) {
       return res.render('session/loginForm', {
@@ -29,6 +23,7 @@ async function login(req, res, next) {
     }
 
     req.user = user
+    console.log(req.user);
 
     next()
   } catch (err) {

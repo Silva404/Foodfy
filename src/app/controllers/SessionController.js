@@ -15,7 +15,7 @@ module.exports = {
   logout(req, res) {
     req.session.destroy()
 
-    return res.redirect('/')
+    return res.redirect('/admin/users/login')
   },
   forgotForm(req, res) {
     return res.render('session/forgotForm')
