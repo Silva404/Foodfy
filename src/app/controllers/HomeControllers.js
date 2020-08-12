@@ -1,4 +1,3 @@
-const Site = require('../models/Site')
 const Recipes = require('../models/Recipes')
 
 module.exports = {
@@ -38,26 +37,65 @@ module.exports = {
         // })
     },
     async recipes(req, res) {
-        let { filter } = req.query
+        try {
+            let { filter, page, limit } = req.query
+    
+            page = page || 1
+            limit = limit || 6
+            let offset = limit * (page - 1)
+    
+            const params = { filter, page, limit, offset }
 
-        if (filter) {
-            Site.filter(filter, recipes => {
-                return res.render('site/recipes', { recipes, filter })                
-            })
-        }
-         else {   
-            Site.all(recipes => {
-                return res.render("site/recipes", { recipes })
+            let recipes = await Recipes.paginate(params)
 
-                
+            const pagination = {
+                total: Math.ceil(recipes[0].total / limit),
+                page
+            }
+
+            if (!recipes) return res.send("Recipe not found")
+
+            async function getImage(recipeId) {
+                let results = await Recipes.recipeFiles(recipeId)
+                results = results.map(recipe => `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`)
+
+                return results[0]
+            }
+
+            const recipesPromise = recipes.map(async recipe => {
+                recipe.image = await getImage(recipe.id)
+
+                return recipe
             })
-        }        
+
+            const eachRecipeFixed = await Promise.all(recipesPromise)
+
+            return res.render('site/recipes', { recipes: eachRecipeFixed, filter, pagination })
+        } catch (err) {
+            console.log(err)
+        }      
     },
-    recipe(req, res) {
-        Site.find(req.params.id, recipes => {
-            if (!recipes) return res.send("Recipe not found!")
+    async recipe(req, res) {
+        try {
+            let results = await Recipes.find(req.params.id)
 
-            return res.render("site/recipe", { recipes })
-        })
+            const recipe = results[0]
+            const chef = results
+
+            if (!recipe) {
+                res.send('Recipe not found.')
+            }
+
+            results = await Recipes.files(recipe.recipe_id)
+            results = results.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+            }))
+
+            return res.render('site/recipe', { recipe, chef, files: results })
+
+        } catch (err) {
+            console.log(err)
+        }
     }
 }

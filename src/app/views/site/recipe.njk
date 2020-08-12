@@ -1,16 +1,30 @@
-{% extends 'layout.njk' %}
+{% extends 'admin-layout.njk' %}
 
 {% block styles %}
-    <link rel="stylesheet" href="/styles/recipe.css">
+    <link rel="stylesheet" href="/styles/admin/recipes/recipe.css">
 {% endblock styles %}
 
 {% block content %}
-    <section class="recipe">
+    <section class="recipe"> 
         <div class="hero">
-            <img src="{{ recipes.image}}" alt="{{ recipes.title }}">
-            <h1>{{ recipes.title }}</h1>
+            {% if files %}
+                <div class="highlight">
+                    <img src="{{ files[0].src}}" alt="{{ recipe.title }}">
+                    <div class="dots">
+                        {% for image in files %}
+                            <img src="{{ image.src}}" alt="{{ recipe.title }}" class="active" onclick="imageGallery.setImage(event)">
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="preview">
+                    {% for image in files %}
+                        <img src="{{ image.src}}" alt="{{ recipe.title }}" class="active" onclick="imageGallery.setImage(event)">
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <h1>{{  recipe.title }}</h1>
             <p>por
-                {{ recipes.name }}</p>
+                {{  recipe.name }}</p>
         </div>
 
         <div class="recipe-description">
@@ -18,9 +32,9 @@
                 <span class="span">esconder</span></h3>
             <div class="description">
                 <ul>
-                    {% for ingrediente in recipes.ingredients %}
+                    {% for ingredient in recipe.ingredients %}
                         <li>
-                            {{ ingrediente }}
+                            {{ ingredient }}
                         </li>
                     {% endfor %}
                 </ul>
@@ -31,7 +45,7 @@
                 <span class="span">esconder</span></h3>
             <div class="description">
                 <ul>
-                    {% for preparo in recipes.preparation %}
+                    {% for preparo in recipe.preparation %}
                         <li>{{ preparo }}</li>
                     {% endfor %}
                 </ul>
@@ -41,9 +55,11 @@
             <h3>Informações adicionais
                 <span class="span">esconder</span></h3>
             <div class="description">
-                <p>{{ recipes.information }}</p>
+                <p>{{ recipe.additional_info }}</p>
             </div>
         </div>
+
+        <input type="hidden" name="userId" value="{{ recipe.user_id }}">
     </section>
 {% endblock content %}
 

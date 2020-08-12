@@ -22,11 +22,11 @@
     <div class="cards-container">
 
         {% for recipe in recipes %}
-            <div class="card-admin recipes-page" id="{{ recipe.recipe_id}}">
+            <div class="card-admin recipes-page" id="{{ recipe.id}}">
                 <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
                 <div class="title">
-                    <h4>{{ recipe.title }}<h4>
-                    <p>Por <strong>{{ recipe.author }}</strong></p>
+                    <h4>{{ recipe.title }}<h4>                        
+                    <p>Por <strong>{{ recipe.chef_name }}</strong></p>
                 </div>
                     </div>
                 {% endfor %}
