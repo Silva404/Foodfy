@@ -30,16 +30,15 @@
                         </p>
                         <div class="manage">
                             <a href="/admin/users/{{user.id}}" id="view">Editar</a>
-                            <form action="/admin/users?_method=DELETE" method="post">
-                                <button type="submit" >Deletar</button>
-                            </form>
+
+                            <button type="submit">Deletar</button>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
 
-        <div class="pagination" data-page={{pagination.page}}  data-total={{pagination.total}} data-filter={{filter}}>
+        <div class="pagination" data-page={{pagination.page}} data-total={{pagination.total}} data-filter={{filter}}>
             {% if pagination.page == 1 %}
                 <span class="deactivated">Anterior</span>
             {% elif pagination.page > 1%}
@@ -54,6 +53,8 @@
                 <span class="deactivated">Próxima</span>
             {% endif %}
         </div>
+        <form action="/admin/users?_method=DELETE" method="post">
+                            </form>
     </section>
 {% endblock content %}
 

@@ -80,19 +80,21 @@ module.exports = {
     try {
       await User.delete(req.body.id)
 
-      if (!req.session.isAdmin) {
-        req.session.destroy()
+      // if (!req.session.isAdmin) {
+      //   req.session.destroy()
 
-        return res.render('session/loginForm', {
-          success: "Usuário Deletado com sucesso"
-        })
-      } else {
-        return res.render("admin/users/users", {
-          success: "Usuário Deletado com sucesso"
-        })
-      }
-      
+      //   return res.render('session/loginForm', {
+      //     success: "Usuário Deletado com sucesso"
+      //   })
+      // } else {
+      //   return res.render("admin/users/users", {
+      //     success: "Usuário Deletado com sucesso"
+      //   })
+      // }  
 
+      return res.render("admin/users/users", {
+        success: "Usuário Deletado com sucesso"
+      })
     } catch (err) {
       console.error(err)
     }

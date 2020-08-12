@@ -75,15 +75,18 @@ module.exports = {
 
     await db.query(query)
   },
-  delete(id) {
-    const recipeId = await db.query(`
-    SELECT recipes.id 
-    FROM recipes 
-    LEFT JOIN users ON (users.id = recipes.user_id)
-    WHERE users.id = $1)
-    `)
-    await Recipes.delete(recipeId)
+  async delete(id) {
+    try {
+      const recipeId = await db.query(`
+      SELECT recipes.id 
+      FROM recipes 
+      LEFT JOIN users ON (users.id = recipes.user_id)
+      WHERE users.id = $1)`)
+      if (recipeId) { await Recipes.delete(recipeId) }
 
-    await db.query(`DELETE FROM users WHERE id = $1`, [id])
+      await db.query(`DELETE FROM users WHERE id = $1`, [id])
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
