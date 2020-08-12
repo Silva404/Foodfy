@@ -33,9 +33,10 @@ module.exports = {
                 return chef
             })
             const chefImage = await Promise.all(chefPromises)
+            const isAdmin = req.session.isAdmin
+            console.log(isAdmin);
 
-
-            return res.render('admin/chefs/chefs', { chefs: chefImage, filter, pagination })
+            return res.render('admin/chefs/chefs', { chefs: chefImage, filter, pagination, isAdmin })
         } catch (err) {
             console.log(err)
         }

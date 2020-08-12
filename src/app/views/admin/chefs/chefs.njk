@@ -17,10 +17,14 @@
 
 {% block content %}
     <section class="grid">
-        <div class="chef-title">
-            <h3>Gerenciar chefs</h3>
-            <a href="/admin/chefs/create" class="button">Novo chef</a>
-        </div>
+
+        {% if isAdmin == true %}
+            <div class="chef-title">
+                <h3>Gerenciar chefs</h3>
+                <a href="/admin/chefs/create" class="button">Novo chef</a>
+            </div>
+        {% endif %}
+
         <div class="cards-container">
             {% for chef in chefs %}
                 <div class="card-admin" id="{{chef.id}}">
@@ -29,9 +33,11 @@
                     </div>
                     <div class="title">
                         <h4>{{ chef.name}}</h4>
-                        <p>{% if chef.total == 1 %}
-                            0 Receitas
-                        {% endif %}</p>
+                        <p>
+                            {% if chef.total == 1 %}
+                                0 Receitas
+                            {% endif %}
+                        </p>
                         <a href="#" id="view">Visualizar</a>
                     </div>
                 </div>

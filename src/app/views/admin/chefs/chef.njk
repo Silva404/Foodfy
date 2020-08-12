@@ -6,11 +6,14 @@
 
 {% block content %}
     <section class="chef-profile">
-        <div class="chef-title">
-            <h2>Chef:
-                {{chef.name}}</h2>
-            <a href="/admin/chefs/{{ chef.id }}/edit" class="button">Editar chef</a>
-        </div>
+        {% if req.session.isAdmin == true %}
+            <div class="chef-title">
+                <h2>Chef:
+                    {{chef.name}}</h2>
+                <a href="/admin/chefs/{{ chef.id }}/edit" class="button">Editar chef</a>
+            </div>
+        {% endif %}
+
         <div class="chef-avatar">
             <img src="{{ chefFile.path }}" alt="{{ chef.name }}">
             <h1>{{chef.name}}</h1>
