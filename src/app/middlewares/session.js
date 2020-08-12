@@ -28,6 +28,14 @@ function isAdmin(req, res, next) {
   next()
 }
 
+function ifAdmin(req, res, next) {
+  if (!req.session.isAdmin) {
+    return res.redirect('/admin/users/profile')
+  }
+
+  next()
+}
+
 async function isTheOwner(req, res, next) {
   const recipe = await Recipes.find(req.params.id)
     
@@ -42,5 +50,6 @@ module.exports = {
   onlyUsers,
   isLoggedRedirectToList,
   isAdmin,
-  isTheOwner
+  isTheOwner,
+  ifAdmin
 }
