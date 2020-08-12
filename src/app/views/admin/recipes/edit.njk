@@ -1,7 +1,7 @@
 {% extends 'admin-layout.njk' %}
 
 {% block styles %}
-<link rel="stylesheet" href="/styles/admin/recipes/form.css">
+    <link rel="stylesheet" href="/styles/admin/recipes/form.css">
 {% endblock styles %}
 
 {% block content %}
@@ -16,13 +16,14 @@
             </div>
             {% include 'admin/recipes/fields.njk' %}
 
+            <input type="hidden" name="userId" value="{{ recipe.user_id }}">
             <input type="hidden" name="id" value="{{ recipe.recipe_id }}">
         </section>
     </form>
     <form id="form-delete" method="POST" action="/admin/recipes?_method=DELETE">
         <input type="hidden" name="id" value="{{ recipe.recipe_id }}">
-       
-       {% include 'confirm.njk' %}
+
+        {% include 'confirm.njk' %}
     </form>
 
-{% endblock content %} 
+{% endblock content %}

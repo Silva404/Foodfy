@@ -13,7 +13,9 @@ module.exports = {
     
             const params = { filter, page, limit, offset }
 
-            const recipes = await Recipes.paginate(params)
+            let recipes = await Recipes.paginate(params)
+            recipes = recipes.filter(recipe => recipe.user_id == req.session.userId)
+
             const pagination = {
                 total: Math.ceil(recipes[0].total / limit),
                 page
@@ -58,7 +60,16 @@ module.exports = {
                 if (req.body[key] == '') return res.send('Please, fill and the fields.')
             }
 
-            let results = await Recipes.create(req.body)
+            let recipe = {
+                user_id: req.session.userId,
+                chef_id: req.body.chef_id,
+                title: req.body.title,
+                ingredients: req.body.ingredients,
+                preparation: req.body.preparation,
+                information: req.body.information               
+            }
+
+            let results = await Recipes.create(recipe)
             const recipeId = results.rows[0].id
 
             const filePromises = req.files.map(file => File.createRecipeFiles({ ...file, recipe_id: recipeId }))
@@ -72,6 +83,7 @@ module.exports = {
     async show(req, res) {
         try {
             let results = await Recipes.find(req.params.id)
+
             const recipe = results[0]
             const chef = results
 

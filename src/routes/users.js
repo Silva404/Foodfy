@@ -18,7 +18,6 @@ routes.post('/forgot-password', SessionValidator.forgot, SessionController.forgo
 routes.get('/password-reset', SessionController.resetForm)
 routes.post('/password-reset', SessionValidator.reset, SessionController.reset)
 
-
 routes.get('/profile', onlyUsers, UserController.profile)
 routes.get('/create', onlyUsers, isAdmin, UserController.create)
 routes.get('/:id', onlyUsers, isAdmin, UserController.show)

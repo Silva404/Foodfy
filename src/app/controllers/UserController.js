@@ -10,12 +10,12 @@ module.exports = {
   async list(req, res) {
     const users = await User.all()
 
-    let error = ''
+    let erro = ''
     if (req.session.error) {
-      error = req.session.error
+      erro = req.session.error
     }
 
-    return res.render('admin/users/users', { users, error })
+    return res.render('admin/users/users', { users, erro })
   },
   create(req, res) {
     return res.render('admin/users/register')

@@ -1,23 +1,26 @@
 {% if erro %}
-<div class="messages erro">
-  {{erro}}  
-</div>
-{% endif %}
-
-{% if error %}
-<div class="messages erro">
-  {{error}}  
-</div>
+  <div class="messages erro">
+    <div class="messages-box">
+      <i class="material-icons">error</i>
+      {{erro}}
+    </div>
+  </div>
 {% endif %}
 
 {% if alert %}
-<div class="messages alert">
-  {{alert}}
-</div>
+  <div class="messages alert">
+    <div class="messages-box">
+      <i class="material-icons">info</i>
+      {{alert}}
+    </div>
+  </div>
 {% endif %}
 
 {% if success %}
-<div class="messages success">
-  {{success}}
-</div>
+  <div class="messages success">
+    <div class="messages-box">
+      <i class="material-icons">check_circle</i>
+      {{success}}
+    </div>
+  </div>
 {% endif %}
