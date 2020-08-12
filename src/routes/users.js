@@ -24,6 +24,6 @@ routes.get('/:id', onlyUsers, isAdmin, UserController.show)
 routes.get('/', onlyUsers, ifAdmin, UserController.list)
 routes.post('/', onlyUsers, isAdmin, UserValidator.post, UserController.post)
 routes.put('/', onlyUsers, UserController.put)
-routes.delete('/', onlyUsers, isAdmin, UserController.delete)
+// routes.delete('/', onlyUsers, isAdmin, UserController.delete)
 
 module.exports = routes

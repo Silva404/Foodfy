@@ -13,7 +13,7 @@
             <div class="fields">
                 {% include 'admin/users/fields.njk' %}
             </div>
-
+            <input type="hidden" name="id" value="{{user.id}}">
             <div class="send">
                 <button type="submit" class="button">Salvar chef</button>
             </div>
