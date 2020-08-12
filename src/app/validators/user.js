@@ -40,30 +40,29 @@ async function put(req, res, next) {
   const fillAllTheFields = checkAllFields(req.body)
 
   if (fillAllTheFields) {
-    return res.render('admin/users/register', fillAllTheFields)
+    return res.render('admin/users/user', fillAllTheFields)
   }
 
   const { id, password } = req.body
 
-  if (!password) return res.render('admin/users/user', {
-    user: req.body,
-    erro: "Coloque sua senha para atualizar seu cadastro!"
+  const user = await User.findOne({
+    where: { id }
   })
 
-  const user = User.findOne({
-    where: id
-  })
+  if (password) {
+    const passed = await compare(password, user.password)
 
-  const passed = await compare(password, user.password)
+    if (!passed) return res.render('admin/users/user', {
+      user: req.body,
+      erro: "Senha incorreta!"
+    })
+  }
 
-  if (!passed) return res.render('admin/users/user', {
-    user: req.body,
-    erro: "Senha incorreta!"
-  })
-
+  req.user = user
 
   next()
 }
+
 
 module.exports = {
   post,

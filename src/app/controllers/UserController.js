@@ -55,11 +55,46 @@ module.exports = {
     return res.redirect('/admin/users')
   },
   async put(req, res) {
-    await User.update(req.body.id, )
+    try {
+      const { id } = req.user
 
-    return res.rendirect('admin/users/profile')
+      let { email, name } = req.body
+
+      await User.update(id, {
+        name,
+        email
+      })
+
+      return res.render("admin/users/user", {
+        user: req.body,
+        success: "Usuário atualizado com sucesso"
+      })
+    } catch (err) {
+      console.error(err)
+      return res.render("admin/users/user", {
+        error: "Algum erro aconteceu!"
+      })
+    }
   },
   async delete(req, res) {
+    try {
+      await User.delete(req.body.id)
 
+      if (!req.session.isAdmin) {
+        req.session.destroy()
+
+        return res.render('session/loginForm', {
+          success: "Usuário Deletado com sucesso"
+        })
+      } else {
+        return res.render("admin/users/users", {
+          success: "Usuário Deletado com sucesso"
+        })
+      }
+      
+
+    } catch (err) {
+      console.error(err)
+    }
   },
 }

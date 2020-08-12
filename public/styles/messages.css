@@ -60,9 +60,18 @@ body {
   }
 }
 
-.erro {
+.erro {  
   background: var(--error-bg-color);
   color: var(--error-txt-color);
+}
+
+.erro .messages-box {
+  display: flex;
+  align-items: center;
+}
+
+.erro .messages-box i {
+  margin-right: 0.3em;
 }
 
 .alert {

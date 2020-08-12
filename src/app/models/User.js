@@ -1,5 +1,6 @@
 const db = require("../../config/db")
 const crypt = require('crypto')
+const Recipes = require("./Recipes")
 
 module.exports = {
   async all() {
@@ -73,5 +74,16 @@ module.exports = {
     })
 
     await db.query(query)
+  },
+  delete(id) {
+    const recipeId = await db.query(`
+    SELECT recipes.id 
+    FROM recipes 
+    LEFT JOIN users ON (users.id = recipes.user_id)
+    WHERE users.id = $1)
+    `)
+    await Recipes.delete(recipeId)
+
+    await db.query(`DELETE FROM users WHERE id = $1`, [id])
   }
 }

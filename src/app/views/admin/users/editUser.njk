@@ -5,15 +5,14 @@
 {% endblock styles %}
 
 {% block content %}
-    <form action="/admin/users?_method=PUT" method="POST">
+    <form action="/admin/users?_method=PUT" method="POST" id="form-save">
         <section class="container edit">
             <div class="title">
                 <h3>Atualizar Usuário</h3>
                 <div class="send">
-                    <button type="submit" class="button save">Salvar</button>
-                    <form action="/admin/users?_method=DELETE" method="post">
-                        <button type="submit" class="button">Deletar</button>
-                    </form>
+                    <button form="form-save" type="submit" class="button save">Salvar</button>
+
+                    <button form="form-delete" type="submit" class="button">Deletar</button>
                 </div>
             </div>
             <div class="fields">
@@ -28,7 +27,8 @@
                         <input type="text" name="email" value="{{ user.email}}" onkeydown="Mask.apply(this, 'isEmail')" onblur="Validate.apply(this, 'isEmail')"></div>
                 </div>
             </div>
-
+            <input type="hidden" name="id" value="{{user.id}}">
+            <form id="form-delete" action="/admin/users?_method=DELETE" method="post"></form>
         </section>
     </form>
 {% endblock content %}
