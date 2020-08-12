@@ -1,7 +1,6 @@
 <div class="item">
     <div>Nome</div>
-    <div><input type="text" name="name" value="{{ user.name}}"
-    onblur="Validate.apply(this, 'inputName')"></div>
+    <div><input type="text" name="name" value="{{ user.name}}" onblur="Validate.apply(this, 'inputName')"></div>
 </div>
 
 <div class="item">
@@ -9,3 +8,10 @@
     <div>
         <input type="text" name="email" value="{{ user.email}}" onkeydown="Mask.apply(this, 'isEmail')" onblur="Validate.apply(this, 'isEmail')"></div>
 </div>
+
+{% if user %}
+    <div class="item">
+        <div>Senha</div>
+        <div><input type="text" name="password"></div>
+    </div>
+{% endif %}

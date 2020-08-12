@@ -1,7 +1,7 @@
 {% extends 'admin-layout.njk' %}
 
 {% block styles %}
-    <link rel="stylesheet" href="/styles/admin/chefs/chefs.css">
+    <link rel="stylesheet" href="/styles/admin/users/adminHome.css">
 {% endblock styles %}
 
 {% block header %}
@@ -18,27 +18,28 @@
 {% block content %}
     <section class="grid">
         <div class="user-title">
-            <h3>Gerenciar usuários</h3>
+            <h3>Usuários</h3>
             <a href="/admin/users/create" class="button">Novo Usuário</a>
         </div>
         <div class="cards-container">
             {% for user in users %}
                 <div class="card-admin" id="{{user.id}}">
-                    <div class="img">
-                        <img src="{{ user.image}}" alt="{{ user.name}}">
-                    </div>
                     <div class="title">
                         <h4>{{ user.name}}</h4>
-                        <p>{% if user.total == 1 %}
-                            0 Receitas
-                        {% endif %}</p>
-                        <a href="/admin/users/{{user.id}}" id="view">Visualizar</a>
+                        <p>{{user.email}}
+                        </p>
+                        <div class="manage">
+                            <a href="/admin/users/{{user.id}}" id="view">Editar</a>
+                            <form action="/admin/users?_method=DELETE" method="post">
+                                <button type="submit" >Deletar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
 
-        <div class="pagination" data-page={{pagination.page}} data-total={{pagination.total}} data-filter={{filter}}>
+        <div class="pagination" data-page={{pagination.page}}  data-total={{pagination.total}} data-filter={{filter}}>
             {% if pagination.page == 1 %}
                 <span class="deactivated">Anterior</span>
             {% elif pagination.page > 1%}

@@ -1,11 +1,11 @@
 const User = require('../models/User')
 const mailer = require('../../lib/mailer')
-const { erro } = require('../../lib/utils')
-
 
 module.exports = {
-  profile(req, res) {
-    return res.redirect('/')
+  async profile(req, res) {
+    const user = await User.findUser(req.session.userId)
+
+    return res.render('admin/users/user', { user })
   },
   async list(req, res) {
     const users = await User.all()
@@ -21,9 +21,9 @@ module.exports = {
     return res.render('admin/users/register')
   },
   async show(req, res) {
-    const user = await User.findUser(req.params.id)
+    let user = await User.findUser(req.params.id)
 
-    return res.render('admin/users/user', { user })
+    return res.render('admin/users/editUser', { user })
   },
   async post(req, res) {
     try {

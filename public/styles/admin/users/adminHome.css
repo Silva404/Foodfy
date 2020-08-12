@@ -1,0 +1,120 @@
+.user-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.user-title h3 {
+    font-size: 2.2rem;
+}
+
+.manage {
+    display: flex;
+    align-items: center;
+}
+
+.manage a {
+    margin-right: 2em;
+    color: var(--primary-color);
+}
+
+.cards-container {
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr ));
+    gap: 2em;
+}
+
+
+
+.card-admin {
+    display: flex;
+    margin-top: 1em;
+}
+
+.card-admin .img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    margin-right: 1em;
+    overflow: hidden;
+}
+
+.card-admin img {
+    transition: 250ms ease;
+    width: 100%;
+    height: 100%;   
+    object-fit: cover;
+    box-shadow: 0 20px 30px 0 rgba(0, 0, 0, .1);
+}
+
+.card-admin img:hover {
+    transform: scale(1.1);
+}
+
+.card-admin .title h4 {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.card-admin .title a,
+button {
+    font-size: 1.4rem;
+    font-weight: 700;
+    opacity: 0.8;
+}
+
+button {
+    color: var(--paginate-primary);
+    opacity: 1;
+}
+
+#search {
+    display: flex;
+    align-items: center;
+}    
+
+#search .button[type=submit]  {
+    padding: 0.2em 0.5em;
+}
+
+section.grid {
+    display: grid;
+    grid-template: auto auto 150px / 1fr;
+}
+
+section.grid .pagination {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    align-self: end;
+    justify-self: center;
+    margin-bottom: 3em;
+}
+
+.deactivated {
+    opacity: 0.5;
+}
+
+.pagination span,
+.pagination a {
+    padding: 0.5em .8em;
+    margin-right: 0.25em;
+    color: var(--paginate-primary);
+    background: var(--paginate-secondary);
+    border-radius: 0.5em;
+}
+
+.pagination a {
+    cursor: pointer;
+}
+
+.pagination .middle-page {
+    font-weight: 700;
+
+    color: var(--paginate-secondary);
+    background: var(--paginate-primary);
+}

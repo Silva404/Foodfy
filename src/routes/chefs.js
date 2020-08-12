@@ -4,7 +4,7 @@ const multer = require('../app/middlewares/multer')
 
 const chefs = require('../app/controllers/ChefsController')
 
-const { isAdmin, onlyUsers, isLoggedRedirectToList }
+const { isAdmin }
   = require('../app/middlewares/session')
 
 routes.get("/", chefs.index)
