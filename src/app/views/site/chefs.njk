@@ -1,0 +1,57 @@
+{% extends 'admin-layout.njk' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/styles/admin/chefs/chefs.css">
+{% endblock styles %}
+
+{% block header %}
+    <form action="/admin/chefs" method="get" id="search">
+        <input type="text" name="filter" value="{{ filter }}" placeholder="Procurar um chef">
+        <button type="submit" class="button">
+            <span class="material-icons">
+                search
+            </span>
+        </button>
+    </form>
+{% endblock header %}
+
+{% block content %}
+    <section class="grid">        
+        <div class="cards-container">
+            {% for chef in chefs %}
+                <div class="card-admin" id="{{chef.id}}">
+                    <div class="img">
+                        <img src="{{ chef.image}}" alt="{{ chef.name}}">
+                    </div>
+                    <div class="title">
+                        <h4>{{ chef.name}}</h4>
+                        <p>{% if chef.total == 1 %}
+                            0 Receitas
+                        {% endif %}</p>
+                        <a href="/chefs/{{chef.id}}" id="view">Visualizar</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination" data-page={{pagination.page}} data-total={{pagination.total}} data-filter={{filter}}>
+            {% if pagination.page == 1 %}
+                <span class="deactivated">Anterior</span>
+            {% elif pagination.page > 1%}
+                <a href="{{pagination.page}} - 1">Anterior</a>
+            {% endif %}
+            <div class="pagination-pages"></div>
+            {% if pagination.total == 1 %}
+                <span class="deactivated">Próxima</span>
+            {% elif pagination.total > 1%}
+                <a href="{{pagination.page}} + 1">Próxima</a>
+            {% elif pagination.total == pagination.page %}
+                <span class="deactivated">Próxima</span>
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="/scripts/main.js"></script>
+{% endblock scripts %}

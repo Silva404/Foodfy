@@ -15,5 +15,7 @@ routes.get("/", HomeController.index)
 routes.get("/home", HomeController.home)
 routes.get("/recipes", HomeController.recipes)
 routes.get("/recipes/:id", HomeController.recipe)
+routes.get("/chefs", HomeController.chefs)
+routes.get("/chefs/:id", HomeController.chef)
 
 module.exports = routes

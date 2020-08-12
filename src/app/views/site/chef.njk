@@ -1,0 +1,47 @@
+{% extends 'admin-layout.njk' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/styles/admin/chefs/chef.css">
+{% endblock styles %}
+
+{% block content %}
+    <section class="chef-profile">       
+        <div class="chef-avatar">
+            <img src="{{ chefFile.path }}" alt="{{ chef.name }}">
+            <h1>{{chef.name}}</h1>
+            <p>
+                {% if chef.total_recipes == 1 %}
+                    Uma receita
+                {% elif chef.total_recipes > 1%}
+                    {{chef.total_recipes}}
+                    Receitas
+                {% else %}
+                    Nenhuma Receita encontrada
+                {% endif %}
+            </p>
+        </div>
+    </section>
+
+    <div class="chef-recipes">
+        {% if chef.total_recipes >= 1 %}
+            <h2>Receitas</h2>
+            <div class="cards-container">
+                {% for recipe in recipes %}
+                    <div class="card-admin" id="{{recipe.id}}">
+                        <img src="{{ recipe.image }}" alt="{{ recipe.title}}">
+                        <div class="title">
+                            <h4>{{ recipe.title}}</h4>
+                            <p>Por
+                                {{ recipe.name}}</p>
+                            <a href="/recipes/{{ recipe.id}}" id="view">Visualizar</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="/scripts/main.js"></script>
+{% endblock scripts %}
