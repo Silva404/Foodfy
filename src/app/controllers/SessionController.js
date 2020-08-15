@@ -11,8 +11,6 @@ module.exports = {
     req.session.userId = req.user.id
     req.session.isAdmin = req.user.is_admin
 
-    console.log(req.session);
-    
     return res.redirect('/admin/users')
   },
   logout(req, res) {
@@ -25,7 +23,6 @@ module.exports = {
   },
   async forgot(req, res) {
     const user = req.user
-    console.log(`CONTROLERR: ${user}`);
 
     try {
       const token = crypto.randomBytes(20).toString('hex')
