@@ -79,6 +79,9 @@ module.exports = {
   async delete(req, res) {
     try {
       await User.delete(req.body.id);
+    } catch (err) {
+      console.error(err);
+    }
 
       // if (!req.session.isAdmin) {
       //   req.session.destroy()
@@ -95,8 +98,6 @@ module.exports = {
       return res.render("admin/users/users", {
         success: "Usuário Deletado com sucesso",
       });
-    } catch (err) {
-      console.error(err);
-    }
+    
   },
 };
