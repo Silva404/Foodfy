@@ -24,7 +24,7 @@ module.exports = {
     try {
       const userId = await User.create(req.body);
       const user = await User.findUser(userId.id);
-      console.log(user);
+      
       req.session.userId = userId;
 
       await mailer.sendMail({

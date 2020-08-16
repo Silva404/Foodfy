@@ -14,6 +14,7 @@ module.exports = {
 
       return results.rows[0];
     } catch (err) {
+      console.log("erro no findUser");
       console.error(err);
     }
   },
@@ -62,6 +63,7 @@ module.exports = {
 
       return results.rows[0];
     } catch (err) {
+      console.log("erro no create");
       console.error(err);
     }
   },

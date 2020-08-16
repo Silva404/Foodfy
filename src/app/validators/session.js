@@ -16,10 +16,12 @@ async function login(req, res, next) {
     const passed = await compare(password, user.password)
 
     if (!passed) {
-      return res.render('session/loginForm', {
-        user: user,
-        erro: "Senha inválida"
-      })
+      if (password != user.password) {
+        return res.render('session/loginForm', {
+          user: user,
+          erro: "Senha inválida"
+        })
+      }
     }
 
     req.user = user

@@ -16,29 +16,35 @@ module.exports = {
             let recipes = await Recipes.paginate(params)
             recipes = recipes.filter(recipe => recipe.user_id == req.session.userId)
 
-            const pagination = {
-                total: Math.ceil(recipes[0].total / limit),
-                page
+            if (!recipes) {
+                const pagination = {
+                    total: Math.ceil(recipes[0].total / limit),
+                    page
+                }
+    
+                if (!recipes) return res.send("Recipe not found")
+    
+                async function getImage(recipeId) {
+                    let results = await Recipes.recipeFiles(recipeId)
+                    results = results.map(recipe => `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`)
+    
+                    return results[0]
+                }
+    
+                const recipesPromise = recipes.map(async recipe => {
+                    recipe.image = await getImage(recipe.id)
+    
+                    return recipe
+                })
+    
+                const eachRecipeFixed = await Promise.all(recipesPromise)
+    
+                return res.render('admin/recipes/recipes', { recipes: eachRecipeFixed, filter, pagination })
+            } else {
+                return res.render('admin/recipes/recipes')
             }
 
-            if (!recipes) return res.send("Recipe not found")
-
-            async function getImage(recipeId) {
-                let results = await Recipes.recipeFiles(recipeId)
-                results = results.map(recipe => `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`)
-
-                return results[0]
-            }
-
-            const recipesPromise = recipes.map(async recipe => {
-                recipe.image = await getImage(recipe.id)
-
-                return recipe
-            })
-
-            const eachRecipeFixed = await Promise.all(recipesPromise)
-
-            return res.render('admin/recipes/recipes', { recipes: eachRecipeFixed, filter, pagination })
+            
         } catch (err) {
             console.log(err)
         }
